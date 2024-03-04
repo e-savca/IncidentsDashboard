@@ -1,4 +1,6 @@
 ﻿using Domain.Common;
+using Domain.Incidents.ThreatsAndScenarios;
+using Domain.Incidents.IncidentTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,20 +28,20 @@ namespace Domain.Incidents
         /// <summary>
         /// Date when the request was created.
         /// </summary>
-        public DateTime ProblemStart { get; set; }
+        public DateTime OpenedDate { get; set; }
 
         /// <summary>
         /// Date when the request was closed.
         /// </summary>
-        public DateTime ProblemEnd { get; set; }
+        public DateTime ClosedDate { get; set; }
 
         /// <summary>
-        /// Type of request, there are 3 possible variants.
+        /// RequestType of request, there are 3 possible variants.
         /// </summary>
-        public RequestType Type { get; set; }
+        public string RequestType { get; set; }
 
         /// <summary>
-        /// Type of application, alphanumeric.
+        /// RequestType of application, alphanumeric.
         /// </summary>
         public string ApplicationType { get; set; }
 
@@ -56,57 +58,34 @@ namespace Domain.Incidents
         /// <summary>
         /// The summary of the request.
         /// </summary>
-        public string ProblemSummary { get; set; }
+        public string Summary { get; set; }
 
         /// <summary>
         /// The description of the request.
         /// </summary>
-        public string ProblemDescription { get; set; }
+        public string Description { get; set; }
 
         /// <summary>
         /// The description of the solution.
         /// </summary>
         public string Solution { get; set; }
+        public int OriginId { get; set; }
+        public int AmbitId { get; set; }
+        public int IncidentTypeId { get; set; }
+        public int ScenarioId { get; set; }
+        public int ThreatId { get; set; }
+        public Origin Origin { get; set; }
+        public Ambit Ambit { get; set; }
+        public IncidentType IncidentType { get; set; }
+        /// <summary>
+        /// Navegation property.
+        /// </summary>
+        public Scenario Scenario { get; set; }   
 
         /// <summary>
-        /// Scenario code.
+        /// Navigation property.
         /// </summary>
-        public string ScenarioCode { get; set; }
-
-        /// <summary>
-        /// Scenario name.
-        /// </summary>
-        public string ScenarioName { get; set; }
-
-        /// <summary>
-        /// Threat code.
-        /// </summary>
-        public string ThreatCode { get; set; }
-
-        /// <summary>
-        /// Threat name.
-        /// </summary>
-        public string ThreatName { get; set; }
-
-        /// <summary>
-        /// Origin of the problem.
-        /// </summary>
-        public string Origin { get; set; }
-
-        /// <summary>
-        /// Ambit of the problem, child of origin.
-        /// </summary>
-        public string Ambit { get; set; }
-
-        /// <summary>
-        /// Type of the incident, child of scope.
-        /// </summary>
-        public string IncidentType { get; set; }
-
-        /// <summary>
-        /// Name of the responsible entity.
-        /// </summary>
-        public string ResponsibleEntity { get; set; }
+        public Threat Threat { get; set; }
     }
 
 }

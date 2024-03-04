@@ -44,7 +44,13 @@
     <Compile Include="Common\Entity.cs" />
     <Compile Include="Common\IEntity.cs" />
     <Compile Include="Incidents\Incident.cs" />
-    <Compile Include="Incidents\RequestType.cs" />
+    <Compile Include="Incidents\IncidentTypes\Ambit.cs" />
+    <Compile Include="Incidents\IncidentTypes\AmbitsToTypes.cs" />
+    <Compile Include="Incidents\IncidentTypes\IncidentType.cs" />
+    <Compile Include="Incidents\IncidentTypes\Origin.cs" />
+    <Compile Include="Incidents\IncidentTypes\OriginToAmbit.cs" />
+    <Compile Include="Incidents\ThreatsAndScenarios\Scenario.cs" />
+    <Compile Include="Incidents\ThreatsAndScenarios\Threat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Users\Role.cs" />
     <Compile Include="Users\User.cs" />
