@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces;
 using Domain.Users;
+using Persistance.Users;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -15,11 +16,18 @@ namespace Persistance
 
         public DatabaseService() : base("name=DefaultConnection")
         {
-            
+            Database.SetInitializer(new DatabaseInitializer());
         }
         public void Save()
         {
-            throw new NotImplementedException();
+            this.SaveChanges();
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Configurations.Add(new UserConfiguration());
         }
     }
 }
