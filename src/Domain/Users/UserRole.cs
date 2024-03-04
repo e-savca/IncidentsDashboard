@@ -3,10 +3,11 @@ using System;
 
 namespace Domain.Users
 {
-    public class UserRole : Entity<Guid>
+    public class UserRole
     {
-        public User User { get; set; }
+        public int UserId { get; set; }
         public int RoleId { get; set; }
+        public User User { get; set; }
         public Role Role { get; set; }
     }
 

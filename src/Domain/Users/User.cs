@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Domain.Users
 {
-    public class User : Entity<Guid>
+    public class User : Entity<int>
     {
         public string Username { get; set; }
         public string FullName { get; set; }
