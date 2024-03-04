@@ -11,7 +11,7 @@ namespace Domain.Incidents
     /// Represents a row of information taken from a HelpDesk.
     /// Contains additional information taken from various data sources and then manually selected by an administrator.
     /// </summary>
-    public class Incident : Entity<Guid>
+    public class Incident : Entity<int>
     {
         /// <summary>
         /// Unique alphanumeric code of the request in helpdesk, maximum 17 characters.
@@ -94,14 +94,14 @@ namespace Domain.Incidents
         public string Origin { get; set; }
 
         /// <summary>
-        /// Scope of the problem, child of origin.
+        /// Ambit of the problem, child of origin.
         /// </summary>
-        public string Scope { get; set; }
+        public string Ambit { get; set; }
 
         /// <summary>
-        /// Type of the problem, child of scope.
+        /// Type of the incident, child of scope.
         /// </summary>
-        public string ProblemType { get; set; }
+        public string IncidentType { get; set; }
 
         /// <summary>
         /// Name of the responsible entity.

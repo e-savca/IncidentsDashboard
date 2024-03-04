@@ -13,6 +13,8 @@ namespace Persistance
     public class DatabaseService : DbContext, IDatabaseService
     {
         public IDbSet<User> Users { get; set; }
+        public IDbSet<Role> Roles { get; set; }
+        public IDbSet<UserRole> UserRoles { get; set; }
 
         public DatabaseService() : base("name=DefaultConnection")
         {
@@ -28,6 +30,8 @@ namespace Persistance
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Configurations.Add(new UserConfiguration());
+            modelBuilder.Configurations.Add(new UserRoleConfiguration());
+
         }
     }
 }

@@ -1,10 +1,7 @@
 ﻿using Domain.Users;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Persistance
 {
@@ -15,7 +12,21 @@ namespace Persistance
             base.Seed(database);
 
             // Seed the database with initial data
+            CreateRoles(database);
             CreateUsers(database);
+            CreateUserRole(database);
+        }
+
+        private void CreateRoles(DatabaseService database)
+        {
+            var roles = new List<Role>
+            {
+                new Role { Name = "Admin" },
+                new Role { Name = "Operator" },
+                new Role { Name = "User" },
+            };
+            roles.ForEach(role => database.Roles.Add(role));
+            database.SaveChanges();            
         }
 
         private void CreateUsers(DatabaseService database)
@@ -28,6 +39,31 @@ namespace Persistance
             };
 
             users.ForEach(user => database.Users.Add(user));
+            database.SaveChanges();
+        }
+
+        private void CreateUserRole(DatabaseService database)
+        {
+            var users = database.Users.ToList();
+            var roles = database.Roles.ToList();
+            // atach roles 
+            User admin = users.Where(u => u.FullName.Contains("admin")).First();
+            Role adminRole = roles.Where(r => r.Name.Contains("Admin")).First();
+
+            User operatorUser = users.Where(u => u.FullName.Contains("operator")).First();
+            Role operatorRole = roles.Where(r => r.Name.Contains("operator")).First();
+
+            User user = users.Where(u => u.FullName.Contains("user")).First();
+            Role userRole = roles.Where(r => r.Name.Contains("user")).First();
+
+            List<UserRole> userRoles = new List<UserRole>
+            {
+                new UserRole { User = admin, Role = adminRole },
+                new UserRole { User = operatorUser, Role = operatorRole },
+                new UserRole { User = user, Role = userRole }
+            };
+
+            userRoles.ForEach(item => database.UserRoles.Add(item));
             database.SaveChanges();
         }
     }
