@@ -13,9 +13,10 @@ namespace Persistance.Users
         public UserConfiguration()
         {
             this.HasKey(u => u.Id);
-            //this.Property(u => u.Name).IsRequired().HasMaxLength(50);
-            //this.Property(u => u.Email).IsRequired().HasMaxLength(50);
-            //this.Property(u => u.Password).IsRequired().HasMaxLength(50);
+            this.Property(u => u.FirstName).IsRequired().HasMaxLength(50);
+            this.Property(u => u.SecondName).IsRequired().HasMaxLength(50);
+            this.Property(u => u.Email).IsRequired().HasMaxLength(150);
+            this.Property(u => u.Username).IsRequired().HasMaxLength(50);
         }
     }
 }

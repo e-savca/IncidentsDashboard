@@ -53,7 +53,16 @@
   <ItemGroup>
     <Compile Include="DatabaseInitializer.cs" />
     <Compile Include="DatabaseService.cs" />
+    <Compile Include="Incidents\IncidentConfiguration.cs" />
+    <Compile Include="Incidents\IncidentTypes\AmbitConfiguration.cs" />
+    <Compile Include="Incidents\IncidentTypes\AmbitsToTypesConfiguration.cs" />
+    <Compile Include="Incidents\IncidentTypes\IncidentTypesConfiguration.cs" />
+    <Compile Include="Incidents\IncidentTypes\OriginConfiguration.cs" />
+    <Compile Include="Incidents\IncidentTypes\OriginToAmbitConfiguration.cs" />
+    <Compile Include="Incidents\ThreatAndScenarios\ScenarioConfiguration.cs" />
+    <Compile Include="Incidents\ThreatAndScenarios\ThreatConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Users\RoleConfiguration.cs" />
     <Compile Include="Users\UserConfiguration.cs" />
     <Compile Include="Users\UserRoleConfiguration.cs" />
   </ItemGroup>
