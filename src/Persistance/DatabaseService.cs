@@ -34,7 +34,7 @@ namespace Persistance
         public DatabaseService() : base("DefaultConnection")
         {
             // if exists delete current database and initialize a new one
-            Database.Delete("DefaultConnection");
+            //Database.Delete("DefaultConnection");
             Database.SetInitializer(new DatabaseInitializer());
         }
         public void Save()
@@ -60,8 +60,6 @@ namespace Persistance
             modelBuilder.Configurations.Add(new ThreatConfiguration());
 
             modelBuilder.Configurations.Add(new IncidentConfiguration());
-
-
         }
     }
 }

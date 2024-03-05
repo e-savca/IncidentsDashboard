@@ -10,6 +10,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistance", "Persistance\Persistance.csproj", "{6D0BD5DC-8222-4EEE-A978-46EE23C30106}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Presentation\Presentation.csproj", "{A8FC3C67-34E1-49C1-A1B3-2D1B8B8E2A9B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F9978017-A4C8-48AC-B65A-EA141418DE1B} = {F9978017-A4C8-48AC-B65A-EA141418DE1B}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{33B18464-FE31-48E7-A73B-C520210A8222}"
 EndProject
