@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Application.Users.Queries.GetUsersList.UsersListItemModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@foreach (var item in Model)
+{
+    <div>
+        <h4>@item.FirstName</h4>
+        <p>@item.Email</p>
+        <p>@item.Username</p>
+    </div>
+}
+

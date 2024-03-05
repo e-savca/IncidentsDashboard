@@ -56,6 +56,9 @@
     <Compile Include="Users\Commands\CreateUser\CreateUserCommand.cs" />
     <Compile Include="Users\Commands\CreateUser\CreateUserModel.cs" />
     <Compile Include="Users\Commands\CreateUser\ICreateUserCommand.cs" />
+    <Compile Include="Users\Queries\GetUsersList\GetUsersListQuery.cs" />
+    <Compile Include="Users\Queries\GetUsersList\IGetUsersListQuery.cs" />
+    <Compile Include="Users\Queries\GetUsersList\UsersListItemModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">
@@ -72,7 +75,6 @@
     <Folder Include="Users\Commands\ActivateUser\" />
     <Folder Include="Users\Commands\DeactivateUser\" />
     <Folder Include="Users\Commands\ModifyUser\" />
-    <Folder Include="Users\Queries\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
