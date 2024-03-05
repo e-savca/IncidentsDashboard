@@ -61,6 +61,11 @@
     <Compile Include="Incidents\IncidentTypes\OriginToAmbitConfiguration.cs" />
     <Compile Include="Incidents\ThreatAndScenarios\ScenarioConfiguration.cs" />
     <Compile Include="Incidents\ThreatAndScenarios\ThreatConfiguration.cs" />
+    <Compile Include="Migrations\202403041546093_AddedModels_Configurations_And_Seed.cs" />
+    <Compile Include="Migrations\202403041546093_AddedModels_Configurations_And_Seed.designer.cs">
+      <DependentUpon>202403041546093_AddedModels_Configurations_And_Seed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Users\RoleConfiguration.cs" />
     <Compile Include="Users\UserConfiguration.cs" />
@@ -79,6 +84,11 @@
       <Project>{C807AB45-AB9C-40F6-94E6-5D9F06BB6436}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202403041546093_AddedModels_Configurations_And_Seed.resx">
+      <DependentUpon>202403041546093_AddedModels_Configurations_And_Seed.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

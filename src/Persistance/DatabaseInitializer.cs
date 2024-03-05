@@ -12,15 +12,20 @@ namespace Persistance
         protected override void Seed(DatabaseService database)
         {
             base.Seed(database);
-            List<Origin> origins = CreateOrigins();
-            List<Ambit> ambits = CreateAmbits();
-            List<IncidentType> incidentTypes = CreateIncidentTypes();
+            // Seed the database with initial data
+            CreateRoles(database);
+            CreateUsers(database);
+            CreateUserRole(database);
+            
+            //List<Origin> origins = CreateOrigins();
+            //List<Ambit> ambits = CreateAmbits();
+            //List<IncidentType> incidentTypes = CreateIncidentTypes();
 
-            origins.ForEach(o => database.Origins.Add(o));
-            ambits.ForEach(a => database.Ambits.Add(a));
-            incidentTypes.ForEach(i => database.IncidentTypes.Add(i));
+            //origins.ForEach(o => database.Origins.Add(o));
+            //ambits.ForEach(a => database.Ambits.Add(a));
+            //incidentTypes.ForEach(i => database.IncidentTypes.Add(i));
 
-            database.SaveChanges();
+            //database.SaveChanges();
 
             // Add AmbitsToTypes and OriginToAmbits here...
             // You need to map each Origin, Ambit, and IncidentType based on your data.
@@ -29,10 +34,6 @@ namespace Persistance
             // new OriginToAmbit { OriginId = origins.First(o => o.Name == "Esterna").Id, AmbitId = ambits.First(a => a.Name == "Funzionalità").Id },
 
 
-            // Seed the database with initial data
-            CreateRoles(database);
-            CreateUsers(database);
-            CreateUserRole(database);
         }
 
         private static List<IncidentType> CreateIncidentTypes()

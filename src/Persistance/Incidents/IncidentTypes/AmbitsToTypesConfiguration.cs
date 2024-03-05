@@ -12,6 +12,8 @@ namespace Persistance.Incidents.IncidentTypes
     {
         public AmbitsToTypesConfiguration()
         {
+            this.HasKey(ota => new { ota.AmbitId, ota.IncidentTypeId });
+
             this.HasRequired(ota => ota.Ambit)
                 .WithMany(wm => wm.ambitsToTypes)
                 .HasForeignKey(fk => fk.AmbitId);

@@ -3,6 +3,9 @@ using Domain.Incidents;
 using Domain.Incidents.IncidentTypes;
 using Domain.Incidents.ThreatsAndScenarios;
 using Domain.Users;
+using Persistance.Incidents;
+using Persistance.Incidents.IncidentTypes;
+using Persistance.Incidents.ThreatAndScenarios;
 using Persistance.Users;
 using System;
 using System.Collections.Generic;
@@ -28,8 +31,10 @@ namespace Persistance
         public IDbSet<OriginToAmbit> OriginToAmbits { get; set; }
 
 
-        public DatabaseService() : base("name=DefaultConnection")
+        public DatabaseService() : base("DefaultConnection")
         {
+            // if exists delete current database and initialize a new one
+            Database.Delete("DefaultConnection");
             Database.SetInitializer(new DatabaseInitializer());
         }
         public void Save()
@@ -41,8 +46,21 @@ namespace Persistance
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Configurations.Add(new RoleConfiguration());
             modelBuilder.Configurations.Add(new UserConfiguration());
             modelBuilder.Configurations.Add(new UserRoleConfiguration());
+
+            modelBuilder.Configurations.Add(new AmbitConfiguration());
+            modelBuilder.Configurations.Add(new AmbitsToTypesConfiguration());
+            modelBuilder.Configurations.Add(new IncidentTypesConfiguration());
+            modelBuilder.Configurations.Add(new OriginConfiguration());
+            modelBuilder.Configurations.Add(new OriginToAmbitConfiguration());
+
+            modelBuilder.Configurations.Add(new ScenarioConfiguration());
+            modelBuilder.Configurations.Add(new ThreatConfiguration());
+
+            modelBuilder.Configurations.Add(new IncidentConfiguration());
+
 
         }
     }

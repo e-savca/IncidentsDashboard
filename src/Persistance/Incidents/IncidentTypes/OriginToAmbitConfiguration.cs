@@ -13,11 +13,13 @@ namespace Persistance.Incidents.IncidentTypes
     {
         public OriginToAmbitConfiguration()
         {
-            this.HasRequired(ota => ota.Origin)
+            this.HasKey(oa => new { oa.OriginId, oa.AmbitId });
+
+            this.HasRequired(oa => oa.Origin)
                 .WithMany(wm => wm.originToAmbits)
                 .HasForeignKey(fk => fk.OriginId);
 
-            this.HasRequired(ota => ota.Ambit)
+            this.HasRequired(oa => oa.Ambit)
                 .WithMany(wm => wm.originToAmbits)
                 .HasForeignKey(fk => fk.AmbitId);
         }
