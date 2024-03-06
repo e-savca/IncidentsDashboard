@@ -1,34 +1,37 @@
 ﻿using Application.Interfaces;
-using System;
+using Application.Models;
+using AutoMapper;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Users.Queries.GetUsersList
 {
     public class GetUsersListQuery : IGetUsersListQuery
     {
         private readonly IDatabaseService _database;
-        public GetUsersListQuery(IDatabaseService database)
+        private readonly IMapper _mapper;
+
+        public GetUsersListQuery(
+            IDatabaseService database,
+            IMapper mapper
+            )
         {
             _database = database;
+            _mapper = mapper;
         }
-        public List<UsersListItemModel> Execute()
+        public List<UserDto> Execute()
         {
-            var users = _database.Users
-                .Select(p => new UsersListItemModel()
-                {
-                    UserId = p.Id,
-                    Username = p.Username,
-                    FirstName = p.FirstName,
-                    SecondName = p.SecondName,
-                    Email = p.Email,
-                    IsActive = p.IsActive
-                });
+            // get users from database
+            var users = _database.Users.
+                Include(u => u.UserRoles.Select(ur => ur.Role))
+                .ToList();
 
-            return users.ToList();
+            // map to UserDto
+            var userDtos = users.Select(u => _mapper.Map<UserDto>(u)).ToList();
+
+
+            return userDtos;
         }
     }
 }

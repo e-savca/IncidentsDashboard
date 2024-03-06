@@ -62,9 +62,9 @@ namespace Persistance
         {
             var users = new List<User>
             {
-                new User { Username = "cr001", FirstName = "admin", SecondName = "", Email = "user1@example.com", IsActive = true },
-                new User { Username = "cr002", FirstName = "operator", SecondName = "", Email = "user2@example.com", IsActive = true },
-                new User { Username = "cr003", FirstName = "user", SecondName = "", Email = "user3@example.com", IsActive = true },
+                new User { Username = "cr001", FirstName = "admin", LastName = "", Email = "user1@example.com", IsActive = true },
+                new User { Username = "cr002", FirstName = "operator", LastName = "", Email = "user2@example.com", IsActive = true },
+                new User { Username = "cr003", FirstName = "user", LastName = "", Email = "user3@example.com", IsActive = true },
             };
 
             users.ForEach(user => database.Users.Add(user));
@@ -92,6 +92,8 @@ namespace Persistance
             List<UserRole> userRoles = new List<UserRole>
             {
                 new UserRole { User = admin, Role = adminRole },
+                new UserRole { User = admin, Role = operatorRole },
+                new UserRole { User = admin, Role = userRole },
                 new UserRole { User = operatorUser, Role = operatorRole },
                 new UserRole { User = user, Role = userRole }
             };

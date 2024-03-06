@@ -14,7 +14,7 @@ namespace Presentation.Controllers
         {
             _getUsersListQuery = getUsersListQuery;
         }
-        // GET: User
+        // GET: UserDto
         public ActionResult Index()
         {
             var userList = _getUsersListQuery.Execute();

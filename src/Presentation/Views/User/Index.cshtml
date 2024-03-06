@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Application.Users.Queries.GetUsersList.UsersListItemModel>
+﻿@model IEnumerable<Application.Models.UserDto>
 @{
     ViewBag.Title = "Index";
 }
@@ -8,9 +8,15 @@
 @foreach (var item in Model)
 {
     <div>
-        <h4>@item.FirstName</h4>
-        <p>@item.Email</p>
-        <p>@item.Username</p>
+        <h4>User: @item.FirstName @item.LastName</h4>
+        <p>Id: @item.Id</p>
+        <p>Username: @item.Username</p>
+        <p>E-mail: @item.Email</p>
+        <p>Is Active: @item.IsActive</p>
+        <p>
+            User Roles:
+            @string.Join(", ", item.UserRoles.Select(ur => ur.Role.Name))
+        </p>
     </div>
 }
 

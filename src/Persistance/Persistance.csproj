@@ -65,6 +65,10 @@
     <Compile Include="Migrations\202403041546093_AddedModels_Configurations_And_Seed.designer.cs">
       <DependentUpon>202403041546093_AddedModels_Configurations_And_Seed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202403061505537_ChangedUserPropSecondNameToLastName.cs" />
+    <Compile Include="Migrations\202403061505537_ChangedUserPropSecondNameToLastName.designer.cs">
+      <DependentUpon>202403061505537_ChangedUserPropSecondNameToLastName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Users\RoleConfiguration.cs" />
@@ -88,6 +92,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202403041546093_AddedModels_Configurations_And_Seed.resx">
       <DependentUpon>202403041546093_AddedModels_Configurations_And_Seed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403061505537_ChangedUserPropSecondNameToLastName.resx">
+      <DependentUpon>202403061505537_ChangedUserPropSecondNameToLastName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

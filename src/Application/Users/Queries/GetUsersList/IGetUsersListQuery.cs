@@ -1,13 +1,10 @@
-﻿using System;
+﻿using Application.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Users.Queries.GetUsersList
 {
     public interface IGetUsersListQuery
     {
-        List<UsersListItemModel> Execute();
+        List<UserDto> Execute();
     }
 }
