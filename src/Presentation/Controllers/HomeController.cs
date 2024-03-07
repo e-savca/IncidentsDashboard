@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Presentation.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,6 +7,7 @@ using System.Web.Mvc;
 
 namespace Presentation.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -13,16 +15,19 @@ namespace Presentation.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = User.Identity.GetUserRole();
 
             return View();
         }
 
+
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            int id = User.Identity.GetUserId<int>();
+            ViewBag.Message = "Your id: " + id.ToString();
 
             return View();
         }

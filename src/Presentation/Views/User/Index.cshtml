@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Application.Models.UserDto>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Login";
 }
 
 <h2>Index</h2>
@@ -11,6 +11,7 @@
         <h4>User: @item.FirstName @item.LastName</h4>
         <p>Id: @item.Id</p>
         <p>Username: @item.Username</p>
+        <p>Username: @item.Password</p>
         <p>E-mail: @item.Email</p>
         <p>Is Active: @item.IsActive</p>
         <p>
