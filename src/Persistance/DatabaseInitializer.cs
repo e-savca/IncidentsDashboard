@@ -19,9 +19,6 @@ namespace Persistance
     {
         protected override void Seed(DatabaseService database)
         {
-            base.Seed(database);                        
-
-            // Seed the database with initial data
             CreateRoles(database);
             CreateUsers(database);
             CreateUserRole(database);
@@ -38,6 +35,7 @@ namespace Persistance
 
             CreateIncidents(database);
 
+            base.Seed(database);                        
         }
 
 
