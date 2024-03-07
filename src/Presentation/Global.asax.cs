@@ -20,6 +20,8 @@ namespace Presentation
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            // Add startup.cs
+
 
             // add dependencies
             NinjectModule registrations = new NinjectRegistrations();
