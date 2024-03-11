@@ -6,7 +6,7 @@
 <h2 class="mb-3">Please sign in</h2>
 
 
-@using (Html.BeginForm("SignIn", "Account", FormMethod.Post, new {@class = "w-100 auto"}))
+@using (Html.BeginForm("SignIn", "Account", FormMethod.Post, new { @class = "w-100 auto" }))
 {
     @Html.AntiForgeryToken()
 

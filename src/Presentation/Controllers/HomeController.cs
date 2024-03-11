@@ -1,8 +1,4 @@
 ﻿using Presentation.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Presentation.Controllers
@@ -13,7 +9,7 @@ namespace Presentation.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            return View();
+            return PartialView();
         }
 
         [Authorize(Roles = "Admin")]
@@ -21,7 +17,7 @@ namespace Presentation.Controllers
         {
             ViewBag.Message = User.Identity.GetUserRole();
 
-            return View();
+            return PartialView();
         }
 
 
@@ -30,7 +26,7 @@ namespace Presentation.Controllers
             int id = User.Identity.GetUserId<int>();
             ViewBag.Message = "Your id: " + id.ToString();
 
-            return View();
+            return PartialView();
         }
     }
 }

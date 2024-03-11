@@ -45,6 +45,20 @@ var routingApp = $.sammy("#MainContent", function () {
             context.$element().html(data);
         });
     });
+
+    this.get("#/Account/SignIn", function (context) {
+        titleContent.html("Sign In");
+        $.get("/Account/SignIn", function (data) {
+            context.$element().html(data);
+        });
+    });
+
+    this.get("#/Account/SignOut", function (context) {
+        titleContent.html("Sign Out");
+        $.get("/Account/SignOut", function (data) {
+            context.$element().html(data);
+        });
+    });
 });
 
 $(function () {

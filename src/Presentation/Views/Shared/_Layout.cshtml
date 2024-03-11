@@ -9,25 +9,27 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/sammyjs")
     @Scripts.Render("~/bundles/layout-routing")
+    @RenderSection("scripts", required: false)
 </head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
         <div class="container">
-            @Html.ActionLink("Incidents Dashboard", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @*@Html.ActionLink("Incidents Dashboard", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+            <a href="#/Home/Index" class="navbar-brand">Incidents Dashboard</a>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                    <li><a href="#/Home/Index">Home</a></li>
+                    <li><a href="#/Home/Index" class="nav-link">Home</a></li>
                     @if (User.IsInRole("Admin"))
                     {
                         @*<li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@
-                        <li><a href="#/Home/About">About</a></li>
+                        <li><a href="#/Home/About" class="nav-link">About</a></li>
                     }
                     @*<li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@
-                    <li><a href="#/Home/Contact">Contact</a></li>
+                    <li><a href="#/Home/Contact" class="nav-link">Contact</a></li>
                 </ul>
             </div>
             <div class="d-flex">
@@ -35,13 +37,13 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li>
-                            <a href="@Url.Action("SignOut", "Account", new { area = "" })" type="button" class="btn btn-danger nav-link">Sign Out</a>
+                            <a href="/Account/SignOut" type="button" class="btn btn-danger nav-link">Sign Out</a>
                         </li>
                     }
                     else
                     {
                         <li>
-                            <a href="@Url.Action("SignIn", "Account", new { area = "" })" type="button" class="btn btn-primary nav-link">Sign In</a>
+                            <a href="#/Account/SignIn" type="button" class="btn btn-primary nav-link">Sign In</a>
                         </li>
                     }
                 </ul>
@@ -49,16 +51,15 @@
     </nav>
 
     <div class="container body-content">
-        <div class="MainContent">
+        <div id="MainContent">
             @RenderBody()
         </div>
         <hr />
-        <footer>
+        <footer class="footer text-muted">
             <p>&copy; @DateTime.Now.Year - Incidents Dashboard</p>
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
 </body>
 </html>

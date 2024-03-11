@@ -1,15 +1,11 @@
 ﻿using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Data.Entity;
 using System.Security.Claims;
 using Microsoft.Owin.Security;
 using System.Threading.Tasks;
-using Application.Interfaces;
-using Domain.Users;
 using Presentation.Models;
 using Microsoft.Ajax.Utilities;
-using System.Web.Security;
 using System.Data;
 using Application.Users.Queries.GetUserByUsernameAndPassword;
 
@@ -36,7 +32,7 @@ namespace Presentation.Controllers
 
         public ActionResult SignIn()
         {
-            return View();
+            return PartialView();
         }
 
         [HttpPost]
@@ -76,16 +72,17 @@ namespace Presentation.Controllers
                     {
                         IsPersistent = true
                     }, claim);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Default");
                 }
             }
-            return View(model);
+            return PartialView(model);
         }
 
         public ActionResult SignOut()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Default");
+            //return RedirectToAction("SignIn");
         }
     }
 }
