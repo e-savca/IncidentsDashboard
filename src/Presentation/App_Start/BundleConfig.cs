@@ -23,7 +23,10 @@ namespace Presentation
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      // set the custom theme
+                      //"~/Content/bootstrap.css",
+                      "~/Content/bootstrap-lumen.css",
+                      //"~/Content/bootstrap-yeti.css",
                       "~/Content/site.css"));
         }
     }
