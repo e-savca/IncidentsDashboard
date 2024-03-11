@@ -13,6 +13,12 @@ namespace Presentation
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
+            
+            bundles.Add(new ScriptBundle("~/bundles/sammyjs").Include(
+                        "~/Scripts/sammy.js/sammy*"));
+
+            bundles.Add(new ScriptBundle("~/bundles/layout-routing").Include(
+                        "~/Scripts/layout-routing.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
@@ -25,8 +31,8 @@ namespace Presentation
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       // set the custom theme
                       //"~/Content/bootstrap.css",
-                      "~/Content/bootstrap-lumen.css",
                       //"~/Content/bootstrap-yeti.css",
+                      "~/Content/bootstrap-lumen.css",
                       "~/Content/site.css"));
         }
     }

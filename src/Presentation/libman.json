@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "sammy.js@0.7.6",
+      "destination": "Scripts/sammy.js/"
+    }
+  ]
+}
