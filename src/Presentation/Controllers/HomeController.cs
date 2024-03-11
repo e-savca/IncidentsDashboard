@@ -10,7 +10,6 @@ namespace Presentation.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        // every user withour authorization can access
         [AllowAnonymous]
         public ActionResult Index()
         {

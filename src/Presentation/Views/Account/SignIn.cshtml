@@ -1,25 +1,26 @@
 ﻿@model Presentation.Models.LoginModel
 @{
-    ViewBag.Title = "Login";
+    ViewBag.Title = "Sign In";
 }
 
-<h2>Login</h2>
+<h2 class="mb-3">Please sign in</h2>
 
-@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+
+@using (Html.BeginForm("SignIn", "Account", FormMethod.Post, new {@class = "w-100 auto"}))
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-group">
+    <div class="form-group mb-3">
         @Html.LabelFor(m => m.Username)
         @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Username)
     </div>
 
-    <div class="form-group">
+    <div class="form-group mb-3">
         @Html.LabelFor(m => m.Password)
         @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Password)
     </div>
 
-    <button type="submit" class="btn btn-primary">Login</button>
+    <button type="submit" class="btn btn-primary py-2">Sign In</button>
 }

@@ -11,16 +11,19 @@ using Presentation.Models;
 using Microsoft.Ajax.Utilities;
 using System.Web.Security;
 using System.Data;
+using Application.Users.Queries.GetUserByUsernameAndPassword;
 
 namespace Presentation.Controllers
 {
     public class AccountController : Controller
     {
-        IDatabaseService _databaseService;
+        IGetUserByUsernameAndPasswordQuery _getUserByUsernameAndPassword;
 
-        public AccountController(IDatabaseService databaseService)
+        public AccountController(
+            IGetUserByUsernameAndPasswordQuery getUserByUsernameAndPassword
+            )
         {
-            _databaseService = databaseService;
+            _getUserByUsernameAndPassword = getUserByUsernameAndPassword;
         }
 
         private IAuthenticationManager AuthenticationManager
@@ -31,18 +34,18 @@ namespace Presentation.Controllers
             }
         }
 
-        public ActionResult Login()
+        public ActionResult SignIn()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginModel model)
+        public async Task<ActionResult> SignIn(LoginModel model)
         {
             if (ModelState.IsValid)
             {
-                User user = await _databaseService.Users.Include(u => u.UserRoles.Select(ur => ur.Role)).FirstOrDefaultAsync(u => u.Username == model.Username && u.Password == model.Password);
+                var user = await _getUserByUsernameAndPassword.ExecuteAsync(model.Username, model.Password);
 
                 if (user == null)
                 {
@@ -79,7 +82,7 @@ namespace Presentation.Controllers
             return View(model);
         }
 
-        public ActionResult Logout()
+        public ActionResult SignOut()
         {
             AuthenticationManager.SignOut();
             return RedirectToAction("Index", "Home");

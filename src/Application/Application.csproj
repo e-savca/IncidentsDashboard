@@ -63,6 +63,8 @@
     <Compile Include="Users\Commands\CreateUser\CreateUserCommand.cs" />
     <Compile Include="Users\Commands\CreateUser\CreateUserModel.cs" />
     <Compile Include="Users\Commands\CreateUser\ICreateUserCommand.cs" />
+    <Compile Include="Users\Queries\GetUserByUsernameAndPassword\GetUserByUsernameAndPasswordQuery.cs" />
+    <Compile Include="Users\Queries\GetUserByUsernameAndPassword\IGetUserByUsernameAndPasswordQuery.cs" />
     <Compile Include="Users\Queries\GetUsersList\GetUsersListQuery.cs" />
     <Compile Include="Users\Queries\GetUsersList\IGetUsersListQuery.cs" />
   </ItemGroup>
