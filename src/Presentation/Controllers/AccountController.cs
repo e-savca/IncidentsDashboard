@@ -32,7 +32,7 @@ namespace Presentation.Controllers
 
         public ActionResult SignIn()
         {
-            return PartialView();
+            return View();
         }
 
         [HttpPost]
@@ -58,11 +58,8 @@ namespace Presentation.Controllers
                     if (user.UserRoles != null)
                         user.UserRoles.Select(ur => ur.Role.Name)
                             .ForEach(ur =>
-                            claim.AddClaim(
-                                new Claim(
-                                    ClaimsIdentity.DefaultRoleClaimType,
-                                    ur,
-                                    ClaimValueTypes.String
+                            claim.AddClaim(new Claim(
+                                    ClaimsIdentity.DefaultRoleClaimType, ur, ClaimValueTypes.String
                                     )
                                 )
                             );
@@ -81,7 +78,7 @@ namespace Presentation.Controllers
         public ActionResult SignOut()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Default");
+            return RedirectToAction("SignIn", "Account");
             //return RedirectToAction("SignIn");
         }
     }

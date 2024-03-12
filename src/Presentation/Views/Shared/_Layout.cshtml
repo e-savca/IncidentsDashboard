@@ -26,10 +26,13 @@
                     @if (User.IsInRole("Admin"))
                     {
                         @*<li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@
+                        @*<li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@
                         <li><a href="#/Home/About" class="nav-link">About</a></li>
                     }
-                    @*<li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@
-                    <li><a href="#/Home/Contact" class="nav-link">Contact</a></li>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Operator"))
+                    {
+                        <li><a href="#/Home/Contact" class="nav-link">Contact</a></li>
+                    }
                 </ul>
             </div>
             <div class="d-flex">
@@ -37,13 +40,15 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li>
-                            <a href="/Account/SignOut" type="button" class="btn btn-danger nav-link">Sign Out</a>
+                            @*<a href="/Account/SignOut" type="button" class="btn btn-danger nav-link">Sign Out</a>*@
+                            @Html.ActionLink("Sign Out", "SignOut", "Account", new { area = "" }, new { @class = "btn btn-danger nav-link" })
                         </li>
                     }
                     else
                     {
                         <li>
-                            <a href="#/Account/SignIn" type="button" class="btn btn-primary nav-link">Sign In</a>
+                            @*<a href="/Account/SignIn" type="button" class="btn btn-primary nav-link">Sign In</a>*@
+                            @Html.ActionLink("Sign In", "SignIn", "Account", new { area = "" }, new { @class = "btn btn-primary nav-link" })
                         </li>
                     }
                 </ul>

@@ -6,7 +6,7 @@ namespace Presentation.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        [AllowAnonymous]
+        [Authorize]
         public ActionResult Index()
         {
             return PartialView();
@@ -20,7 +20,7 @@ namespace Presentation.Controllers
             return PartialView();
         }
 
-
+        [Authorize(Roles = "Operator")]
         public ActionResult Contact()
         {
             int id = User.Identity.GetUserId<int>();
