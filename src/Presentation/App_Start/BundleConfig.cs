@@ -13,15 +13,24 @@ namespace Presentation
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
-            
+
             bundles.Add(new ScriptBundle("~/bundles/sammyjs").Include(
                         "~/Scripts/sammy.js/sammy*"));
 
             bundles.Add(new ScriptBundle("~/bundles/layout-routing").Include(
                         "~/Scripts/layout-routing.js"));
-            
-            bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
-                        "~/Scripts/datatables.net-bs5/*.js"));
+
+            // adding dataTables.js to the project
+            bundles.Add(new ScriptBundle("~/bundles/dataTables").Include(
+                        "~/Scripts/jquery.dataTables.js",
+                        "~/Scripts/jquery.dataTables.min.js",
+                        "~/Scripts/dataTables.dataTables.js",
+                        "~/Scripts/dataTables.dataTables.min.js"));
+
+            bundles.Add(new StyleBundle("~/Content/dataTables").Include(
+                        "~/Content/dataTables.dataTables.css",
+                        "~/Content/dataTables.dataTables.min.css"));
+
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
@@ -31,16 +40,15 @@ namespace Presentation
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
-            // adding datatables css
-            bundles.Add(new StyleBundle("~/Content/datatables").Include(
-                                     "~/Scripts/datatables.net-bs5/*.css"));
-
+            // set custom theme
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      // set the custom theme
-                      //"~/Content/bootstrap.css",
-                      //"~/Content/bootstrap-yeti.css",
                       "~/Content/bootstrap-lumen.css",
                       "~/Content/site.css"));
+
+            //// default theme
+            //bundles.Add(new StyleBundle("~/Content/css").Include(
+            //          "~/Content/bootstrap.css",
+            //          "~/Content/site.css"));
         }
     }
 }
