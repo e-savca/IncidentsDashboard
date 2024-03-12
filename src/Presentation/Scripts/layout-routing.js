@@ -6,6 +6,32 @@ $(function () {
     titleContent = $("title"); // render titles.  
 });
 
+function showLoadingIndicator() {
+    mainContent.html(`
+    <div id="loading" style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 70vh;
+    ">
+        <div style="
+            border: 16px solid #f3f3f3;
+            border-top: 16px solid #3498db;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+        "></div>
+    </div>
+    <style>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    `);
+}
+
 var routingApp = $.sammy("#MainContent", function () {
     this.get("#Dashboard", function (context) {
         titleContent.html("Dashboard");
@@ -13,6 +39,18 @@ var routingApp = $.sammy("#MainContent", function () {
             context.$element().html(data);
         });
     });
+    this.get("#User", function (context) {
+        titleContent.html("Admin Panel");
+
+        // Show loading indicator
+        showLoadingIndicator();
+
+        $.get("/User/Index", function (data) {
+            // Hide loading indicator and show the data
+            mainContent.html(data);
+        });
+    });
+
 
     //this.get("#/Student/Add", function (context) {
     //    titleContent.html("Add Student");
@@ -32,37 +70,10 @@ var routingApp = $.sammy("#MainContent", function () {
     //    });
     //});
 
-    this.get("#About", function (context) {
-        titleContent.html("About");
-        $.get("/Home/About", function (data) {
-            context.$element().html(data);
-        });
-    });
-
-    this.get("#Contact", function (context) {
-        titleContent.html("Contact");
-        $.get("/Home/Contact", function (data) {
-            context.$element().html(data);
-        });
-    });
-
-    //this.get("#/Account/SignIn", function (context) {
-    //    titleContent.html("Sign In");
-    //    $.get("/Account/SignIn", function (data) {
-    //        context.$element().html(data);
-    //    });
-    //});
-
-    //this.get("#/Account/SignOut", function (context) {
-    //    titleContent.html("Sign Out");
-    //    $.get("/Account/SignOut", function (data) {
-    //        context.$element().html(data);
-    //    });
-    //});
 });
 
 $(function () {
-    routingApp.run("#/Dashboard/Index"); // default routing page.  
+    routingApp.run("#Dashboard"); // default routing page.  
 });
 
 function IfLinkNotExist(type, path) {

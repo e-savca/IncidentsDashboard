@@ -5,6 +5,10 @@
     {
       "library": "sammy.js@0.7.6",
       "destination": "Scripts/sammy.js/"
+    },
+    {
+      "library": "datatables.net-bs5@2.0.2",
+      "destination": "Scripts/datatables.net-bs5/"
     }
   ]
 }

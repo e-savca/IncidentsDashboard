@@ -19,6 +19,9 @@ namespace Presentation
 
             bundles.Add(new ScriptBundle("~/bundles/layout-routing").Include(
                         "~/Scripts/layout-routing.js"));
+            
+            bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
+                        "~/Scripts/datatables.net-bs5/*.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
@@ -27,6 +30,10 @@ namespace Presentation
 
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
+
+            // adding datatables css
+            bundles.Add(new StyleBundle("~/Content/datatables").Include(
+                                     "~/Scripts/datatables.net-bs5/*.css"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       // set the custom theme
