@@ -7,9 +7,9 @@ $(function () {
 });
 
 var routingApp = $.sammy("#MainContent", function () {
-    this.get("#/Home/Index", function (context) {
-        titleContent.html("Home");
-        $.get("/Home/Index", function (data) {
+    this.get("#Dashboard", function (context) {
+        titleContent.html("Dashboard");
+        $.get("/Dashboard/Index", function (data) {
             context.$element().html(data);
         });
     });
@@ -32,37 +32,37 @@ var routingApp = $.sammy("#MainContent", function () {
     //    });
     //});
 
-    this.get("#/Home/About", function (context) {
+    this.get("#About", function (context) {
         titleContent.html("About");
         $.get("/Home/About", function (data) {
             context.$element().html(data);
         });
     });
 
-    this.get("#/Home/Contact", function (context) {
+    this.get("#Contact", function (context) {
         titleContent.html("Contact");
         $.get("/Home/Contact", function (data) {
             context.$element().html(data);
         });
     });
 
-    this.get("#/Account/SignIn", function (context) {
-        titleContent.html("Sign In");
-        $.get("/Account/SignIn", function (data) {
-            context.$element().html(data);
-        });
-    });
+    //this.get("#/Account/SignIn", function (context) {
+    //    titleContent.html("Sign In");
+    //    $.get("/Account/SignIn", function (data) {
+    //        context.$element().html(data);
+    //    });
+    //});
 
-    this.get("#/Account/SignOut", function (context) {
-        titleContent.html("Sign Out");
-        $.get("/Account/SignOut", function (data) {
-            context.$element().html(data);
-        });
-    });
+    //this.get("#/Account/SignOut", function (context) {
+    //    titleContent.html("Sign Out");
+    //    $.get("/Account/SignOut", function (data) {
+    //        context.$element().html(data);
+    //    });
+    //});
 });
 
 $(function () {
-    routingApp.run("#/Home/Index"); // default routing page.  
+    routingApp.run("#/Dashboard/Index"); // default routing page.  
 });
 
 function IfLinkNotExist(type, path) {
