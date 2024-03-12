@@ -67,6 +67,7 @@
     <Compile Include="Users\Queries\GetUserByUsernameAndPassword\IGetUserByUsernameAndPasswordQuery.cs" />
     <Compile Include="Users\Queries\GetUsersList\GetUsersListQuery.cs" />
     <Compile Include="Users\Queries\GetUsersList\IGetUsersListQuery.cs" />
+    <Compile Include="Users\Queries\GetUsersList\UsersListItemModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">

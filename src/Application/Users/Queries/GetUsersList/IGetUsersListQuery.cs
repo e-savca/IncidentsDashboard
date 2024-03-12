@@ -1,10 +1,11 @@
 ﻿using Application.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Application.Users.Queries.GetUsersList
 {
     public interface IGetUsersListQuery
     {
-        List<UserDto> Execute();
+        Task<List<UsersListItemModel>> ExecuteAsync();
     }
 }

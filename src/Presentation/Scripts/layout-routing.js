@@ -35,10 +35,15 @@ function showLoadingIndicator() {
 var routingApp = $.sammy("#MainContent", function () {
     this.get("#Dashboard", function (context) {
         titleContent.html("Dashboard");
+
+        // Show loading indicator
+        showLoadingIndicator();
+
         $.get("/Dashboard/Index", function (data) {
             context.$element().html(data);
         });
     });
+
     this.get("#User", function (context) {
         titleContent.html("Admin Panel");
 

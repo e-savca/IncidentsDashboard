@@ -1,4 +1,5 @@
 ﻿using Application.Users.Queries.GetUsersList;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Presentation.Controllers
@@ -14,9 +15,9 @@ namespace Presentation.Controllers
             _getUsersList = getUsersList;
         }
         // GET: User
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var users = _getUsersList.Execute();
+            var users = await _getUsersList.ExecuteAsync();
             return PartialView(users);
         }
     }
