@@ -4,21 +4,26 @@ using System.Web.Mvc;
 
 namespace Presentation.Controllers
 {
-    public class UserController : Controller
+    public class AdminController : Controller
     {
         private readonly IGetUsersListQuery _getUsersList;
 
-        public UserController(
+        public AdminController(
             IGetUsersListQuery getUsersList
             )
         {
             _getUsersList = getUsersList;
         }
         // GET: User
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
+        {
+            return PartialView();
+        }
+        public async Task<ActionResult> GetUsersListAsync()
         {
             var users = await _getUsersList.ExecuteAsync();
-            return PartialView(users);
+
+            return Json(users, JsonRequestBehavior.AllowGet);
         }
     }
 }
