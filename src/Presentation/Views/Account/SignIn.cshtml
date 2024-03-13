@@ -21,6 +21,10 @@
 
     <div class="container body-content shadow p-5 bg-white rounded col-3">
         <h2 class="mb-3 text-center">Please sign in</h2>
+        @if (!ViewData.ModelState.IsValid)
+        {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        }
 
         <div class="mx-auto justify-content-center">
             @using (Html.BeginForm("SignIn", "Account", FormMethod.Post))
