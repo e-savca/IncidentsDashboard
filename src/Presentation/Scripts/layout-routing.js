@@ -42,19 +42,32 @@ var routingApp = $.sammy("#MainContent", function () {
         $.get("/Dashboard/Index", function (data) {
             context.$element().html(data);
         });
+
     });
 
-    this.get("#User", function (context) {
+    this.get("#Admin", function (context) {
         titleContent.html("Admin Panel");
 
         // Show loading indicator
         showLoadingIndicator();
 
-        $.get("/User/Index", function (data) {
+        $.get("/Admin/Index", function (data) {
             // Hide loading indicator and show the data
-            mainContent.html(data);
+            context.$element().html(data);
         });
     });
+
+    //this.get("#User", function (context) {
+    //    titleContent.html("Admin Panel");
+
+    //    // Show loading indicator
+    //    showLoadingIndicator();
+
+    //    $.get("/User/Index", function (data) {
+    //        // Hide loading indicator and show the data
+    //        mainContent.html(data);
+    //    });
+    //});
 
 
     //this.get("#/Student/Add", function (context) {

@@ -1,0 +1,23 @@
+﻿<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table id="usersTable">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Is Active</th>
+            <th>User roles</th>
+        </tr>
+    </thead>
+</table>
+
+<script src="~/Scripts/dataTablesAjax/GetUsersList.js"></script>
+<script>
+$(document).ready(function () {
+    initializeDataTable();
+    });
+</script>

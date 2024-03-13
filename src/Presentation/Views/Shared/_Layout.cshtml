@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Incidents Dashboard</title>
     @Styles.Render("~/Content/css")
-    @*@Styles.Render("~/Content/dataTables")*@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/sammyjs")
     @Scripts.Render("~/bundles/layout-routing")
-    @*@Scripts.Render("~/bundles/dataTables")*@
     <link href="https://cdn.datatables.net/v/dt/dt-2.0.2/datatables.min.css" rel="stylesheet">
     <script src="https://cdn.datatables.net/v/dt/dt-2.0.2/datatables.min.js"></script>
 </head>
@@ -25,11 +23,10 @@
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                    @*<li><a href="#/Home/Index" class="nav-link">Home</a></li>*@
                     <li><a href="#Dashboard" class="nav-link">Dashboard</a></li>
                     @if (User.IsInRole("Admin"))
                     {
-                        <li><a href="#User" class="nav-link">Admin Panel</a></li>
+                        <li><a href="#Admin" class="nav-link">Admin Panel</a></li>
                     }
                 </ul>
             </div>
@@ -38,7 +35,6 @@
                 <div class="d-flex">
                     <ul class="navbar-nav">
                         <li>
-                            @*<a href="/Account/SignOut" type="button" class="btn btn-danger nav-link">Sign Out</a>*@
                             @Html.ActionLink("Sign Out", "SignOut", "Account", new { area = "" }, new { @class = "btn btn-danger nav-link" })
                         </li>
                     </ul>
