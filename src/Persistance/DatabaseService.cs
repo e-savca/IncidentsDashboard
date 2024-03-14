@@ -40,6 +40,12 @@ namespace Persistance
             this.SaveChanges();
         }
 
+        public async Task<int> SaveAsync()
+        {
+            var r = await this.SaveChangesAsync();
+            return r;
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

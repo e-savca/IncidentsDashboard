@@ -3,6 +3,7 @@ using Domain.Incidents.ThreatsAndScenarios;
 using Domain.Incidents;
 using Domain.Users;
 using System.Data.Entity;
+using System.Threading.Tasks;
 namespace Application.Interfaces
 {
     public interface IDatabaseService
@@ -20,5 +21,6 @@ namespace Application.Interfaces
         IDbSet<OriginToAmbit> OriginToAmbits { get; set; }
 
         void Save();
+        Task<int> SaveAsync();
     }
 }
