@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using Castle.Components.DictionaryAdapter.Xml;
+using System.Web;
 using System.Web.Optimization;
 
 namespace Presentation
@@ -18,18 +19,7 @@ namespace Presentation
                         "~/Scripts/sammy.js/sammy*"));
 
             bundles.Add(new ScriptBundle("~/bundles/layout-routing").Include(
-                        "~/Scripts/layout-routing.js"));
-
-            // adding dataTables.js to the project
-            bundles.Add(new ScriptBundle("~/bundles/dataTables").Include(
-                        "~/Scripts/jquery.dataTables.js",
-                        "~/Scripts/jquery.dataTables.min.js",
-                        "~/Scripts/dataTables.dataTables.js",
-                        "~/Scripts/dataTables.dataTables.min.js"));
-
-            bundles.Add(new StyleBundle("~/Content/dataTables").Include(
-                        "~/Content/dataTables.dataTables.css",
-                        "~/Content/dataTables.dataTables.min.css"));
+                        "~/Scripts/IncidentsDashboardCore/layout-routing.js"));
 
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're

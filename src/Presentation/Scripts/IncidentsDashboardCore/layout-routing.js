@@ -83,26 +83,6 @@ var routingApp = $.sammy("#MainContent", function () {
             context.$element().html(data);
         });
     });
-
-
-    //this.get("#/Student/Add", function (context) {
-    //    titleContent.html("Add Student");
-    //    //$("#BigLoader").modal('show'); // If you want to show loader  
-    //    $.get("/Student/Add", function (data) {
-    //        //$("#BigLoader").modal('hide');  
-    //        context.$element().html(data);
-    //    });
-    //});
-
-    //this.get("#/Student/Edit", function (context) {
-    //    titleContent.html("Edit Student");
-    //    $.get("/Student/Edit", {
-    //        studentID: context.params.id // pass student id  
-    //    }, function (data) {
-    //        context.$element().html(data);
-    //    });
-    //});
-
 });
 
 $(function () {
