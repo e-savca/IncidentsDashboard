@@ -1,9 +1,12 @@
 ﻿using Application.Interfaces;
 using Application.MappingProfiles;
+using Application.Roles.Queries.GetRolesList;
+using Application.Users.Commands.CreateUser;
 using Application.Users.Queries.GetUserByUsernameAndPassword;
 using Application.Users.Queries.GetUsersList;
 using AutoMapper;
 using Common.Dates;
+using FluentValidation;
 using Ninject.Modules;
 using Persistance;
 
@@ -20,21 +23,34 @@ namespace Presentation.Util
             Bind<IDateService>().To<DateService>();
 
             // Application layer dependencies
-            // Queries
+            // Users Queries
             Bind<IGetUsersListQuery>().To<GetUsersListQuery>();
             Bind<IGetUserByUsernameAndPasswordQuery>().To<GetUserByUsernameAndPasswordQuery>();
 
+            // Roles Queries
+            Bind<IGetRolesListQuery>().To<GetRolesListQuery>();
+
 
             // Commands 
+            Bind<ICreateUserCommand>().To<CreateUserCommand>();
 
 
-            var config = new MapperConfiguration(cfg =>
+            // Validators
+            var validators = AssemblyScanner.FindValidatorsInAssemblyContaining<CreateUserModel>();
+            foreach (var validator in validators)
             {
-                cfg.AddProfile<UserProfile>();
-            });
-            var mapper = config.CreateMapper();
+                Bind(validator.InterfaceType).To(validator.ValidatorType);
+            }
 
-            Bind<IMapper>().ToConstant(mapper);
+
+
+            //var config = new MapperConfiguration(cfg =>
+            //{
+            //    cfg.AddProfile<UserProfile>();
+            //});
+            //var mapper = config.CreateMapper();
+
+            //Bind<IMapper>().ToConstant(mapper);
         }
     }
 }

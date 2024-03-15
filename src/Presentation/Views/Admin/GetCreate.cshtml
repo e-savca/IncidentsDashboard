@@ -1,0 +1,136 @@
+﻿@using Application.Users.Commands.CreateUser
+@model CreateUserModel
+
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <div class="card">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3>Create User</h3>
+                </div>
+                <div class="card-body">
+                    <div id="liveAlertPlaceholder"></div>
+                    @using (Html.BeginForm("CreateAsync", "Admin", FormMethod.Post, new { id = "createUserForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Username)
+                            @Html.TextBoxFor(model => model.Username, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Username)
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Password)
+                            @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Password)
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.FirstName, "First Name")
+                            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.FirstName)
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LastName, "Last Name")
+                            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.LastName)
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email, "Email")
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Email)
+                        </div>
+
+                        <div class="form-group mt-3 mb-2">
+                            @Html.HiddenFor(model => model.IsActive, new { @id = "isActiveField" })
+
+                            <div class="btn-group" role="group">
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" value="true" autocomplete="off" checked>
+                                <label class="btn btn-outline-primary" for="btnradio1">Active</label>
+
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" value="false" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="btnradio2">Inactive</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            @Html.LabelFor(model => model.RoleIds, "Roles")
+                            <select class="form-control" id="RoleIds" name="RoleIds" multiple>
+                                @foreach (var role in (IEnumerable<SelectListItem>)ViewBag.Roles)
+                                {
+                                    if (role.Text == "User")
+                                    {
+                                        <option value="@role.Value" selected>@role.Text</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@role.Value">@role.Text</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-group d-flex justify-content-end mt-5 mb-3">
+                            <input type="submit" value="Create" class="btn btn-primary me-auto">
+                            <a href="#Admin" class="btn btn-secondary">Back to list</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    /* model.IsActive property*/
+    document.querySelectorAll('input[name="btnradio"]').forEach(function (radio) {
+        radio.addEventListener('change', function () {
+            document.getElementById('isActiveField').value = this.value;
+        });
+    });
+
+    const appendAlertValidationMessage = (message, element) => {
+        // Find the validation span for the given element
+        let validationSpan = document.querySelector(`span[data-valmsg-for="${element}"]`);
+
+        // Set the error message and class
+        validationSpan.textContent = message;
+        validationSpan.className = `field-validation-error text-danger`;
+
+    }
+
+
+    document.getElementById('createUserForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var formData = new FormData(this);
+
+        fetch(this.action, {
+            method: this.method,
+            body: formData,
+            headers: {
+                'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = '#Admin';
+                }
+                else {
+                    // Display error messages
+                    // foreach in data.message call appendAlert
+                    data.errors.forEach((item) => {
+                        appendAlertValidationMessage(item.message, item.propertyName)
+                    });
+
+                    //appendAlertValidationMessage(data.message, data.messageType, data.element)
+                }
+            });
+    });
+</script>

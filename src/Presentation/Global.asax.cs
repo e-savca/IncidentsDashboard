@@ -5,6 +5,7 @@ using Presentation.Util;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using FluentValidation.Mvc;
 
 namespace Presentation
 {
@@ -16,7 +17,8 @@ namespace Presentation
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            // Add startup.cs
+            
+            FluentValidationModelValidatorProvider.Configure();
 
 
             // add dependencies

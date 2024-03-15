@@ -57,17 +57,32 @@ var routingApp = $.sammy("#MainContent", function () {
         });
     });
 
-    //this.get("#User", function (context) {
-    //    titleContent.html("Admin Panel");
+    this.get("#Admin/Create", function (context) {
+        titleContent.html("Create User");
+        //$("#BigLoader").modal('show'); // If you want to show loader
+        $.get("/Admin/GetCreate", function (data) {
+            //$("#BigLoader").modal('hide');
+            context.$element().html(data);
+        });
+    });
 
-    //    // Show loading indicator
-    //    showLoadingIndicator();
+    this.get("#Admin/Edit", function (context) {
+        titleContent.html("Edit User");
+        //$("#BigLoader").modal('show'); // If you want to show loader
+        $.get("/Admin/Edit", function (data) {
+            //$("#BigLoader").modal('hide');
+            context.$element().html(data);
+        });
+    });
 
-    //    $.get("/User/Index", function (data) {
-    //        // Hide loading indicator and show the data
-    //        mainContent.html(data);
-    //    });
-    //});
+    this.get("#Admin/Deactivate", function (context) {
+        titleContent.html("Deactivate User");
+        //$("#BigLoader").modal('show'); // If you want to show loader
+        $.get("/Admin/Deactivate", function (data) {
+            //$("#BigLoader").modal('hide');
+            context.$element().html(data);
+        });
+    });
 
 
     //this.get("#/Student/Add", function (context) {

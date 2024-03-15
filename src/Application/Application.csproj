@@ -43,7 +43,13 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="FluentValidation, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.8.6.1\lib\net45\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.4.1\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -60,8 +66,12 @@
     <Compile Include="Models\UserDto.cs" />
     <Compile Include="Models\UserRoleDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Roles\Queries\GetRolesList\GetRolesListQuery.cs" />
+    <Compile Include="Roles\Queries\GetRolesList\IGetRolesListQuery.cs" />
+    <Compile Include="Roles\Queries\GetRolesList\RolesListItemModel.cs" />
     <Compile Include="Users\Commands\CreateUser\CreateUserCommand.cs" />
     <Compile Include="Users\Commands\CreateUser\CreateUserModel.cs" />
+    <Compile Include="Users\Commands\CreateUser\CreateUserModelValidator.cs" />
     <Compile Include="Users\Commands\CreateUser\ICreateUserCommand.cs" />
     <Compile Include="Users\Queries\GetUserByUsernameAndPassword\GetUserByUsernameAndPasswordQuery.cs" />
     <Compile Include="Users\Queries\GetUserByUsernameAndPassword\IGetUserByUsernameAndPasswordQuery.cs" />
