@@ -305,6 +305,7 @@
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\GetCreate.cshtml" />
+    <Content Include="Views\Admin\GetEditAsync.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

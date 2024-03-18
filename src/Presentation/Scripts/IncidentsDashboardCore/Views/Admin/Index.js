@@ -12,6 +12,7 @@ function initializeDataTable() {
                 'dataSrc': ''
             },
             'columns': [
+                { data: 'Id', visible: false },
                 { 'data': 'Username' },
                 { 'data': 'FirstName' },
                 { 'data': 'LastName' },

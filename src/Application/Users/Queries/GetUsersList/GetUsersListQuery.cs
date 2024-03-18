@@ -29,6 +29,7 @@ namespace Application.Users.Queries.GetUsersList
             // map to UserListItemModel
             var userDtos = users.Select(u => new UsersListItemModel
             {
+                Id = u.Id,
                 Username = u.Username,
                 FirstName = u.FirstName,
                 LastName = u.LastName,

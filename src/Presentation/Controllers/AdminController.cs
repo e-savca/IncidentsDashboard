@@ -1,5 +1,6 @@
 ﻿using Application.Roles.Queries.GetRolesList;
 using Application.Users.Commands.CreateUser;
+using Application.Users.Queries.GetUserById;
 using Application.Users.Queries.GetUsersList;
 using FluentValidation;
 using System;
@@ -13,20 +14,24 @@ namespace Presentation.Controllers
     [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
-        private readonly IGetUsersListQuery _getUsersList;
+        private readonly IGetUsersListQuery _getUsersListQuery;
         private readonly IGetRolesListQuery _getRolesListQuery;
+        private readonly IGetUserByIdQuery _getUserByIdQuery;
         private readonly ICreateUserCommand _createUserCommand;
         private readonly IValidator<CreateUserModel> _createUserValidator;
+
 
         public AdminController(
             IGetUsersListQuery getUsersList,
             IGetRolesListQuery getRolesListQuery,
+            IGetUserByIdQuery getUserByIdQuery,
             ICreateUserCommand createUserCommand,
             IValidator<CreateUserModel> createUserValidator
             )
         {
-            _getUsersList = getUsersList;
+            _getUsersListQuery = getUsersList;
             _getRolesListQuery = getRolesListQuery;
+            _getUserByIdQuery = getUserByIdQuery;
             _createUserCommand = createUserCommand;
             _createUserValidator = createUserValidator;
         }
@@ -37,7 +42,7 @@ namespace Presentation.Controllers
         }
         public async Task<ActionResult> GetUsersListAsync()
         {
-            var users = await _getUsersList.ExecuteAsync();
+            var users = await _getUsersListQuery.ExecuteAsync();
 
             return Json(users, JsonRequestBehavior.AllowGet);
         }
@@ -105,6 +110,12 @@ namespace Presentation.Controllers
             }).ToList();
 
             return roleList;
+        }
+
+        public async Task<ActionResult> GetEditAsync(int id)
+        {
+            var user = await _getUserByIdQuery.ExecuteAsync(id);
+            return PartialView(user);
         }
 
 

@@ -2,6 +2,7 @@
 using Application.MappingProfiles;
 using Application.Roles.Queries.GetRolesList;
 using Application.Users.Commands.CreateUser;
+using Application.Users.Queries.GetUserById;
 using Application.Users.Queries.GetUserByUsernameAndPassword;
 using Application.Users.Queries.GetUsersList;
 using AutoMapper;
@@ -29,6 +30,7 @@ namespace Presentation.Util
 
             // Roles Queries
             Bind<IGetRolesListQuery>().To<GetRolesListQuery>();
+            Bind<IGetUserByIdQuery>().To<GetUserByIdQuery>();
 
 
             // Commands 
