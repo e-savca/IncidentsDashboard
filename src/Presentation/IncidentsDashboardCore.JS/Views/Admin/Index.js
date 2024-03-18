@@ -1,10 +1,14 @@
 ﻿$(document).ready(function () {
     initializeDataTable();
+
 });
 function initializeDataTable() {
-    $('#usersTable').DataTable(
+    /*    $('#usersTable').destroy();*/
+
+    $('#usersTable').dataTable(
         {
             /*serverSide: true,*/
+            'autoWidth': true,
             'ajax': {
                 'url': '/Admin/GetUsersListAsync',
                 'type': 'GET',
@@ -27,7 +31,7 @@ function initializeDataTable() {
                             isChecked = 'checked';
                         }
                         return '<div class="form-check form-switch"><input class="form-check-input" type="checkbox" value="" ' + isChecked + ' disabled></div>';
-                    }                    
+                    }
                 },
                 {
                     'data': 'UserRoles',
@@ -40,26 +44,17 @@ function initializeDataTable() {
                     'data': null,
                     orderable: false,
                     'render': function (data, type, row) {
-                        return '<button class="btn btn-info" onclick="editUser(' + row.Id + ')">Edit</button>';
+                        return '<a href="#Admin/Edit/' + row.Id + '" class="btn btn-info">Edit</a>';
                     }
                 },
                 {
                     'data': null,
                     orderable: false,
                     'render': function (data, type, row) {
-                        return '<button class="btn btn-danger" onclick="deleteUser(' + row.Id + ')">Delete</button>';
+                        return '<a href="#Admin/Details/' + row.Id + '" class="btn btn-secondary">Details</a>';
                     }
                 }
             ]
         }
     );
-}
-
-
-function editUser(userId) {
-    alert('Edit user with id: ' + userId);
-}
-
-function deleteUser(userId) {
-    alert('Delete user with id: ' + userId);
 }

@@ -1,8 +1,5 @@
 ﻿@model Application.Users.Queries.GetUserById.UserByIdModel
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/jqueryval")
-
 
 @using (Html.BeginForm())
 {
@@ -72,8 +69,8 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div class="form-group d-flex justify-content-end mt-5 mb-3">
+    <a href="#Admin" class="btn btn-secondary">Back to list</a>
 </div>
 
 

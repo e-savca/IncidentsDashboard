@@ -35,8 +35,6 @@ function showLoadingIndicator() {
 var routingApp = $.sammy("#MainContent", function () {
     this.get("#Dashboard", function (context) {
         titleContent.html("Dashboard");
-        // Show loading indicator
-        showLoadingIndicator();
         $.get("/Dashboard/Index", function (data) {
             context.$element().html(data);
         });
@@ -46,9 +44,11 @@ var routingApp = $.sammy("#MainContent", function () {
         titleContent.html("Admin Panel");
         // Show loading indicator
         showLoadingIndicator();
+
         $.get("/Admin/Index", function (data) {
             context.$element().html(data);
         });
+
     });
 
     this.get("#Admin/Create", function (context) {
@@ -61,7 +61,6 @@ var routingApp = $.sammy("#MainContent", function () {
     this.get("#Admin/Edit/:id", function (context) {
         titleContent.html("Edit User");
         $.get("/Admin/GetEditAsync/" + context.params.id, function (data) {
-            //$("#BigLoader").modal('hide');
             context.$element().html(data);
         });
     });
