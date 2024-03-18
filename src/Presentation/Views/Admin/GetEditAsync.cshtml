@@ -7,7 +7,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>UserByIdModel</h4>
         <hr />
@@ -75,3 +75,6 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+
+@Scripts.Render("~/IDCore.JS/Admin/GetEditAsync")
