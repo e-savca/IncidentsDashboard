@@ -5,10 +5,6 @@
     {
       "library": "sammy.js@0.7.6",
       "destination": "Scripts/sammy.js/"
-    },
-    {
-      "library": "jquery-contextmenu@2.9.2",
-      "destination": "Scripts/jquery-contextmenu/"
     }
   ]
 }
