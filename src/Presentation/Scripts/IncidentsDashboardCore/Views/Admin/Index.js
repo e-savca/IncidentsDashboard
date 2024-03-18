@@ -1,4 +1,7 @@
-﻿function initializeDataTable() {
+﻿$(document).ready(function () {
+    initializeDataTable();
+});
+function initializeDataTable() {
     $('#usersTable').DataTable(
         {
             /*serverSide: true,*/

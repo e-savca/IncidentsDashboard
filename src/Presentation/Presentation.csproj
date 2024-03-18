@@ -271,8 +271,8 @@
     <Content Include="Scripts\dataTables.dataTables.min.js" />
     <Content Include="Scripts\dataTables.js" />
     <Content Include="Scripts\dataTables.min.js" />
-    <Content Include="Scripts\dataTablesAjax\GetUsersList.js" />
     <Content Include="Scripts\IncidentsDashboardCore\Views\Admin\GetCreate.js" />
+    <Content Include="Scripts\IncidentsDashboardCore\Views\Admin\Index.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
     <Content Include="Scripts\jquery-3.7.1.slim.js" />
