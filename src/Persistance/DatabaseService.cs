@@ -18,17 +18,17 @@ namespace Persistance
 {
     public class DatabaseService : DbContext, IDatabaseService
     {
-        public IDbSet<User> Users { get; set; }
-        public IDbSet<Role> Roles { get; set; }
-        public IDbSet<UserRole> UserRoles { get; set; }
-        public IDbSet<Incident> Incidents { get; set; }
-        public IDbSet<Threat> Threats { get; set; }
-        public IDbSet<Scenario> Scenarios { get; set; }
-        public IDbSet<Ambit> Ambits { get; set; }
-        public IDbSet<IncidentType> IncidentTypes { get; set; }
-        public IDbSet<Origin> Origins { get; set; }
-        public IDbSet<AmbitsToTypes> AmbitsToTypes { get; set; }
-        public IDbSet<OriginToAmbit> OriginToAmbits { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<Incident> Incidents { get; set; }
+        public DbSet<Threat> Threats { get; set; }
+        public DbSet<Scenario> Scenarios { get; set; }
+        public DbSet<Ambit> Ambits { get; set; }
+        public DbSet<IncidentType> IncidentTypes { get; set; }
+        public DbSet<Origin> Origins { get; set; }
+        public DbSet<AmbitsToTypes> AmbitsToTypes { get; set; }
+        public DbSet<OriginToAmbit> OriginToAmbits { get; set; }
 
 
         public DatabaseService() : base("DefaultConnection")

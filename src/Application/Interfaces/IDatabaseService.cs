@@ -8,17 +8,17 @@ namespace Application.Interfaces
 {
     public interface IDatabaseService
     {
-        IDbSet<User> Users { get; set; }
-        IDbSet<Role> Roles { get; set; }
-        IDbSet<UserRole> UserRoles { get; set; }
-        IDbSet<Incident> Incidents { get; set; }
-        IDbSet<Threat> Threats { get; set; }
-        IDbSet<Scenario> Scenarios { get; set; }
-        IDbSet<Ambit> Ambits { get; set; }
-        IDbSet<IncidentType> IncidentTypes { get; set; }
-        IDbSet<Origin> Origins { get; set; }
-        IDbSet<AmbitsToTypes> AmbitsToTypes { get; set; }
-        IDbSet<OriginToAmbit> OriginToAmbits { get; set; }
+        DbSet<User> Users { get; set; }
+        DbSet<Role> Roles { get; set; }
+        DbSet<UserRole> UserRoles { get; set; }
+        DbSet<Incident> Incidents { get; set; }
+        DbSet<Threat> Threats { get; set; }
+        DbSet<Scenario> Scenarios { get; set; }
+        DbSet<Ambit> Ambits { get; set; }
+        DbSet<IncidentType> IncidentTypes { get; set; }
+        DbSet<Origin> Origins { get; set; }
+        DbSet<AmbitsToTypes> AmbitsToTypes { get; set; }
+        DbSet<OriginToAmbit> OriginToAmbits { get; set; }
 
         void Save();
         Task<int> SaveAsync();
