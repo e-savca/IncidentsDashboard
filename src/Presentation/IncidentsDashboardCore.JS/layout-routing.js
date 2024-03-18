@@ -35,51 +35,40 @@ function showLoadingIndicator() {
 var routingApp = $.sammy("#MainContent", function () {
     this.get("#Dashboard", function (context) {
         titleContent.html("Dashboard");
-
         // Show loading indicator
         showLoadingIndicator();
-
         $.get("/Dashboard/Index", function (data) {
             context.$element().html(data);
         });
-
     });
 
     this.get("#Admin", function (context) {
         titleContent.html("Admin Panel");
-
         // Show loading indicator
         showLoadingIndicator();
-
         $.get("/Admin/Index", function (data) {
-            // Hide loading indicator and show the data
             context.$element().html(data);
         });
     });
 
     this.get("#Admin/Create", function (context) {
         titleContent.html("Create User");
-        //$("#BigLoader").modal('show'); // If you want to show loader
         $.get("/Admin/GetCreate", function (data) {
-            //$("#BigLoader").modal('hide');
             context.$element().html(data);
         });
     });
 
-    this.get("#Admin/Edit", function (context) {
+    this.get("#Admin/Edit/:id", function (context) {
         titleContent.html("Edit User");
-        //$("#BigLoader").modal('show'); // If you want to show loader
-        $.get("/Admin/Edit", function (data) {
+        $.get("/Admin/GetEditAsync/" + context.params.id, function (data) {
             //$("#BigLoader").modal('hide');
             context.$element().html(data);
         });
     });
 
-    this.get("#Admin/Deactivate", function (context) {
+    this.get("#Admin/Deactivate/:id", function (context) {
         titleContent.html("Deactivate User");
-        //$("#BigLoader").modal('show'); // If you want to show loader
-        $.get("/Admin/Deactivate", function (data) {
-            //$("#BigLoader").modal('hide');
+        $.get("/Admin/Deactivate/" + context.params.id, function (data) {
             context.$element().html(data);
         });
     });
