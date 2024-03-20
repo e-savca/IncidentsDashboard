@@ -237,7 +237,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="IncidentsDashboardCore.JS\Views\Admin\GetEditAsync.js" />
+    <Content Include="IncidentsDashboardCore.JS\Views\Admin\GetUpdateAsync.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -272,7 +272,7 @@
     <Content Include="Scripts\dataTables.dataTables.min.js" />
     <Content Include="Scripts\dataTables.js" />
     <Content Include="Scripts\dataTables.min.js" />
-    <Content Include="IncidentsDashboardCore.JS\Views\Admin\GetCreate.js" />
+    <Content Include="IncidentsDashboardCore.JS\Views\Admin\GetCreateAsync.js" />
     <Content Include="IncidentsDashboardCore.JS\Views\Admin\Index.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -305,8 +305,9 @@
     <Content Include="Views\Account\SignIn.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\GetCreate.cshtml" />
-    <Content Include="Views\Admin\GetEditAsync.cshtml" />
+    <Content Include="Views\Admin\GetCreateAsync.cshtml" />
+    <Content Include="Views\Admin\GetUpdateAsync.cshtml" />
+    <Content Include="Views\Admin\GetDetailsAsync.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

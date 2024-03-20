@@ -29,11 +29,8 @@ document.getElementById('createUserForm').addEventListener('submit', function (e
                 // foreach in data.message call appendAlert
                 clearAlertValidationMessage();
                 data.errors.forEach((item) => {
-
                     appendAlertValidationMessage(item.message, item.propertyName)
                 });
-
-                //appendAlertValidationMessage(data.message, data.messageType, data.element)
             }
         });
 });

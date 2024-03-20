@@ -13,14 +13,14 @@ namespace Presentation
 
             #region Admin Controller
 
-            bundles.Add(new ScriptBundle("~/IDCore.JS/Admin/Index").Include(
+            bundles.Add(new ScriptBundle("~/IDCore.JS/Views/Admin/Index").Include(
                         "~/IncidentsDashboardCore.JS/Views/Admin/Index.js"));
 
-            bundles.Add(new ScriptBundle("~/IDCore.JS/Admin/GetCreate").Include(
-                        "~/IncidentsDashboardCore.JS/Views/Admin/GetCreate.js"));
+            bundles.Add(new ScriptBundle("~/IDCore.JS/Views/Admin/GetCreateAsync").Include(
+                        "~/IncidentsDashboardCore.JS/Views/Admin/GetCreateAsync.js"));
 
-            bundles.Add(new ScriptBundle("~/IDCore.JS/Admin/GetEditAsync").Include(
-                        "~/IncidentsDashboardCore.JS/Views/Admin/GetEditAsync.js"));
+            bundles.Add(new ScriptBundle("~/IDCore.JS/Views/Admin/GetUpdateAsync").Include(
+                        "~/IncidentsDashboardCore.JS/Views/Admin/GetUpdateAsync.js"));
 
             #endregion
 

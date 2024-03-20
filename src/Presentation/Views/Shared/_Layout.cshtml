@@ -52,9 +52,10 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/sammyjs")
     @Scripts.Render("~/bundles/datatables")
-    @*@Scripts.Render("~/bundles/jqueryContextMenu")*@
 
     @Scripts.Render("~/IDCore.JS/routing")
+    <!-- Import JS modules -->
+    <script src="@Url.Content("~/IDCore.JS/Views/Admin/GetUpdateAsync")" type="module"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
