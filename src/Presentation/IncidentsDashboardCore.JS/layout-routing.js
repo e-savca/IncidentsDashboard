@@ -60,31 +60,24 @@ var routingApp = $.sammy("#MainContent", function () {
 
     this.get("#Admin/Edit/:id", function (context) {
         titleContent.html("Edit User");
+        showLoadingIndicator();
         $.get("/Admin/GetUpdateAsync/" + context.params.id, function (data) {
-            context.$element().html(data);
+            setTimeout(function () {
+                context.$element().html(data);
+            }, 150);
         });
     });
-
-    //this.get("#Admin/Edit/:id/Submit", function (context) {
-    //    titleContent.html("Edit User");
-    //    $.post("/Admin/UpdateAsync/", function (data) {
-    //        context.$element().html(data);
-    //    });
-    //});
 
     this.get("#Admin/Details/:id", function (context) {
         titleContent.html("User's Details");
+        showLoadingIndicator();
         $.get("/Admin/GetDetailsAsync/" + context.params.id, function (data) {
-            context.$element().html(data);
+            setTimeout(function () {
+                context.$element().html(data);
+            }, 150);
         });
     });
 
-    this.get("#Admin/Deactivate/:id", function (context) {
-        titleContent.html("Deactivate User");
-        $.get("/Admin/Deactivate/" + context.params.id, function (data) {
-            context.$element().html(data);
-        });
-    });
 });
 
 $(function () {

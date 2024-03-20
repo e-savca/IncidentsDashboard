@@ -22,12 +22,6 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.Password)
-                            @Html.PasswordFor(model => model.Password, new { @class = "form-control", @readonly = true, @value = Model.Password })
-                            @Html.ValidationMessageFor(model => model.Password)
-                        </div>
-
-                        <div class="form-group">
                             @Html.LabelFor(model => model.FirstName, "First Name")
                             @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.FirstName)
@@ -47,15 +41,15 @@
 
                         <div class="form-group mt-3 mb-2">
                             @Html.HiddenFor(model => model.IsActive, new { @id = "isActiveField" })
-
                             <div class="btn-group" role="group">
-                                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" value="true" autocomplete="off" checked>
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" value="True" autocomplete="off" @(Model.IsActive ? "checked" : "")>
                                 <label class="btn btn-outline-primary" for="btnradio1">Active</label>
 
-                                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" value="false" autocomplete="off">
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" value="False" autocomplete="off" @(Model.IsActive ? "" : "checked")>
                                 <label class="btn btn-outline-primary" for="btnradio2">Inactive</label>
                             </div>
                         </div>
+
 
                         <div class="form-group mb-3">
                             @Html.LabelFor(model => model.RoleIds, "Roles")
@@ -73,6 +67,7 @@
                                     }
                                 }
                             </select>
+                            @Html.ValidationMessageFor(model => model.RoleIds)
                         </div>
 
                         <div class="form-group d-flex justify-content-end mt-5 mb-3">

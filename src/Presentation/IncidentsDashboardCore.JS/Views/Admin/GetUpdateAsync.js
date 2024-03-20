@@ -1,6 +1,4 @@
-﻿
-
-export const GetUpdateAsync = () => {
+﻿export const GetUpdateAsync = () => {
     // model.IsActive property
     document.querySelectorAll('input[name="btnradio"]').forEach(function (radio) {
         radio.addEventListener('change', function () {

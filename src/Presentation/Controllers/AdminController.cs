@@ -146,6 +146,16 @@ namespace Presentation.Controllers
         public async Task<ActionResult> GetDetailsAsync(int id)
         {
             var user = await _getUserByIdQuery.ExecuteAsync(id);
+
+            // Fetch the roles list asynchronously
+            ViewBag.Roles = await GetRolesListAsync();
+
+            if (user == null)
+            {
+                user = new UserByIdModel();
+                return PartialView(user);
+            }
+
             return PartialView(user);
         }
 
