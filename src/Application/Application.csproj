@@ -73,6 +73,10 @@
     <Compile Include="Users\Commands\CreateUser\CreateUserModel.cs" />
     <Compile Include="Users\Commands\CreateUser\CreateUserModelValidator.cs" />
     <Compile Include="Users\Commands\CreateUser\ICreateUserCommand.cs" />
+    <Compile Include="Users\Commands\UpdateUser\IUpdateUserCommand.cs" />
+    <Compile Include="Users\Commands\UpdateUser\UpdateUserCommand.cs" />
+    <Compile Include="Users\Commands\UpdateUser\UpdateUserModel.cs" />
+    <Compile Include="Users\Commands\UpdateUser\UpdateUserModelValidator.cs" />
     <Compile Include="Users\Queries\GetUserById\GetUserByIdQuery.cs" />
     <Compile Include="Users\Queries\GetUserById\IGetUserByIdQuery.cs" />
     <Compile Include="Users\Queries\GetUserById\UserByIdModel.cs" />
@@ -96,7 +100,6 @@
     <Folder Include="Incidents\" />
     <Folder Include="Users\Commands\ActivateUser\" />
     <Folder Include="Users\Commands\DeactivateUser\" />
-    <Folder Include="Users\Commands\ModifyUser\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

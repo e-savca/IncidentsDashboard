@@ -22,7 +22,10 @@ namespace Application.Users.Queries.GetUserByUsernameAndPassword
         {
             var user = await _database
                 .Users.Include(u => u.UserRoles.Select(ur => ur.Role))
-                .FirstOrDefaultAsync(u => u.Username == username && u.Password == password);
+                .FirstOrDefaultAsync(u => u.Username == username.ToUpper());
+
+            if (user.Password != password)
+                user = null;
 
             UserDto userDto = null;
             if (user != null)

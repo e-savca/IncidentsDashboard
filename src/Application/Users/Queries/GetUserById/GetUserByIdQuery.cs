@@ -24,6 +24,7 @@ namespace Application.Users.Queries.GetUserById
             {
                 Id = user.Id,
                 Username = user.Username,
+                Password = "**********", // mask password
                 Email = user.Email,
                 FirstName = user.FirstName,
                 LastName = user.LastName,

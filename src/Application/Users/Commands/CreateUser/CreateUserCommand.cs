@@ -23,7 +23,7 @@ namespace Application.Users.Commands.CreateUser
             {
                 _database.Users.Add(new User
                 {
-                    Username = model.Username,
+                    Username = model.Username.ToUpperInvariant(),
                     Password = model.Password,
                     Email = model.Email,
                     FirstName = model.FirstName,
