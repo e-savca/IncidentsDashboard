@@ -57,7 +57,7 @@ namespace Presentation.Util
 
             #region Queries
 
-            Bind<IGetRolesListQuery>().To<GetRolesListQuery>();
+            Bind<IRequestHandler<GetRolesListQuery, List<RolesListItemModel>>>().To<GetRolesListHandler>();
 
             #endregion
 

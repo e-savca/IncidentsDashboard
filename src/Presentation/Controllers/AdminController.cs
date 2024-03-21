@@ -17,7 +17,6 @@ namespace Presentation.Controllers
     {
         #region Private Fields
         
-        private readonly IGetRolesListQuery _getRolesListQuery;
         private readonly ICreateUserCommand _createUserCommand;
         private readonly IUpdateUserCommand _updateUserCommand;
         private readonly IValidator<CreateUserModel> _createUserValidator;
@@ -29,7 +28,6 @@ namespace Presentation.Controllers
         #region Constructor
 
         public AdminController(
-            IGetRolesListQuery getRolesListQuery,
             ICreateUserCommand createUserCommand,
             IUpdateUserCommand updateUserCommand,
             IValidator<CreateUserModel> createUserValidator,
@@ -37,7 +35,6 @@ namespace Presentation.Controllers
             IMediator mediator
             )
         {
-            _getRolesListQuery = getRolesListQuery;
             _createUserCommand = createUserCommand;
             _updateUserCommand = updateUserCommand;
             _createUserValidator = createUserValidator;
@@ -158,7 +155,7 @@ namespace Presentation.Controllers
 
         private async Task<List<SelectListItem>> GetRolesListAsync()
         {
-            var roles = await _getRolesListQuery.ExecuteAsync();
+            var roles = await _mediator.Send(new GetRolesListQuery());
 
             // Convert the roles to a list of SelectListItem
             var roleList = roles.Select(r => new SelectListItem
