@@ -4,6 +4,7 @@ using Application.Users.Commands.UpdateUser;
 using Application.Users.Queries.GetUserById;
 using Application.Users.Queries.GetUsersList;
 using FluentValidation;
+using MediatR;
 using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
@@ -18,35 +19,38 @@ namespace Presentation.Controllers
     {
         #region Private Fields
 
-        private readonly IGetUsersListQuery _getUsersListQuery;
+        //private readonly IGetUsersListQuery _getUsersListQuery;
         private readonly IGetRolesListQuery _getRolesListQuery;
         private readonly IGetUserByIdQuery _getUserByIdQuery;
         private readonly ICreateUserCommand _createUserCommand;
         private readonly IUpdateUserCommand _updateUserCommand;
         private readonly IValidator<CreateUserModel> _createUserValidator;
         private readonly IValidator<UpdateUserModel> _updateUserValidator;
+        private readonly IMediator _mediator;
 
         #endregion
 
         #region Constructor
 
         public AdminController(
-            IGetUsersListQuery getUsersList,
+            //IGetUsersListQuery getUsersList,
             IGetRolesListQuery getRolesListQuery,
             IGetUserByIdQuery getUserByIdQuery,
             ICreateUserCommand createUserCommand,
             IUpdateUserCommand updateUserCommand,
             IValidator<CreateUserModel> createUserValidator,
-            IValidator<UpdateUserModel> updateUserValidator
+            IValidator<UpdateUserModel> updateUserValidator,
+            IMediator mediator
             )
         {
-            _getUsersListQuery = getUsersList;
+            //_getUsersListQuery = getUsersList;
             _getRolesListQuery = getRolesListQuery;
             _getUserByIdQuery = getUserByIdQuery;
             _createUserCommand = createUserCommand;
             _updateUserCommand = updateUserCommand;
             _createUserValidator = createUserValidator;
             _updateUserValidator = updateUserValidator;
+            _mediator = mediator;
         }
 
         #endregion
@@ -121,7 +125,8 @@ namespace Presentation.Controllers
         #region Read
         public async Task<ActionResult> GetUsersListAsync()
         {
-            var users = await _getUsersListQuery.ExecuteAsync();
+            //var users = await _getUsersListQuery.ExecuteAsync();
+            var users = await _mediator.Send(new GetUsersListQuery());
 
             return Json(users, JsonRequestBehavior.AllowGet);
         }
@@ -129,6 +134,7 @@ namespace Presentation.Controllers
         public async Task<ActionResult> GetUpdateAsync(int id)
         {
             var user = await _getUserByIdQuery.ExecuteAsync(id);
+
 
             // Fetch the roles list asynchronously
             ViewBag.Roles = await GetRolesListAsync();

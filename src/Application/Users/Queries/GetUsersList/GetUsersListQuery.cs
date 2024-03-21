@@ -1,30 +1,30 @@
 ﻿using Application.Interfaces;
 using AutoMapper;
+using MediatR;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Application.Users.Queries.GetUsersList
 {
-    public class GetUsersListQuery : IGetUsersListQuery
+    public class GetUsersListQuery : IRequest<List<UsersListItemModel>> { }
+    public class GetUsersListHandler : IRequestHandler<GetUsersListQuery, List<UsersListItemModel>>
     {
         private readonly IDatabaseService _database;
-        private readonly IMapper _mapper;
 
-        public GetUsersListQuery(
+        public GetUsersListHandler(
             IDatabaseService database
             )
         {
             _database = database;
         }
 
-        public async Task<List<UsersListItemModel>> ExecuteAsync()
+        public async Task<List<UsersListItemModel>> Handle(GetUsersListQuery request, CancellationToken cancellationToken)
         {
             // get users from database
-            var users = await _database.Users
-                .Include(u => u.UserRoles.Select(ur => ur.Role))
-                .ToListAsync();
+            var users = await _database.Users.Include(u => u.UserRoles.Select(ur => ur.Role)).ToListAsync();
 
             // map to UserListItemModel
             var userDtos = users.Select(u => new UsersListItemModel
