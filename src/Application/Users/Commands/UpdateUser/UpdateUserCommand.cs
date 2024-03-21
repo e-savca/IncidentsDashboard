@@ -1,23 +1,29 @@
 ﻿using Application.Interfaces;
 using Domain.Users;
-using System.Data.Entity;
+using MediatR;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Application.Users.Commands.UpdateUser
 {
-    public class UpdateUserCommand : IUpdateUserCommand
+    public class UpdateUserCommand : IRequest<UpdateUserModel>
+    {
+        public UpdateUserModel UserModel { get; set; }
+    }
+
+    public class UpdateUserHandler : IRequestHandler<UpdateUserCommand, UpdateUserModel>
     {
         private readonly IDatabaseService _database;
-        public UpdateUserCommand(
+        public UpdateUserHandler(
             IDatabaseService database)
         {
             _database = database;
         }
-
-        public async Task<UpdateUserModel> ExecuteAsync(UpdateUserModel updatedUser)
+        public async Task<UpdateUserModel> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
         {
+            var updatedUser = request.UserModel;
             if (updatedUser == null)
                 return null;
 
@@ -37,9 +43,10 @@ namespace Application.Users.Commands.UpdateUser
             }).ToList();
 
             _database.Users.AddOrUpdate(user);
-            await _database.SaveAsync();
+            await _database.SaveAsync(cancellationToken);
 
             return updatedUser;
         }
+
     }
 }

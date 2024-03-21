@@ -74,8 +74,6 @@
     <Compile Include="Users\Commands\CreateUser\CreateUserCommand.cs" />
     <Compile Include="Users\Commands\CreateUser\CreateUserModel.cs" />
     <Compile Include="Users\Commands\CreateUser\CreateUserModelValidator.cs" />
-    <Compile Include="Users\Commands\CreateUser\ICreateUserCommand.cs" />
-    <Compile Include="Users\Commands\UpdateUser\IUpdateUserCommand.cs" />
     <Compile Include="Users\Commands\UpdateUser\UpdateUserCommand.cs" />
     <Compile Include="Users\Commands\UpdateUser\UpdateUserModel.cs" />
     <Compile Include="Users\Commands\UpdateUser\UpdateUserModelValidator.cs" />

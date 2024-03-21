@@ -37,7 +37,8 @@ namespace Presentation.Util
             #region Users Commands
 
             //Bind<ICreateUserCommand>().To<CreateUserCommand>();
-            Bind<IUpdateUserCommand>().To<UpdateUserCommand>();
+            //Bind<IUpdateUserCommand>().To<UpdateUserCommand>();
+            Bind<IRequestHandler<UpdateUserCommand, UpdateUserModel>>().To<UpdateUserHandler>();
             Bind<IRequestHandler<CreateUserCommand, CreateUserModel>>().To<CreateUserHandler>();
 
             #endregion
