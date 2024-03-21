@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Persistance
@@ -43,6 +44,12 @@ namespace Persistance
         public async Task<int> SaveAsync()
         {
             var r = await this.SaveChangesAsync();
+            return r;
+        }
+
+        public async Task<int> SaveAsync(CancellationToken cancellationToken)
+        {
+            var r = await this.SaveChangesAsync(cancellationToken);
             return r;
         }
 

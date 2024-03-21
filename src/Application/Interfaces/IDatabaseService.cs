@@ -4,6 +4,7 @@ using Domain.Incidents;
 using Domain.Users;
 using System.Data.Entity;
 using System.Threading.Tasks;
+using System.Threading;
 namespace Application.Interfaces
 {
     public interface IDatabaseService
@@ -22,5 +23,6 @@ namespace Application.Interfaces
 
         void Save();
         Task<int> SaveAsync();
+        Task<int> SaveAsync(CancellationToken cancellationToken);
     }
 }
