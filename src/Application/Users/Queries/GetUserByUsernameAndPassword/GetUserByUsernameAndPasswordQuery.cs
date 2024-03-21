@@ -1,36 +1,43 @@
 ﻿using Application.Interfaces;
 using Application.Models;
-using AutoMapper;
+using MediatR;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Application.Users.Queries.GetUserByUsernameAndPassword
 {
-    public class GetUserByUsernameAndPasswordQuery : IGetUserByUsernameAndPasswordQuery
+    public class GetUserByUsernameAndPasswordQuery : IRequest<UserByUsernameAndPasswordModel>
+    {
+        public string Username { get; set; }
+        public string Password { get; set; }
+    }
+
+    public class GetUserByUsernameAndPasswordHandler : IRequestHandler<GetUserByUsernameAndPasswordQuery, UserByUsernameAndPasswordModel>        
     {
         private readonly IDatabaseService _database;
 
-        public GetUserByUsernameAndPasswordQuery(
+        public GetUserByUsernameAndPasswordHandler(
             IDatabaseService database
             )
         {
             _database = database;
         }
 
-        public async Task<UserDto> ExecuteAsync(string username, string password)
+        public async Task<UserByUsernameAndPasswordModel> Handle(GetUserByUsernameAndPasswordQuery request, CancellationToken cancellationToken)
         {
             var user = await _database
                 .Users.Include(u => u.UserRoles.Select(ur => ur.Role))
-                .FirstOrDefaultAsync(u => u.Username == username.ToUpper());
+                .FirstOrDefaultAsync(u => u.Username == request.Username.ToUpper(), cancellationToken);
 
-            if (user.Password != password)
+            if (user.Password != request.Password)
                 user = null;
 
-            UserDto userDto = null;
+            UserByUsernameAndPasswordModel userDto = null;
             if (user != null)
             {
-                userDto = new UserDto
+                userDto = new UserByUsernameAndPasswordModel
                 {
                     Id = user.Id,
                     Username = user.Username,

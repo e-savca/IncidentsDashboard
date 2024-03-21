@@ -83,7 +83,7 @@
     <Compile Include="Users\Queries\GetUserById\GetUserByIdQuery.cs" />
     <Compile Include="Users\Queries\GetUserById\UserByIdModel.cs" />
     <Compile Include="Users\Queries\GetUserByUsernameAndPassword\GetUserByUsernameAndPasswordQuery.cs" />
-    <Compile Include="Users\Queries\GetUserByUsernameAndPassword\IGetUserByUsernameAndPasswordQuery.cs" />
+    <Compile Include="Users\Queries\GetUserByUsernameAndPassword\UserByUsernameAndPasswordModel.cs" />
     <Compile Include="Users\Queries\GetUsersList\GetUsersListQuery.cs" />
     <Compile Include="Users\Queries\GetUsersList\UsersListItemModel.cs" />
   </ItemGroup>

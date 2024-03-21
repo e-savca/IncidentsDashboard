@@ -1,16 +1,13 @@
 ﻿using Application.Interfaces;
-using Application.MappingProfiles;
 using Application.Roles.Queries.GetRolesList;
 using Application.Users.Commands.CreateUser;
 using Application.Users.Commands.UpdateUser;
 using Application.Users.Queries.GetUserById;
 using Application.Users.Queries.GetUserByUsernameAndPassword;
 using Application.Users.Queries.GetUsersList;
-using AutoMapper;
 using Common.Dates;
 using FluentValidation;
 using MediatR;
-using Ninject;
 using Ninject.Modules;
 using Persistance;
 using System.Collections.Generic;
@@ -41,10 +38,8 @@ namespace Presentation.Util
 
             #region Queries
 
-            //Bind<IRequestHandler<GetUsersListQuery, List<UsersListItemModel>>>().To<GetUsersListHandler>();
-            Bind<IGetUserByUsernameAndPasswordQuery>().To<GetUserByUsernameAndPasswordQuery>();
+            Bind<IRequestHandler<GetUserByUsernameAndPasswordQuery, UserByUsernameAndPasswordModel>>().To<GetUserByUsernameAndPasswordHandler>();
             Bind<IRequestHandler<GetUserByIdQuery, UserByIdModel>>().To<GetUserByIdHandler>();
-            //Bind<IGetUserByIdQuery>().To<GetUserByIdQuery>();
             Bind<IRequestHandler<GetUsersListQuery, List<UsersListItemModel>>>().To<GetUsersListHandler>();
 
             #endregion
@@ -74,6 +69,7 @@ namespace Presentation.Util
             #region Validators dependencies
 
             // make a list of all validators in the assembly
+            //var validatorsList = AssemblyScanner.FindValidatorsInAssemblyContaining<CreateUserModel>();
             var validatorsList = AssemblyScanner.FindValidatorsInAssemblyContaining<CreateUserModel>();
 
             // loop through the list of validators and bind them to their respective interfaces

@@ -7,19 +7,20 @@ using System.Threading.Tasks;
 using Presentation.Models;
 using Microsoft.Ajax.Utilities;
 using System.Data;
+using MediatR;
 using Application.Users.Queries.GetUserByUsernameAndPassword;
 
 namespace Presentation.Controllers
 {
     public class AccountController : Controller
     {
-        IGetUserByUsernameAndPasswordQuery _getUserByUsernameAndPassword;
+        private readonly IMediator _mediator;
 
         public AccountController(
-            IGetUserByUsernameAndPasswordQuery getUserByUsernameAndPassword
+            IMediator mediator
             )
         {
-            _getUserByUsernameAndPassword = getUserByUsernameAndPassword;
+            _mediator = mediator;
         }
 
         private IAuthenticationManager AuthenticationManager
@@ -41,7 +42,10 @@ namespace Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await _getUserByUsernameAndPassword.ExecuteAsync(model.Username, model.Password);
+                var user = await _mediator.Send(new GetUserByUsernameAndPasswordQuery {
+                    Username = model.Username,
+                    Password = model.Password
+                });
 
                 if (user == null)
                 {

@@ -117,7 +117,6 @@ namespace Presentation.Controllers
         #region Read
         public async Task<ActionResult> GetUsersListAsync()
         {
-            //var users = await _getUsersListQuery.ExecuteAsync();
             var users = await _mediator.Send(new GetUsersListQuery());
 
             return Json(users, JsonRequestBehavior.AllowGet);
@@ -125,7 +124,6 @@ namespace Presentation.Controllers
 
         public async Task<ActionResult> GetUpdateAsync(int id)
         {
-            //var user = await _getUserByIdQuery.ExecuteAsync(id);
             var user = await _mediator.Send(new GetUserByIdQuery { Id = id});
 
 
@@ -144,7 +142,6 @@ namespace Presentation.Controllers
 
         public async Task<ActionResult> GetDetailsAsync(int id)
         {
-            //var user = await _getUserByIdQuery.ExecuteAsync(id);
             var user = await _mediator.Send(new GetUserByIdQuery { Id = id });
 
             // Fetch the roles list asynchronously
