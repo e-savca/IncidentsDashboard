@@ -17,12 +17,15 @@ namespace Application.Users.Queries.GetUserByUsernameAndPassword
     public class GetUserByUsernameAndPasswordHandler : IRequestHandler<GetUserByUsernameAndPasswordQuery, UserByUsernameAndPasswordModel>        
     {
         private readonly IDatabaseService _database;
+        private readonly IPasswordEncryptionService _passwordEncryptionService;
 
         public GetUserByUsernameAndPasswordHandler(
-            IDatabaseService database
+            IDatabaseService database,
+            IPasswordEncryptionService passwordEncryptionService
             )
         {
             _database = database;
+            _passwordEncryptionService = passwordEncryptionService;
         }
 
         public async Task<UserByUsernameAndPasswordModel> Handle(GetUserByUsernameAndPasswordQuery request, CancellationToken cancellationToken)
@@ -31,7 +34,7 @@ namespace Application.Users.Queries.GetUserByUsernameAndPassword
                 .Users.Include(u => u.UserRoles.Select(ur => ur.Role))
                 .FirstOrDefaultAsync(u => u.Username == request.Username.ToUpper(), cancellationToken);
 
-            if (user.Password != request.Password)
+            if (_passwordEncryptionService.VerifyPassword(request.Password, user.Password))
                 user = null;
 
             UserByUsernameAndPasswordModel userDto = null;

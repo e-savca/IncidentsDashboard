@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces;
 using Application.Roles.Queries.GetRolesList;
+using Application.Services;
 using Application.Users.Commands.CreateUser;
 using Application.Users.Commands.UpdateUser;
 using Application.Users.Queries.GetUserById;
@@ -18,6 +19,7 @@ namespace Presentation.Util
     {
         public override void Load()
         {
+
             #region Persistance layer dependencies
 
             Bind<IDatabaseService>().To<DatabaseService>();
@@ -73,6 +75,12 @@ namespace Presentation.Util
 
             #endregion
 
+            #region Services
+
+            Bind<IPasswordEncryptionService>().To<PasswordEncryptionService>();
+
+            #endregion
+
             #region Automapper -- currently isn't in use
 
             //var config = new MapperConfiguration(cfg =>
@@ -86,6 +94,7 @@ namespace Presentation.Util
             #endregion
 
             #endregion
+
         }
     }
 }

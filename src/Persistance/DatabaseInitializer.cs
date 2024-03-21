@@ -1,17 +1,11 @@
-﻿using Application.Interfaces;
-using Domain.Incidents;
+﻿using Domain.Incidents;
 using Domain.Incidents.IncidentTypes;
 using Domain.Incidents.ThreatsAndScenarios;
 using Domain.Users;
-using Persistance.Migrations;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Runtime.Remoting.Contexts;
-using System.Runtime.Remoting.Lifetime;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Persistance
 {
@@ -60,7 +54,7 @@ namespace Persistance
         {
             var users = new List<User>
             {
-                new User { Username = "CR001", Password = "cr001", FirstName = "admin", LastName = "", Email = "user1@example.com", IsActive = true },
+                new User { Username = "CR001", Password = "bdbb29b6e288d3b8f07a6ea80d10024bd858b85bd8125fb8d3862ffb40a770d4", FirstName = "admin", LastName = "", Email = "user1@example.com", IsActive = true },
                 new User { Username = "CR002", Password = "cr002", FirstName = "operator", LastName = "", Email = "user2@example.com", IsActive = true },
                 new User { Username = "CR003", Password = "cr003", FirstName = "user", LastName = "", Email = "user3@example.com", IsActive = true },
             };
