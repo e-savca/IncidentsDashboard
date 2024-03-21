@@ -5,8 +5,6 @@ using Application.Users.Queries.GetUserById;
 using Application.Users.Queries.GetUsersList;
 using FluentValidation;
 using MediatR;
-using Microsoft.Ajax.Utilities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,10 +16,8 @@ namespace Presentation.Controllers
     public class AdminController : Controller
     {
         #region Private Fields
-
-        //private readonly IGetUsersListQuery _getUsersListQuery;
+        
         private readonly IGetRolesListQuery _getRolesListQuery;
-        private readonly IGetUserByIdQuery _getUserByIdQuery;
         private readonly ICreateUserCommand _createUserCommand;
         private readonly IUpdateUserCommand _updateUserCommand;
         private readonly IValidator<CreateUserModel> _createUserValidator;
@@ -33,9 +29,7 @@ namespace Presentation.Controllers
         #region Constructor
 
         public AdminController(
-            //IGetUsersListQuery getUsersList,
             IGetRolesListQuery getRolesListQuery,
-            IGetUserByIdQuery getUserByIdQuery,
             ICreateUserCommand createUserCommand,
             IUpdateUserCommand updateUserCommand,
             IValidator<CreateUserModel> createUserValidator,
@@ -43,9 +37,7 @@ namespace Presentation.Controllers
             IMediator mediator
             )
         {
-            //_getUsersListQuery = getUsersList;
             _getRolesListQuery = getRolesListQuery;
-            _getUserByIdQuery = getUserByIdQuery;
             _createUserCommand = createUserCommand;
             _updateUserCommand = updateUserCommand;
             _createUserValidator = createUserValidator;
@@ -133,7 +125,8 @@ namespace Presentation.Controllers
 
         public async Task<ActionResult> GetUpdateAsync(int id)
         {
-            var user = await _getUserByIdQuery.ExecuteAsync(id);
+            //var user = await _getUserByIdQuery.ExecuteAsync(id);
+            var user = await _mediator.Send(new GetUserByIdQuery { Id = id});
 
 
             // Fetch the roles list asynchronously
@@ -151,7 +144,8 @@ namespace Presentation.Controllers
 
         public async Task<ActionResult> GetDetailsAsync(int id)
         {
-            var user = await _getUserByIdQuery.ExecuteAsync(id);
+            //var user = await _getUserByIdQuery.ExecuteAsync(id);
+            var user = await _mediator.Send(new GetUserByIdQuery { Id = id });
 
             // Fetch the roles list asynchronously
             ViewBag.Roles = await GetRolesListAsync();

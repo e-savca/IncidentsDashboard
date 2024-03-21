@@ -9,6 +9,8 @@ using Application.Users.Queries.GetUsersList;
 using AutoMapper;
 using Common.Dates;
 using FluentValidation;
+using MediatR;
+using Ninject;
 using Ninject.Modules;
 using Persistance;
 using System.Collections.Generic;
@@ -19,28 +21,58 @@ namespace Presentation.Util
     {
         public override void Load()
         {
-            // Persistance layer dependencies
+            #region Persistance layer dependencies
+
             Bind<IDatabaseService>().To<DatabaseService>();
 
-            // Common layer dependencies
+            #endregion
+
+            #region Common layer dependencies
+
             Bind<IDateService>().To<DateService>();
 
-            // Application layer dependencies
-            // Users Queries
-            Bind<IGetUsersListQuery>().To<GetUsersListQuery>();
+            #endregion
+
+            #region Application layer dependencies
+
+            #region MediatR dependencies
+
+            #region Users
+
+            #region Queries
+
+            //Bind<IRequestHandler<GetUsersListQuery, List<UsersListItemModel>>>().To<GetUsersListHandler>();
             Bind<IGetUserByUsernameAndPasswordQuery>().To<GetUserByUsernameAndPasswordQuery>();
+            Bind<IRequestHandler<GetUserByIdQuery, UserByIdModel>>().To<GetUserByIdHandler>();
+            //Bind<IGetUserByIdQuery>().To<GetUserByIdQuery>();
+            Bind<IRequestHandler<GetUsersListQuery, List<UsersListItemModel>>>().To<GetUsersListHandler>();
 
-            // Roles Queries
-            Bind<IGetRolesListQuery>().To<GetRolesListQuery>();
-            Bind<IGetUserByIdQuery>().To<GetUserByIdQuery>();
+            #endregion
 
+            #region Commands
 
-            // Commands 
             Bind<ICreateUserCommand>().To<CreateUserCommand>();
             Bind<IUpdateUserCommand>().To<UpdateUserCommand>();
 
+            #endregion
 
-            // Validators
+            #endregion
+
+            #region Roles
+
+            #region Queries
+
+            Bind<IGetRolesListQuery>().To<GetRolesListQuery>();
+
+            #endregion
+
+
+            #endregion
+
+            #endregion
+
+            #region Validators dependencies
+
             // make a list of all validators in the assembly
             var validatorsList = AssemblyScanner.FindValidatorsInAssemblyContaining<CreateUserModel>();
 
@@ -50,6 +82,10 @@ namespace Presentation.Util
                 Bind(validator.InterfaceType).To(validator.ValidatorType);
             }
 
+            #endregion
+
+            #region Automapper -- currently isn't in use
+
             //var config = new MapperConfiguration(cfg =>
             //{
             //    cfg.AddProfile<UserProfile>();
@@ -57,6 +93,10 @@ namespace Presentation.Util
             //var mapper = config.CreateMapper();
 
             //Bind<IMapper>().ToConstant(mapper);
+
+            #endregion
+
+            #endregion
         }
     }
 }

@@ -1,23 +1,27 @@
 ﻿using Application.Interfaces;
+using MediatR;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Application.Users.Queries.GetUserById
 {
-    public class GetUserByIdQuery : IGetUserByIdQuery
+    public class GetUserByIdQuery : IRequest<UserByIdModel> {
+    public int Id { get; set; }
+    }
+    public class GetUserByIdHandler : IRequestHandler<GetUserByIdQuery, UserByIdModel> 
     {
         private readonly IDatabaseService _database;
-
-        public GetUserByIdQuery(
+        public GetUserByIdHandler(
             IDatabaseService database
             )
         {
             _database = database;
         }
-        public async Task<UserByIdModel> ExecuteAsync(int id)
+        public async Task<UserByIdModel> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
         {
             // get data from db
-            var user = await _database.Users.FindAsync(id);
+            var user = await _database.Users.FindAsync(cancellationToken, request.Id);
 
             // Map to dto
             var userDto = new UserByIdModel
@@ -35,5 +39,5 @@ namespace Application.Users.Queries.GetUserById
             // return dto
             return userDto;
         }
-    }
+    } 
 }

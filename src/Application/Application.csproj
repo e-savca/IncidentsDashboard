@@ -81,7 +81,6 @@
     <Compile Include="Users\Commands\UpdateUser\UpdateUserModel.cs" />
     <Compile Include="Users\Commands\UpdateUser\UpdateUserModelValidator.cs" />
     <Compile Include="Users\Queries\GetUserById\GetUserByIdQuery.cs" />
-    <Compile Include="Users\Queries\GetUserById\IGetUserByIdQuery.cs" />
     <Compile Include="Users\Queries\GetUserById\UserByIdModel.cs" />
     <Compile Include="Users\Queries\GetUserByUsernameAndPassword\GetUserByUsernameAndPasswordQuery.cs" />
     <Compile Include="Users\Queries\GetUserByUsernameAndPassword\IGetUserByUsernameAndPasswordQuery.cs" />

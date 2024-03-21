@@ -24,7 +24,7 @@ namespace Application.Users.Queries.GetUsersList
         public async Task<List<UsersListItemModel>> Handle(GetUsersListQuery request, CancellationToken cancellationToken)
         {
             // get users from database
-            var users = await _database.Users.Include(u => u.UserRoles.Select(ur => ur.Role)).ToListAsync();
+            var users = await _database.Users.Include(u => u.UserRoles.Select(ur => ur.Role)).ToListAsync(cancellationToken);
 
             // map to UserListItemModel
             var userDtos = users.Select(u => new UsersListItemModel
