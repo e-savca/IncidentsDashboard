@@ -17,7 +17,7 @@ namespace Presentation.Controllers
     {
         #region Private Fields
         
-        private readonly ICreateUserCommand _createUserCommand;
+        //private readonly ICreateUserCommand _createUserCommand;
         private readonly IUpdateUserCommand _updateUserCommand;
         private readonly IValidator<CreateUserModel> _createUserValidator;
         private readonly IValidator<UpdateUserModel> _updateUserValidator;
@@ -28,14 +28,14 @@ namespace Presentation.Controllers
         #region Constructor
 
         public AdminController(
-            ICreateUserCommand createUserCommand,
+            //ICreateUserCommand createUserCommand,
             IUpdateUserCommand updateUserCommand,
             IValidator<CreateUserModel> createUserValidator,
             IValidator<UpdateUserModel> updateUserValidator,
             IMediator mediator
             )
         {
-            _createUserCommand = createUserCommand;
+            //_createUserCommand = createUserCommand;
             _updateUserCommand = updateUserCommand;
             _createUserValidator = createUserValidator;
             _updateUserValidator = updateUserValidator;
@@ -79,7 +79,8 @@ namespace Presentation.Controllers
 
             if (validationResult.IsValid)
             {
-                await _createUserCommand.ExecuteAsync(model);
+                //await _createUserCommand.ExecuteAsync(model);
+                await _mediator.Send(new CreateUserCommand { UserModel = model });
 
                 return new JsonResult
                 {

@@ -34,9 +34,15 @@ namespace Presentation.Util
 
             #region MediatR dependencies
 
-            #region Users
+            #region Users Commands
 
-            #region Queries
+            //Bind<ICreateUserCommand>().To<CreateUserCommand>();
+            Bind<IUpdateUserCommand>().To<UpdateUserCommand>();
+            Bind<IRequestHandler<CreateUserCommand, CreateUserModel>>().To<CreateUserHandler>();
+
+            #endregion
+
+            #region Users Queries
 
             Bind<IRequestHandler<GetUserByUsernameAndPasswordQuery, UserByUsernameAndPasswordModel>>().To<GetUserByUsernameAndPasswordHandler>();
             Bind<IRequestHandler<GetUserByIdQuery, UserByIdModel>>().To<GetUserByIdHandler>();
@@ -44,23 +50,9 @@ namespace Presentation.Util
 
             #endregion
 
-            #region Commands
-
-            Bind<ICreateUserCommand>().To<CreateUserCommand>();
-            Bind<IUpdateUserCommand>().To<UpdateUserCommand>();
-
-            #endregion
-
-            #endregion
-
-            #region Roles
-
-            #region Queries
+            #region Roles Queries
 
             Bind<IRequestHandler<GetRolesListQuery, List<RolesListItemModel>>>().To<GetRolesListHandler>();
-
-            #endregion
-
 
             #endregion
 

@@ -1,23 +1,27 @@
 ﻿using Application.Interfaces;
 using Domain.Users;
-using System;
+using MediatR;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Application.Users.Commands.CreateUser
 {
-    public class CreateUserCommand : ICreateUserCommand
+    public class CreateUserCommand : IRequest<CreateUserModel>
+    {
+        public CreateUserModel UserModel { get; set; }
+    }
+    public class CreateUserHandler : IRequestHandler<CreateUserCommand, CreateUserModel>
     {
         private readonly IDatabaseService _database;
-        public CreateUserCommand(
+        public CreateUserHandler(
             IDatabaseService database)
         {
             _database = database;
-
         }
-
-        public async Task<CreateUserModel> ExecuteAsync(CreateUserModel model)
-        {            
+        public async Task<CreateUserModel> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+        {
+            var model = request.UserModel;
             // add user
             if (model != null)
             {
@@ -36,7 +40,7 @@ namespace Application.Users.Commands.CreateUser
                 });
             }
             // save changes
-            await _database.SaveAsync();
+            await _database.SaveAsync(cancellationToken);
 
             return model;
         }
