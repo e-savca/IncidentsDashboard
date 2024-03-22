@@ -1,10 +1,5 @@
 ﻿using Domain.Users;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Persistance.Users
 {
@@ -17,7 +12,7 @@ namespace Persistance.Users
             this.Property(u => u.LastName).IsRequired().HasMaxLength(50);
             this.Property(u => u.Email).IsRequired().HasMaxLength(150);
             this.Property(u => u.Username).IsRequired().HasMaxLength(50);
-            this.Property(u => u.Password).IsRequired().HasMaxLength(50);
+            this.Property(u => u.Password).IsRequired().HasMaxLength(100);
         }
     }
 }

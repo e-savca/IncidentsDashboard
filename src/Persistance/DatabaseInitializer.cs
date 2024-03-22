@@ -55,8 +55,8 @@ namespace Persistance
             var users = new List<User>
             {
                 new User { Username = "CR001", Password = "bdbb29b6e288d3b8f07a6ea80d10024bd858b85bd8125fb8d3862ffb40a770d4", FirstName = "admin", LastName = "", Email = "user1@example.com", IsActive = true },
-                new User { Username = "CR002", Password = "cr002", FirstName = "operator", LastName = "", Email = "user2@example.com", IsActive = true },
-                new User { Username = "CR003", Password = "cr003", FirstName = "user", LastName = "", Email = "user3@example.com", IsActive = true },
+                new User { Username = "CR002", Password = "7bc0efeb4085f459cd0474e6f5bc3ae1893a36a7b7512e427a2648a0d7b71e1e", FirstName = "operator", LastName = "", Email = "user2@example.com", IsActive = true },
+                new User { Username = "CR003", Password = "5677bd6c14708bdc4a7af9e8f78a2495d8c3278a3679187cb29a14f52e9d5dec", FirstName = "user", LastName = "", Email = "user3@example.com", IsActive = true },
             };
 
             users.ForEach(user => database.Users.Add(user));

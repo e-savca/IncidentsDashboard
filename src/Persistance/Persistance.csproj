@@ -73,6 +73,10 @@
     <Compile Include="Migrations\202403071035133_AddedUsersPropertyPassword.designer.cs">
       <DependentUpon>202403071035133_AddedUsersPropertyPassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202403220740336_ChangedPasswordPropertyMaxLength_from_50_to_100.cs" />
+    <Compile Include="Migrations\202403220740336_ChangedPasswordPropertyMaxLength_from_50_to_100.designer.cs">
+      <DependentUpon>202403220740336_ChangedPasswordPropertyMaxLength_from_50_to_100.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Users\RoleConfiguration.cs" />
@@ -102,6 +106,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202403071035133_AddedUsersPropertyPassword.resx">
       <DependentUpon>202403071035133_AddedUsersPropertyPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403220740336_ChangedPasswordPropertyMaxLength_from_50_to_100.resx">
+      <DependentUpon>202403220740336_ChangedPasswordPropertyMaxLength_from_50_to_100.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
