@@ -1,6 +1,4 @@
-﻿using Castle.Components.DictionaryAdapter.Xml;
-using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace Presentation
 {
@@ -11,7 +9,23 @@ namespace Presentation
         {
             #region IncidentsDashboardCore.JS scripts
 
-            #region Admin Controller
+            #region Dashboard Controller's Views
+
+            bundles.Add(new ScriptBundle("~/IDCore.JS/Views/Dashboard/Index").Include(
+                        "~/IncidentsDashboardCore.JS/Views/Dashboard/Index.js"));
+
+            bundles.Add(new ScriptBundle("~/IDCore.JS/Views/Dashboard/GetCreateAsync").Include(
+                        "~/IncidentsDashboardCore.JS/Views/Dashboard/GetCreateAsync.js"));
+
+            bundles.Add(new ScriptBundle("~/IDCore.JS/Views/Dashboard/GetUpdateAsync").Include(
+                        "~/IncidentsDashboardCore.JS/Views/Dashboard/GetUpdateAsync.js"));
+
+            bundles.Add(new ScriptBundle("~/IDCore.JS/Views/Dashboard/GetImportAsync").Include(
+                        "~/IncidentsDashboardCore.JS/Views/Dashboard/GetImportAsync.js"));
+
+            #endregion
+
+            #region Admin Controller's Views
 
             bundles.Add(new ScriptBundle("~/IDCore.JS/Views/Admin/Index").Include(
                         "~/IncidentsDashboardCore.JS/Views/Admin/Index.js"));
