@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using Application.Incidents.Queries.GetIncidentsList;
+using Application.Interfaces;
 using Application.Roles.Queries.GetRolesList;
 using Application.Services;
 using Application.Users.Commands.CreateUser;
@@ -50,6 +51,14 @@ namespace Presentation.Util
             Bind<IRequestHandler<GetUserByUsernameAndPasswordQuery, UserByUsernameAndPasswordModel>>().To<GetUserByUsernameAndPasswordHandler>();
             Bind<IRequestHandler<GetUserByIdQuery, UserByIdModel>>().To<GetUserByIdHandler>();
             Bind<IRequestHandler<GetUsersListQuery, List<UsersListItemModel>>>().To<GetUsersListHandler>();
+
+            #endregion
+
+            #region Incidents Queries
+
+            Bind<IRequestHandler<GetIncidentsListQuery, List<IncidentsListItemModel>>>().To<GetIncidentsListHandler>();
+            //Bind<IRequestHandler<GetUserByIdQuery, UserByIdModel>>().To<GetUserByIdHandler>();
+            //Bind<IRequestHandler<GetUsersListQuery, List<UsersListItemModel>>>().To<GetUsersListHandler>();
 
             #endregion
 

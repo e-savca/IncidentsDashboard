@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Interfaces;
@@ -29,8 +27,8 @@ namespace Application.Incidents.Queries.GetIncidentsList
                     Id = incident.Id,
                     CallCode = incident.CallCode,
                     SubsystemCode = incident.SubsystemCode,
-                    OpenedDate = incident.OpenedDate,
-                    ClosedDate = incident.ClosedDate,
+                    OpenedDate = incident.OpenedDate.ToString(),
+                    ClosedDate = incident.ClosedDate.ToString(),
                     RequestType = incident.RequestType,
                     ApplicationType = incident.ApplicationType,
                     Urgency = incident.Urgency,

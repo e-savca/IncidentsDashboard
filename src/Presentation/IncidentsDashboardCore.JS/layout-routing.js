@@ -40,6 +40,43 @@ var routingApp = $.sammy("#MainContent", function () {
         });
     });
 
+    this.get("#Dashboard/Create", function (context) {
+        titleContent.html("Create User");
+        $.get("/Dashboard/GetCreateAsync", function (data) {
+            context.$element().html(data);
+        });
+    });
+
+    this.get("#Dashboard/Edit/:id", function (context) {
+        titleContent.html("Edit User");
+        showLoadingIndicator();
+        $.get("/Dashboard/GetUpdateAsync/" + context.params.id, function (data) {
+            setTimeout(function () {
+                context.$element().html(data);
+            }, 150);
+        });
+    });
+
+    this.get("#Dashboard/Details/:id", function (context) {
+        titleContent.html("User's Details");
+        showLoadingIndicator();
+        $.get("/Dashboard/GetDetailsAsync/" + context.params.id, function (data) {
+            setTimeout(function () {
+                context.$element().html(data);
+            }, 150);
+        });
+    });
+
+    this.get("#Dashboard/Delete/:id", function (context) {
+        titleContent.html("User's Details");
+        showLoadingIndicator();
+        $.get("/Dashboard/GetDeleteAsync/" + context.params.id, function (data) {
+            setTimeout(function () {
+                context.$element().html(data);
+            }, 150);
+        });
+    });
+
     this.get("#Admin", function (context) {
         titleContent.html("Admin Panel");
         // Show loading indicator

@@ -7,8 +7,8 @@ namespace Application.Incidents.Queries.GetIncidentsList
         public int Id { get; set; }
         public string CallCode { get; set; }
         public string SubsystemCode { get; set; }
-        public DateTime OpenedDate { get; set; }
-        public DateTime ClosedDate { get; set; }
+        public string OpenedDate { get; set; }
+        public string ClosedDate { get; set; }
         public string RequestType { get; set; }
         public string ApplicationType { get; set; }
         public string Urgency { get; set; }

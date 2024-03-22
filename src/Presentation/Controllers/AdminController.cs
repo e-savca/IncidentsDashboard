@@ -38,13 +38,6 @@ namespace Presentation.Controllers
 
         #endregion
 
-        #region Actions
-
-        public ActionResult Index()
-        {
-            return PartialView();
-        }
-
         #region CRUD Operations
 
         #region Create User
@@ -107,6 +100,11 @@ namespace Presentation.Controllers
         #endregion
 
         #region Read
+        public ActionResult Index()
+        {
+            return PartialView();
+        }
+
         public async Task<ActionResult> GetUsersListAsync()
         {
             var users = await _mediator.Send(new GetUsersListQuery());
@@ -206,12 +204,11 @@ namespace Presentation.Controllers
 
         #endregion
 
-        #region Delete operations
+        #region Delete
         // No delete operations in this controller
         #endregion
 
         #endregion
 
-        #endregion
     }
 }
