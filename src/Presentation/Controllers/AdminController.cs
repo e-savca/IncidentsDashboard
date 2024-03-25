@@ -1,8 +1,8 @@
 ﻿using Application.Roles.Queries.GetRolesList;
-using Application.Users.Commands.CreateUser;
-using Application.Users.Commands.UpdateUser;
-using Application.Users.Queries.GetUserById;
-using Application.Users.Queries.GetUsersList;
+using Application.User.Commands.CreateUser;
+using Application.User.Commands.UpdateUser;
+using Application.User.Queries.GetUserById;
+using Application.User.Queries.GetUsersList;
 using FluentValidation;
 using MediatR;
 using System.Collections.Generic;

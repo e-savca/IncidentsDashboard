@@ -1,5 +1,5 @@
-﻿using Application.Incidents.Queries.GetIncidentById;
-using Application.Incidents.Queries.GetIncidentsList;
+﻿using Application.Incident.Queries.GetIncidentById;
+using Application.Incident.Queries.GetIncidentsList;
 using MediatR;
 using System.Threading.Tasks;
 using System.Web.Mvc;

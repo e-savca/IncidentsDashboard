@@ -1,7 +1,6 @@
-﻿using Domain.Incidents;
-using Domain.Incidents.IncidentTypes;
-using Domain.Incidents.ThreatsAndScenarios;
-using Domain.Users;
+﻿using Domain.Incident;
+using Domain.AdditionalInformation;
+using Domain.User;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

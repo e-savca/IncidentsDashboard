@@ -1,8 +1,7 @@
 ﻿using Application.Interfaces;
-using Domain.Incidents;
-using Domain.Incidents.IncidentTypes;
-using Domain.Incidents.ThreatsAndScenarios;
-using Domain.Users;
+using Domain.AdditionalInformation;
+using Domain.Incident;
+using Domain.User;
 using Persistance.Incidents;
 using Persistance.Incidents.IncidentTypes;
 using Persistance.Incidents.ThreatAndScenarios;

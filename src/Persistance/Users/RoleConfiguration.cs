@@ -1,4 +1,4 @@
-﻿using Domain.Users;
+﻿using Domain.User;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;

@@ -7,9 +7,9 @@ namespace Application.MappingProfiles
     { 
         public UserProfile()
         {
-            CreateMap<Domain.Users.User, UserDto>();
-            CreateMap<Domain.Users.Role, RoleDto>();
-            CreateMap<Domain.Users.UserRole, UserRoleDto>();
+            CreateMap<Domain.User.User, UserDto>();
+            CreateMap<Domain.User.Role, RoleDto>();
+            CreateMap<Domain.User.UserRole, UserRoleDto>();
         }
     }
 }

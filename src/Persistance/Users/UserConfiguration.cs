@@ -1,4 +1,4 @@
-﻿using Domain.Users;
+﻿using Domain.User;
 using System.Data.Entity.ModelConfiguration;
 
 namespace Persistance.Users

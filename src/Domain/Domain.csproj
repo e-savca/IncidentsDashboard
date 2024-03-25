@@ -43,18 +43,18 @@
   <ItemGroup>
     <Compile Include="Common\Entity.cs" />
     <Compile Include="Common\IEntity.cs" />
-    <Compile Include="Incidents\Incident.cs" />
-    <Compile Include="Incidents\IncidentTypes\Ambit.cs" />
-    <Compile Include="Incidents\IncidentTypes\AmbitsToTypes.cs" />
-    <Compile Include="Incidents\IncidentTypes\IncidentType.cs" />
-    <Compile Include="Incidents\IncidentTypes\Origin.cs" />
-    <Compile Include="Incidents\IncidentTypes\OriginToAmbit.cs" />
-    <Compile Include="Incidents\ThreatsAndScenarios\Scenario.cs" />
-    <Compile Include="Incidents\ThreatsAndScenarios\Threat.cs" />
+    <Compile Include="Incident\Incident.cs" />
+    <Compile Include="AdditionalInformation\Ambit.cs" />
+    <Compile Include="AdditionalInformation\AmbitsToTypes.cs" />
+    <Compile Include="AdditionalInformation\IncidentType.cs" />
+    <Compile Include="AdditionalInformation\Origin.cs" />
+    <Compile Include="AdditionalInformation\OriginToAmbit.cs" />
+    <Compile Include="AdditionalInformation\Scenario.cs" />
+    <Compile Include="AdditionalInformation\Threat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Users\Role.cs" />
-    <Compile Include="Users\User.cs" />
-    <Compile Include="Users\UserRole.cs" />
+    <Compile Include="User\Role.cs" />
+    <Compile Include="User\User.cs" />
+    <Compile Include="User\UserRole.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

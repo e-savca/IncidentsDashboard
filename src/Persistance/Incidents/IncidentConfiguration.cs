@@ -1,4 +1,4 @@
-﻿using Domain.Incidents;
+﻿using Domain.Incident;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;

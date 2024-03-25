@@ -8,7 +8,7 @@ using Presentation.Models;
 using Microsoft.Ajax.Utilities;
 using System.Data;
 using MediatR;
-using Application.Users.Queries.GetUserByUsernameAndPassword;
+using Application.User.Queries.GetUserByUsernameAndPassword;
 
 namespace Presentation.Controllers
 {
