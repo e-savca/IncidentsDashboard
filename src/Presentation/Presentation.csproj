@@ -318,6 +318,7 @@
     <Content Include="Views\Admin\GetCreateAsync.cshtml" />
     <Content Include="Views\Admin\GetUpdateAsync.cshtml" />
     <Content Include="Views\Admin\GetDetailsAsync.cshtml" />
+    <Content Include="Views\Dashboard\GetDetailsAsync.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

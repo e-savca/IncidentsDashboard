@@ -1,0 +1,278 @@
+﻿@using Application.Incidents.Queries.GetIncidentById
+@model IncidentByIdModel
+<div class="mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3>Incident Details</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.CallCode, "Call Code")
+                                @Html.TextBoxFor(model => model.CallCode, new { @class = "form-control", @disabled = true })
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.SubsystemCode, "Subsystem Code")
+                                @Html.TextBoxFor(model => model.SubsystemCode, new { @class = "form-control", @disabled = true })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.RequestType, "Request Type")
+                                @Html.TextBoxFor(model => model.RequestType, new { @class = "form-control", @disabled = true })
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ApplicationType, "Application Type")
+                                @Html.TextBoxFor(model => model.ApplicationType, new { @class = "form-control", @disabled = true })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.OpenedDate, "Opened Date")
+                                @Html.TextBoxFor(model => model.OpenedDate, new { @class = "form-control", @disabled = true })
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ClosedDate, "Closed Date")
+                                @Html.TextBoxFor(model => model.ClosedDate, new { @class = "form-control", @disabled = true })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Urgency, "Urgency")
+                                @Html.TextBoxFor(model => model.Urgency, new { @class = "form-control", @disabled = true })
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.SubCause, "Sub Cause")
+                                @Html.TextBoxFor(model => model.SubCause, new { @class = "form-control", @disabled = true })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Summary, "Summary")
+                                @Html.TextBoxFor(model => model.Summary, new { @class = "form-control", @disabled = true })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Description, "Description")
+                                @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @disabled = true })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Solution, "Solution")
+                                @Html.TextBoxFor(model => model.Solution, new { @class = "form-control", @disabled = true })
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.OriginId, "OriginId")
+                                @Html.TextBoxFor(model => model.OriginId, new { @class = "form-control", @disabled = true })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.AmbitId, "AmbitId")
+                                @Html.TextBoxFor(model => model.AmbitId, new { @class = "form-control", @disabled = true })
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.IncidentTypeId, "IncidentTypeId")
+                                @Html.TextBoxFor(model => model.IncidentTypeId, new { @class = "form-control", @disabled = true })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ScenarioId, "ScenarioId")
+                                @Html.TextBoxFor(model => model.ScenarioId, new { @class = "form-control", @disabled = true })
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ThreatId, "ThreatId")
+                                @Html.TextBoxFor(model => model.ThreatId, new { @class = "form-control", @disabled = true })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3 mb-3">
+                        <div class="col-6">
+                            <div class="form-group d-flex justify-content-center">
+                                <a href="#Dashboard/Edit/@Model.Id" class="btn btn-primary">Edit</a>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group d-flex justify-content-center">
+                                <a href="#Dashboard" class="btn btn-secondary">Back to list</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*<div>
+
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.CallCode)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CallCode)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SubsystemCode)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SubsystemCode)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.OpenedDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.OpenedDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ClosedDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ClosedDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RequestType)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RequestType)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ApplicationType)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ApplicationType)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Urgency)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Urgency)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SubCause)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SubCause)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Summary)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Summary)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Solution)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Solution)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.OriginId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.OriginId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.AmbitId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AmbitId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IncidentTypeId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IncidentTypeId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ScenarioId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ScenarioId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ThreatId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ThreatId)
+            </dd>
+
+        </dl>
+    </div>*@
+@*<p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@

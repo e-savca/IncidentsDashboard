@@ -63,6 +63,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Incidents\Queries\GetIncidentById\GetIncidentByIdQuery.cs" />
+    <Compile Include="Incidents\Queries\GetIncidentById\IncidentByIdModel.cs" />
     <Compile Include="Incidents\Queries\GetIncidentsList\GetIncidentsListQuery.cs" />
     <Compile Include="Incidents\Queries\GetIncidentsList\IncidentsListItemModel.cs" />
     <Compile Include="Interfaces\IDatabaseService.cs" />
@@ -102,7 +104,6 @@
     <Folder Include="Incidents\Commands\CreateIncident\" />
     <Folder Include="Incidents\Commands\ImportIncident\" />
     <Folder Include="Incidents\Commands\UpdateIncident\" />
-    <Folder Include="Incidents\Queries\GetIncidentById\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -1,12 +1,6 @@
-﻿using Application.Incidents.Queries.GetIncidentsList;
-using Application.Roles.Queries.GetRolesList;
-using Application.Users.Commands.CreateUser;
-using Application.Users.Commands.UpdateUser;
-using Application.Users.Queries.GetUserById;
-using Application.Users.Queries.GetUsersList;
-using FluentValidation;
+﻿using Application.Incidents.Queries.GetIncidentById;
+using Application.Incidents.Queries.GetIncidentsList;
 using MediatR;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -104,6 +98,12 @@ namespace Presentation.Controllers
             var incidents = await _mediator.Send(new GetIncidentsListQuery());
 
             return Json(incidents, JsonRequestBehavior.AllowGet);
+        }
+
+        public async Task<ActionResult> GetDetailsAsync(int id)
+         {
+            var incident = await _mediator.Send(new GetIncidentByIdQuery { Id = id });
+            return PartialView(incident);
         }
 
         //public async Task<ActionResult> GetUpdateAsync(int id)
