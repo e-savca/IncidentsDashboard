@@ -1,5 +1,8 @@
 ﻿using Application.AdditionalInformation.Queries.GetAmbitListByOriginId;
+using Application.AdditionalInformation.Queries.GetIncidentTypeListByAmbitId;
 using Application.AdditionalInformation.Queries.GetOriginList;
+using Application.AdditionalInformation.Queries.GetScenarioList;
+using Application.AdditionalInformation.Queries.GetThreatList;
 using Application.Incident.Queries.GetIncidentById;
 using Application.Incident.Queries.GetIncidentDetailsById;
 using Application.Incident.Queries.GetIncidentsList;
@@ -76,6 +79,9 @@ namespace Presentation.Util
 
             Bind<IRequestHandler<GetOriginListQuery, List<OriginListItemModel>>>().To<GetOriginListHandler>();
             Bind<IRequestHandler<GetAmbitListByOriginIdQuery, List<AmbitListByOriginIdItemModel>>>().To<GetAmbitListByOriginIdHandler>();
+            Bind<IRequestHandler<GetIncidentTypeListByAmbitIdQuery, List<IncidentTypeListByAmbitIdItemModel>>>().To<GetIncidentTypeListByAmbitIdHandler>();
+            Bind<IRequestHandler<GetScenarioListQuery, List<ScenarioListItemModel>>>().To<GetScenarioListHandler>();
+            Bind<IRequestHandler<GetThreatListQuery, List<ThreatListItemModel>>>().To<GetThreatListHandler>();
 
             #endregion
 

@@ -1,5 +1,8 @@
 ﻿using Application.AdditionalInformation.Queries.GetAmbitListByOriginId;
+using Application.AdditionalInformation.Queries.GetIncidentTypeListByAmbitId;
 using Application.AdditionalInformation.Queries.GetOriginList;
+using Application.AdditionalInformation.Queries.GetScenarioList;
+using Application.AdditionalInformation.Queries.GetThreatList;
 using Application.Incident.Queries.GetIncidentById;
 using Application.Incident.Queries.GetIncidentDetailsById;
 using Application.Incident.Queries.GetIncidentsList;
@@ -111,17 +114,22 @@ namespace Presentation.Controllers
             return PartialView(incident);
         }
 
-        public async Task<ActionResult> GetEditAsync(int id)
+        public async Task<ActionResult> GetUpdateAsync(int id)
         {
             var incident = await _mediator.Send(new GetIncidentByIdQuery { Id = id });
+
+            ViewBag.OriginList = await GetOriginListAsync();
+            ViewBag.ScenarioList = await GetScenarioListAsync();
+            ViewBag.ThreatList = await GetThreatListAsync();
+
             return PartialView(incident);
         }
 
-        public async Task<List<SelectListItem>> GetOriginListAsync()
+        private async Task<List<SelectListItem>> GetOriginListAsync()
         {
             var origins = await _mediator.Send(new GetOriginListQuery());
 
-            // Convert the roles to a list of SelectListItem
+            // Convert to a list of SelectListItem
             var originList = origins.Select(o => new SelectListItem
             {
                 Value = o.Id.ToString(),
@@ -131,40 +139,48 @@ namespace Presentation.Controllers
             return originList;
         }
 
-        public async Task<List<SelectListItem>> GetAmbitListByOriginIdAsync(int id)
+        public async Task<ActionResult> GetAmbitListByOriginIdAsync(int id)
         {
             var ambits = await _mediator.Send(new GetAmbitListByOriginIdQuery { OriginId = id});
 
-            // Convert the roles to a list of SelectListItem
-            var ambitList = ambits.Select(o => new SelectListItem
+            return Json(ambits, JsonRequestBehavior.AllowGet);
+        }
+
+        public async Task<ActionResult> GetIncidentTypeListByAmbitIdAsync(int id)
+        {
+            var incidentTypes = await _mediator.Send(new GetIncidentTypeListByAmbitIdQuery { AmbitId = id });
+
+            return Json(incidentTypes, JsonRequestBehavior.AllowGet);
+        }
+
+
+        private async Task<List<SelectListItem>> GetScenarioListAsync()
+        {
+            var scenarios = await _mediator.Send(new GetScenarioListQuery());
+
+            // Convert to a list of SelectListItem
+            var scenariosList = scenarios.Select(o => new SelectListItem
             {
                 Value = o.Id.ToString(),
                 Text = o.Name
             }).ToList();
 
-            return ambitList;
+            return scenariosList;
         }
 
-        //public async Task<ActionResult> GetAmbitListByOriginIdAsync()
-        //{
+        private async Task<List<SelectListItem>> GetThreatListAsync()
+        {
+            var threats = await _mediator.Send(new GetThreatListQuery());
 
-        //}
+            // Convert to a list of SelectListItem
+            var threatList = threats.Select(o => new SelectListItem
+            {
+                Value = o.Id.ToString(),
+                Text = o.Name
+            }).ToList();
 
-        //public async Task<ActionResult> GetIncidentTypeListByAmbitIdAsync()
-        //{
-
-        //}
-
-        //public async Task<ActionResult> GetScenarioList()
-        //{
-
-        //}
-
-        //public async Task<ActionResult> GetThreatList()
-        //{
-
-        //}
-
+            return threatList;
+        }
 
         #endregion
 
