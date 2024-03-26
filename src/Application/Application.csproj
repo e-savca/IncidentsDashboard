@@ -69,6 +69,10 @@
     <Compile Include="AdditionalInformation\Queries\GetIncidentTypeListByAmbitId\IncidentTypeListByAmbitIdItemModel.cs" />
     <Compile Include="AdditionalInformation\Queries\GetOriginList\GetOriginListQuery.cs" />
     <Compile Include="AdditionalInformation\Queries\GetOriginList\OriginListItemModel.cs" />
+    <Compile Include="AdditionalInformation\Queries\GetScenarioList\GetScenarioListQuery.cs" />
+    <Compile Include="AdditionalInformation\Queries\GetScenarioList\ScenarioListItemModel.cs" />
+    <Compile Include="AdditionalInformation\Queries\GetThreatList\GetThreatListQuery.cs" />
+    <Compile Include="AdditionalInformation\Queries\GetThreatList\ThreatListItemModel.cs" />
     <Compile Include="Incident\Queries\GetIncidentById\GetIncidentByIdQuery.cs" />
     <Compile Include="Incident\Queries\GetIncidentById\IncidentByIdModel.cs" />
     <Compile Include="Incident\Queries\GetIncidentDetailsById\GetIncidentDetailsByIdQuery.cs" />
