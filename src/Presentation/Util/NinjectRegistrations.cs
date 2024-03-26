@@ -1,4 +1,5 @@
-﻿using Application.AdditionalInformation.Queries.GetOriginList;
+﻿using Application.AdditionalInformation.Queries.GetAmbitListByOriginId;
+using Application.AdditionalInformation.Queries.GetOriginList;
 using Application.Incident.Queries.GetIncidentById;
 using Application.Incident.Queries.GetIncidentDetailsById;
 using Application.Incident.Queries.GetIncidentsList;
@@ -74,6 +75,7 @@ namespace Presentation.Util
             #region Additional Information Queries
 
             Bind<IRequestHandler<GetOriginListQuery, List<OriginListItemModel>>>().To<GetOriginListHandler>();
+            Bind<IRequestHandler<GetAmbitListByOriginIdQuery, List<AmbitListByOriginIdItemModel>>>().To<GetAmbitListByOriginIdHandler>();
 
             #endregion
 

@@ -1,4 +1,5 @@
-﻿using Application.AdditionalInformation.Queries.GetOriginList;
+﻿using Application.AdditionalInformation.Queries.GetAmbitListByOriginId;
+using Application.AdditionalInformation.Queries.GetOriginList;
 using Application.Incident.Queries.GetIncidentById;
 using Application.Incident.Queries.GetIncidentDetailsById;
 using Application.Incident.Queries.GetIncidentsList;
@@ -128,6 +129,20 @@ namespace Presentation.Controllers
             }).ToList();
 
             return originList;
+        }
+
+        public async Task<List<SelectListItem>> GetAmbitListByOriginIdAsync(int id)
+        {
+            var ambits = await _mediator.Send(new GetAmbitListByOriginIdQuery { OriginId = id});
+
+            // Convert the roles to a list of SelectListItem
+            var ambitList = ambits.Select(o => new SelectListItem
+            {
+                Value = o.Id.ToString(),
+                Text = o.Name
+            }).ToList();
+
+            return ambitList;
         }
 
         //public async Task<ActionResult> GetAmbitListByOriginIdAsync()
