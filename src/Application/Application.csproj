@@ -63,8 +63,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdditionalInformation\Queries\GetOriginList\GetOriginListQuery.cs" />
+    <Compile Include="AdditionalInformation\Queries\GetOriginList\OriginListItemModel.cs" />
     <Compile Include="Incident\Queries\GetIncidentById\GetIncidentByIdQuery.cs" />
     <Compile Include="Incident\Queries\GetIncidentById\IncidentByIdModel.cs" />
+    <Compile Include="Incident\Queries\GetIncidentDetailsById\GetIncidentDetailsByIdQuery.cs" />
+    <Compile Include="Incident\Queries\GetIncidentDetailsById\IncidentDetailsByIdModel.cs" />
     <Compile Include="Incident\Queries\GetIncidentsList\GetIncidentsListQuery.cs" />
     <Compile Include="Incident\Queries\GetIncidentsList\IncidentsListItemModel.cs" />
     <Compile Include="Interfaces\IDatabaseService.cs" />

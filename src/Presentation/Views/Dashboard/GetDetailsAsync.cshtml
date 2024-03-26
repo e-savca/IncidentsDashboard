@@ -1,5 +1,5 @@
-﻿@using Application.Incident.Queries.GetIncidentById
-@model IncidentByIdModel
+﻿@using Application.Incident.Queries.GetIncidentDetailsById
+@model IncidentDetailsByIdModel
 <div class="mt-5 mb-5">
     <div class="row justify-content-center">
         <div class="col-8">
@@ -89,36 +89,36 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                @Html.LabelFor(model => model.OriginId, "OriginId")
-                                @Html.TextBoxFor(model => model.OriginId, new { @class = "form-control", @disabled = true })
+                                @Html.LabelFor(model => model.Origin, "Origin")
+                                @Html.TextBoxFor(model => model.Origin, new { @class = "form-control", @disabled = true })
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                @Html.LabelFor(model => model.AmbitId, "AmbitId")
-                                @Html.TextBoxFor(model => model.AmbitId, new { @class = "form-control", @disabled = true })
+                                @Html.LabelFor(model => model.Ambit, "Ambit")
+                                @Html.TextBoxFor(model => model.Ambit, new { @class = "form-control", @disabled = true })
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                @Html.LabelFor(model => model.IncidentTypeId, "IncidentTypeId")
-                                @Html.TextBoxFor(model => model.IncidentTypeId, new { @class = "form-control", @disabled = true })
+                                @Html.LabelFor(model => model.IncidentType, "IncidentType")
+                                @Html.TextBoxFor(model => model.IncidentType, new { @class = "form-control", @disabled = true })
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                @Html.LabelFor(model => model.ScenarioId, "ScenarioId")
-                                @Html.TextBoxFor(model => model.ScenarioId, new { @class = "form-control", @disabled = true })
+                                @Html.LabelFor(model => model.Scenario, "Scenario")
+                                @Html.TextBoxFor(model => model.Scenario, new { @class = "form-control", @disabled = true })
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                @Html.LabelFor(model => model.ThreatId, "ThreatId")
-                                @Html.TextBoxFor(model => model.ThreatId, new { @class = "form-control", @disabled = true })
+                                @Html.LabelFor(model => model.Threat, "Threat")
+                                @Html.TextBoxFor(model => model.Threat, new { @class = "form-control", @disabled = true })
                             </div>
                         </div>
                     </div>

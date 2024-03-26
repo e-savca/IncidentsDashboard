@@ -1,4 +1,5 @@
 ﻿using Application.Incident.Queries.GetIncidentById;
+using Application.Incident.Queries.GetIncidentDetailsById;
 using Application.Incident.Queries.GetIncidentsList;
 using Application.Interfaces;
 using Application.Roles.Queries.GetRolesList;
@@ -55,19 +56,21 @@ namespace Presentation.Util
 
             #endregion
 
-            #region Incidents Queries
-
-            Bind<IRequestHandler<GetIncidentsListQuery, List<IncidentsListItemModel>>>().To<GetIncidentsListHandler>();
-            Bind<IRequestHandler<GetIncidentByIdQuery, IncidentByIdModel>>().To<GetIncidentByIdHandler>();
-            //Bind<IRequestHandler<GetUsersListQuery, List<UsersListItemModel>>>().To<GetUsersListHandler>();
-
-            #endregion
-
             #region Roles Queries
 
             Bind<IRequestHandler<GetRolesListQuery, List<RolesListItemModel>>>().To<GetRolesListHandler>();
 
             #endregion
+
+            #region Incidents Queries
+
+            Bind<IRequestHandler<GetIncidentsListQuery, List<IncidentsListItemModel>>>().To<GetIncidentsListHandler>();
+            Bind<IRequestHandler<GetIncidentByIdQuery, IncidentByIdModel>>().To<GetIncidentByIdHandler>();
+            Bind<IRequestHandler<GetIncidentDetailsByIdQuery, IncidentDetailsByIdModel>>().To<GetIncidentDetailsByIdHandler>();
+            //Bind<IRequestHandler<GetUsersListQuery, List<UsersListItemModel>>>().To<GetUsersListHandler>();
+
+            #endregion
+
 
             #endregion
 
