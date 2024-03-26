@@ -65,6 +65,8 @@
   <ItemGroup>
     <Compile Include="AdditionalInformation\Queries\GetAmbitListByOriginId\AmbitListByOriginIdItemModel.cs" />
     <Compile Include="AdditionalInformation\Queries\GetAmbitListByOriginId\GetAmbitListByOriginIdQuery.cs" />
+    <Compile Include="AdditionalInformation\Queries\GetIncidentTypeListByAmbitId\GetIncidentTypeListByAmbitIdQuery.cs" />
+    <Compile Include="AdditionalInformation\Queries\GetIncidentTypeListByAmbitId\IncidentTypeListByAmbitIdItemModel.cs" />
     <Compile Include="AdditionalInformation\Queries\GetOriginList\GetOriginListQuery.cs" />
     <Compile Include="AdditionalInformation\Queries\GetOriginList\OriginListItemModel.cs" />
     <Compile Include="Incident\Queries\GetIncidentById\GetIncidentByIdQuery.cs" />
