@@ -1,6 +1,10 @@
-﻿using Application.Incident.Queries.GetIncidentById;
+﻿using Application.AdditionalInformation.Queries.GetOriginList;
+using Application.Incident.Queries.GetIncidentById;
+using Application.Incident.Queries.GetIncidentDetailsById;
 using Application.Incident.Queries.GetIncidentsList;
 using MediatR;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -102,57 +106,50 @@ namespace Presentation.Controllers
 
         public async Task<ActionResult> GetDetailsAsync(int id)
          {
+            var incident = await _mediator.Send(new GetIncidentDetailsByIdQuery { Id = id });
+            return PartialView(incident);
+        }
+
+        public async Task<ActionResult> GetEditAsync(int id)
+        {
             var incident = await _mediator.Send(new GetIncidentByIdQuery { Id = id });
             return PartialView(incident);
         }
 
-        //public async Task<ActionResult> GetUpdateAsync(int id)
+        public async Task<List<SelectListItem>> GetOriginListAsync()
+        {
+            var origins = await _mediator.Send(new GetOriginListQuery());
+
+            // Convert the roles to a list of SelectListItem
+            var originList = origins.Select(o => new SelectListItem
+            {
+                Value = o.Id.ToString(),
+                Text = o.Name
+            }).ToList();
+
+            return originList;
+        }
+
+        //public async Task<ActionResult> GetAmbitListByOriginIdAsync()
         //{
-        //    var user = await _mediator.Send(new GetUserByIdQuery { Id = id });
 
-
-        //    // Fetch the roles list asynchronously
-        //    ViewBag.Roles = await GetRolesListAsync();
-
-        //    if (user == null)
-        //    {
-        //        user = new UserByIdModel();
-        //        return PartialView(user);
-        //    }
-
-        //    return PartialView(user);
         //}
 
-
-        //public async Task<ActionResult> GetDetailsAsync(int id)
+        //public async Task<ActionResult> GetIncidentTypeListByAmbitIdAsync()
         //{
-        //    var user = await _mediator.Send(new GetUserByIdQuery { Id = id });
 
-        //    // Fetch the roles list asynchronously
-        //    ViewBag.Roles = await GetRolesListAsync();
-
-        //    if (user == null)
-        //    {
-        //        user = new UserByIdModel();
-        //        return PartialView(user);
-        //    }
-
-        //    return PartialView(user);
         //}
 
-        //private async Task<List<SelectListItem>> GetRolesListAsync()
+        //public async Task<ActionResult> GetScenarioList()
         //{
-        //    var roles = await _mediator.Send(new GetRolesListQuery());
 
-        //    // Convert the roles to a list of SelectListItem
-        //    var roleList = roles.Select(r => new SelectListItem
-        //    {
-        //        Value = r.Id.ToString(),
-        //        Text = r.Name
-        //    }).ToList();
-
-        //    return roleList;
         //}
+
+        //public async Task<ActionResult> GetThreatList()
+        //{
+
+        //}
+
 
         #endregion
 
