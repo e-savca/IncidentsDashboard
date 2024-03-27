@@ -319,6 +319,8 @@
     <Content Include="Views\Admin\GetUpdateAsync.cshtml" />
     <Content Include="Views\Admin\GetDetailsAsync.cshtml" />
     <Content Include="Views\Dashboard\GetDetailsAsync.cshtml" />
+    <Content Include="Views\Dashboard\GetUpdateAsync.cshtml" />
+    <Content Include="Views\Dashboard\GetCreateAsync.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -334,11 +336,11 @@
       <Name>Application</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{33B18464-FE31-48E7-A73B-C520210A8222}</Project>
+      <Project>{33b18464-fe31-48e7-a73b-c520210a8222}</Project>
       <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
-      <Project>{C807AB45-AB9C-40F6-94E6-5D9F06BB6436}</Project>
+      <Project>{c807ab45-ab9c-40f6-94e6-5d9f06bb6436}</Project>
       <Name>Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\Persistance\Persistance.csproj">
