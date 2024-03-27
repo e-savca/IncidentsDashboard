@@ -40,15 +40,15 @@ var routingApp = $.sammy("#MainContent", function () {
         });
     });
 
-    this.get("#Dashboard/Create", function (context) {
-        titleContent.html("Create User");
+    this.get("#Dashboard/Add", function (context) {
+        titleContent.html("Add Incident");
         $.get("/Dashboard/GetCreateAsync", function (data) {
             context.$element().html(data);
         });
     });
 
     this.get("#Dashboard/Edit/:id", function (context) {
-        titleContent.html("Edit User");
+        titleContent.html("Edit Incident");
         showLoadingIndicator();
         $.get("/Dashboard/GetUpdateAsync/" + context.params.id, function (data) {
             setTimeout(function () {
@@ -58,7 +58,7 @@ var routingApp = $.sammy("#MainContent", function () {
     });
 
     this.get("#Dashboard/Details/:id", function (context) {
-        titleContent.html("User's Details");
+        titleContent.html("Incident Details");
         showLoadingIndicator();
         $.get("/Dashboard/GetDetailsAsync/" + context.params.id, function (data) {
             setTimeout(function () {
@@ -68,7 +68,7 @@ var routingApp = $.sammy("#MainContent", function () {
     });
 
     this.get("#Dashboard/Delete/:id", function (context) {
-        titleContent.html("User's Details");
+        titleContent.html("Delete User");
         showLoadingIndicator();
         $.get("/Dashboard/GetDeleteAsync/" + context.params.id, function (data) {
             setTimeout(function () {

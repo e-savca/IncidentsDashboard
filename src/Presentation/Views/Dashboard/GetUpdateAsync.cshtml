@@ -108,12 +108,14 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Solution, "Solution")
                                     @Html.TextBoxFor(model => model.Solution, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Solution)
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.OriginId, "Origin")
                                     @Html.DropDownListFor(model => model.OriginId, (IEnumerable<SelectListItem>)ViewBag.OriginList, new { @class = "form-control form-select" })
+                                    @Html.ValidationMessageFor(model => model.OriginId)
                                 </div>
                             </div>
                         </div>

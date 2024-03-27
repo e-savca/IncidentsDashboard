@@ -1,16 +1,16 @@
-﻿@using Application.Incident.Queries.GetIncidentById
-@model IncidentByIdModel
+﻿@using Application.Incident.Commands.CreateIncident
+@model CreateIncidentModel
 
 <div class="mt-5 mb-5">
     <div class="row justify-content-center">
         <div class="col-8">
             <div class="card">
                 <div class="card-header bg-primary text-white text-center">
-                    <h3>Incident Details</h3>
+                    <h3>Add Incident</h3>
                 </div>
                 <div class="card-body">
 
-                    @using (Html.BeginForm("UpdateAsync", "Admin", FormMethod.Post, new { id = "editUserForm" }))
+                    @using (Html.BeginForm("CreateAsync", "Dashboard", FormMethod.Post, new { id = "createIncidentForm" }))
                     {
                         @Html.AntiForgeryToken()
 
@@ -20,12 +20,14 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.CallCode, "Call Code")
                                     @Html.TextBoxFor(model => model.CallCode, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.CallCode)
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.SubsystemCode, "Subsystem Code")
                                     @Html.TextBoxFor(model => model.SubsystemCode, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.SubsystemCode)
                                 </div>
                             </div>
                         </div>
@@ -35,12 +37,14 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.RequestType, "Request Type")
                                     @Html.TextBoxFor(model => model.RequestType, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.RequestType)
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.ApplicationType, "Application Type")
                                     @Html.TextBoxFor(model => model.ApplicationType, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.ApplicationType)
                                 </div>
                             </div>
                         </div>
@@ -50,12 +54,14 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.OpenedDate, "Opened Date")
                                     @Html.TextBoxFor(model => model.OpenedDate, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.OpenedDate)
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.ClosedDate, "Closed Date")
                                     @Html.TextBoxFor(model => model.ClosedDate, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.ClosedDate)
                                 </div>
                             </div>
                         </div>
@@ -65,12 +71,14 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Urgency, "Urgency")
                                     @Html.TextBoxFor(model => model.Urgency, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Urgency)
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.SubCause, "Sub Cause")
                                     @Html.TextBoxFor(model => model.SubCause, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.SubCause)
                                 </div>
                             </div>
                         </div>
@@ -80,6 +88,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Summary, "Summary")
                                     @Html.TextBoxFor(model => model.Summary, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Summary)
                                 </div>
                             </div>
                         </div>
@@ -89,6 +98,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Description, "Description")
                                     @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Description)
                                 </div>
                             </div>
                         </div>
@@ -98,12 +108,14 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Solution, "Solution")
                                     @Html.TextBoxFor(model => model.Solution, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Solution)
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.OriginId, "Origin")
                                     @Html.DropDownListFor(model => model.OriginId, (IEnumerable<SelectListItem>)ViewBag.OriginList, new { @class = "form-control form-select" })
+                                    @Html.ValidationMessageFor(model => model.OriginId)
                                 </div>
                             </div>
                         </div>
@@ -112,17 +124,15 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.AmbitId, "Ambit")
-                                    <select class="form-control form-select" id="AmbitId" name="AmbitId">
-                                        <option value="" selected>Select Ambit</option>
-                                    </select>
+                                    @Html.DropDownListFor(model => model.AmbitId, (IEnumerable<SelectListItem>)ViewBag.AmbitList, new { @class = "form-control form-select" })
+                                    @Html.ValidationMessageFor(model => model.AmbitId)
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.IncidentTypeId, "Incident Type")
-                                    <select class="form-control form-select" id="IncidentTypeId" name="IncidentTypeId">
-                                        <option value="" selected>Select Incident Type</option>
-                                    </select>
+                                    @Html.DropDownListFor(model => model.IncidentTypeId, (IEnumerable<SelectListItem>)ViewBag.IncidentTypeList, new { @class = "form-control form-select" })
+                                    @Html.ValidationMessageFor(model => model.IncidentTypeId)
                                 </div>
                             </div>
                         </div>
@@ -132,12 +142,14 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.ScenarioId, "Scenario")
                                     @Html.DropDownListFor(model => model.ScenarioId, (IEnumerable<SelectListItem>)ViewBag.ScenarioList, new { @class = "form-control form-select" })
+                                    @Html.ValidationMessageFor(model => model.ScenarioId)
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.ThreatId, "Threat")
                                     @Html.DropDownListFor(model => model.ThreatId, (IEnumerable<SelectListItem>)ViewBag.ThreatList, new { @class = "form-control form-select" })
+                                    @Html.ValidationMessageFor(model => model.ThreatId)
                                 </div>
                             </div>
                         </div>
@@ -163,6 +175,6 @@
 </div>
 
 <script type="module">
-   import { GetUpdateAsync } from '@Url.Content("~/IDCore.JS/Views/Dashboard/GetCreateAsync")';
+   import { GetCreateAsync } from '@Url.Content("~/IDCore.JS/Views/Dashboard/GetCreateAsync")';
    GetCreateAsync();
 </script>

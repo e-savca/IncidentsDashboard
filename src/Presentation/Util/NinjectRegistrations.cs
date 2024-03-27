@@ -3,6 +3,7 @@ using Application.AdditionalInformation.Queries.GetIncidentTypeListByAmbitId;
 using Application.AdditionalInformation.Queries.GetOriginList;
 using Application.AdditionalInformation.Queries.GetScenarioList;
 using Application.AdditionalInformation.Queries.GetThreatList;
+using Application.Incident.Commands.CreateIncident;
 using Application.Incident.Commands.UpdateIncident;
 using Application.Incident.Queries.GetIncidentById;
 using Application.Incident.Queries.GetIncidentDetailsById;
@@ -77,6 +78,7 @@ namespace Presentation.Util
             #region Incident Commands
 
             Bind<IRequestHandler<UpdateIncidentCommand, UpdateIncidentModel>>().To<UpdateIncidentHandler>();
+            Bind<IRequestHandler<CreateIncidentCommand, CreateIncidentModel>>().To<CreateIncidentHandler>();
 
             #endregion
 

@@ -3,10 +3,13 @@ using Application.AdditionalInformation.Queries.GetIncidentTypeListByAmbitId;
 using Application.AdditionalInformation.Queries.GetOriginList;
 using Application.AdditionalInformation.Queries.GetScenarioList;
 using Application.AdditionalInformation.Queries.GetThreatList;
+using Application.Incident.Commands.CreateIncident;
 using Application.Incident.Commands.UpdateIncident;
 using Application.Incident.Queries.GetIncidentById;
 using Application.Incident.Queries.GetIncidentDetailsById;
 using Application.Incident.Queries.GetIncidentsList;
+using Application.User.Commands.CreateUser;
+using Domain.AdditionalInformation;
 using FluentValidation;
 using MediatR;
 using System.Collections.Generic;
@@ -23,6 +26,7 @@ namespace Presentation.Controllers
 
         private readonly IMediator _mediator;
         private readonly IValidator<UpdateIncidentModel> _updateIncidentValidator;
+        private readonly IValidator<CreateIncidentModel> _createIncidentValidator;
 
         #endregion
 
@@ -30,71 +34,59 @@ namespace Presentation.Controllers
 
         public DashboardController(
             IMediator mediator,
-            IValidator<UpdateIncidentModel> updateIncidentValidator
+            IValidator<UpdateIncidentModel> updateIncidentValidator,
+            IValidator<CreateIncidentModel> createIncidentValidator
             )
         {
             _mediator = mediator;
             _updateIncidentValidator = updateIncidentValidator;
+            _createIncidentValidator = createIncidentValidator;
         }
 
         #endregion 
 
         #region CRUD Operations
 
-        #region Create User
+        #region Create Incident
 
-        //public async Task<ActionResult> GetCreateAsync()
-        //{
-        //    var user = new CreateUserModel()
-        //    {
-        //        IsActive = true
-        //    };
-        //    user.RoleIds = new List<int>(); // Initialize RoleIds
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CreateAsync(CreateIncidentModel model)
+        {
+            // Validate the model
+            var validationResult = _createIncidentValidator.Validate(model);
 
-        //    // Fetch the roles list asynchronously
-        //    ViewBag.Roles = await GetRolesListAsync();
+            if (validationResult.IsValid)
+            {
+                //await _createUserCommand.ExecuteAsync(model);
+                await _mediator.Send(new CreateIncidentCommand { IncidentModel = model });
 
-        //    return PartialView(user);
-        //}
+                return new JsonResult
+                {
+                    Data = new
+                    {
+                        success = true
+                    }
+                };
+            }
 
+            // If the model state is not valid, redisplay the form
+            var errorsList = validationResult.Errors.Select(e => new
+            {
+                message = e.ErrorMessage,
+                propertyName = e.PropertyName
+            }).ToList();
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> CreateAsync(CreateUserModel model)
-        //{
-        //    // Validate the model
-        //    var validationResult = _createUserValidator.Validate(model);
-
-        //    if (validationResult.IsValid)
-        //    {
-        //        //await _createUserCommand.ExecuteAsync(model);
-        //        await _mediator.Send(new CreateUserCommand { UserModel = model });
-
-        //        return new JsonResult
-        //        {
-        //            Data = new
-        //            {
-        //                success = true
-        //            }
-        //        };
-        //    }
-
-        //    // If the model state is not valid, redisplay the form
-        //    var errorsList = validationResult.Errors.Select(e => new {
-        //        message = e.ErrorMessage,
-        //        propertyName = e.PropertyName
-        //    }).ToList();
-
-        //    return new JsonResult
-        //    {
-        //        Data = new
-        //        {
-        //            success = false,
-        //            errors = errorsList,
-        //            messageType = "danger"
-        //        }
-        //    };
-        //}
+            return new JsonResult
+            {
+                Data = new
+                {
+                    success = false,
+                    errors = errorsList,
+                    messageType = "danger"
+                }
+            };
+        }
 
 
 
@@ -111,6 +103,22 @@ namespace Presentation.Controllers
             var incidents = await _mediator.Send(new GetIncidentsListQuery());
 
             return Json(incidents, JsonRequestBehavior.AllowGet);
+        }
+
+        public async Task<ActionResult> GetCreateAsync()
+        {
+            var incident = new CreateIncidentModel();
+
+            ViewBag.OriginList = await _getOriginListAsync();
+
+            ViewBag.AmbitList = await _getAmbitListByOriginIdAsync(1); // Ambits for the first origin
+
+            ViewBag.IncidentTypeList = await _getIncidentTypeListByAmbitIdAsync(1); // Incident types for the first ambit
+
+            ViewBag.ScenarioList = await GetScenarioListAsync();
+            ViewBag.ThreatList = await GetThreatListAsync();
+
+            return PartialView(incident);
         }
 
         public async Task<ActionResult> GetDetailsAsync(int id)
@@ -131,18 +139,7 @@ namespace Presentation.Controllers
             ViewBag.ThreatList = await GetThreatListAsync();
 
             return PartialView(incident);
-        }
-
-        private async Task<List<SelectListItem>> GetOriginListAsync()
-        {
-            var incident = await _mediator.Send(new GetIncidentByIdQuery { Id = id });
-
-            ViewBag.OriginList = await _getOriginListAsync();
-            ViewBag.ScenarioList = await GetScenarioListAsync();
-            ViewBag.ThreatList = await GetThreatListAsync();
-
-            return PartialView(incident);
-        }
+        }       
 
         private async Task<List<SelectListItem>> _getOriginListAsync()
         {

@@ -44,36 +44,36 @@
 
 
 
-    //// send data to server and handle response
-    //document.getElementById('editUserForm').addEventListener('submit', function (e) {
-    //    e.preventDefault();
+    // send data to server and handle response
+    document.getElementById('createIncidentForm').addEventListener('submit', function (e) {
+        e.preventDefault();
 
-    //    var formData = new FormData(this);
+        var formData = new FormData(this);
 
-    //    fetch(this.action, {
-    //        method: this.method,
-    //        body: formData,
-    //        headers: {
-    //            'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
-    //        }
-    //    })
-    //        .then(response => response.json())
-    //        .then(data => {
-    //            if (data.success) {
-    //                window.location.href = '#Admin';
-    //            }
-    //            else {
-    //                // Display error messages
-    //                // foreach in data.message call appendAlert
-    //                clearAlertValidationMessage();
-    //                data.errors.forEach((item) => {
-    //                    appendAlertValidationMessage(item.message, item.propertyName)
-    //                });
+        fetch(this.action, {
+            method: this.method,
+            body: formData,
+            headers: {
+                'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = '#Dashboard';
+                }
+                else {
+                    // Display error messages
+                    // foreach in data.message call appendAlert
+                    clearAlertValidationMessage();
+                    data.errors.forEach((item) => {
+                        appendAlertValidationMessage(item.message, item.propertyName)
+                    });
 
-    //                //appendAlertValidationMessage(data.message, data.messageType, data.element)
-    //            }
-    //        });
-    //});
+                    //appendAlertValidationMessage(data.message, data.messageType, data.element)
+                }
+            });
+    });
 
     // Append alert message to the page
     const appendAlertValidationMessage = (message, element) => {
