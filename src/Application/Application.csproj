@@ -73,6 +73,9 @@
     <Compile Include="AdditionalInformation\Queries\GetScenarioList\ScenarioListItemModel.cs" />
     <Compile Include="AdditionalInformation\Queries\GetThreatList\GetThreatListQuery.cs" />
     <Compile Include="AdditionalInformation\Queries\GetThreatList\ThreatListItemModel.cs" />
+    <Compile Include="Incident\Commands\CreateIncident\CreateIncidentCommand.cs" />
+    <Compile Include="Incident\Commands\CreateIncident\CreateIncidentModel.cs" />
+    <Compile Include="Incident\Commands\CreateIncident\CreateIncidentModelValidator.cs" />
     <Compile Include="Incident\Commands\UpdateIncident\UpdateIncidentCommand.cs" />
     <Compile Include="Incident\Commands\UpdateIncident\UpdateIncidentModel.cs" />
     <Compile Include="Incident\Commands\UpdateIncident\UpdateIncidentModelValidator.cs" />
