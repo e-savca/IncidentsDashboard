@@ -4,6 +4,7 @@ using Application.AdditionalInformation.Queries.GetOriginList;
 using Application.AdditionalInformation.Queries.GetScenarioList;
 using Application.AdditionalInformation.Queries.GetThreatList;
 using Application.Incident.Commands.CreateIncident;
+using Application.Incident.Commands.DeleteIncident;
 using Application.Incident.Commands.UpdateIncident;
 using Application.Incident.Queries.GetIncidentById;
 using Application.Incident.Queries.GetIncidentDetailsById;
@@ -79,6 +80,7 @@ namespace Presentation.Util
 
             Bind<IRequestHandler<UpdateIncidentCommand, UpdateIncidentModel>>().To<UpdateIncidentHandler>();
             Bind<IRequestHandler<CreateIncidentCommand, CreateIncidentModel>>().To<CreateIncidentHandler>();
+            Bind<IRequestHandler<DeleteIncidentCommand>>().To<DeleteIncidentHandler>();
 
             #endregion
 
