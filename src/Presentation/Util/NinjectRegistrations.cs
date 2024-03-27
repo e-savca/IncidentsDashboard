@@ -3,6 +3,7 @@ using Application.AdditionalInformation.Queries.GetIncidentTypeListByAmbitId;
 using Application.AdditionalInformation.Queries.GetOriginList;
 using Application.AdditionalInformation.Queries.GetScenarioList;
 using Application.AdditionalInformation.Queries.GetThreatList;
+using Application.Incident.Commands.UpdateIncident;
 using Application.Incident.Queries.GetIncidentById;
 using Application.Incident.Queries.GetIncidentDetailsById;
 using Application.Incident.Queries.GetIncidentsList;
@@ -44,16 +45,14 @@ namespace Presentation.Util
 
             #region MediatR dependencies
 
-            #region Users Commands
+            #region User Commands
 
-            //Bind<ICreateUserCommand>().To<CreateUserCommand>();
-            //Bind<IUpdateUserCommand>().To<UpdateUserCommand>();
             Bind<IRequestHandler<UpdateUserCommand, UpdateUserModel>>().To<UpdateUserHandler>();
             Bind<IRequestHandler<CreateUserCommand, CreateUserModel>>().To<CreateUserHandler>();
 
             #endregion
 
-            #region Users Queries
+            #region User Queries
 
             Bind<IRequestHandler<GetUserByUsernameAndPasswordQuery, UserByUsernameAndPasswordModel>>().To<GetUserByUsernameAndPasswordHandler>();
             Bind<IRequestHandler<GetUserByIdQuery, UserByIdModel>>().To<GetUserByIdHandler>();
@@ -61,17 +60,23 @@ namespace Presentation.Util
 
             #endregion
 
-            #region Roles Queries
+            #region Role Queries
 
             Bind<IRequestHandler<GetRolesListQuery, List<RolesListItemModel>>>().To<GetRolesListHandler>();
 
             #endregion
 
-            #region Incidents Queries
+            #region Incident Queries
 
             Bind<IRequestHandler<GetIncidentsListQuery, List<IncidentsListItemModel>>>().To<GetIncidentsListHandler>();
             Bind<IRequestHandler<GetIncidentByIdQuery, IncidentByIdModel>>().To<GetIncidentByIdHandler>();
             Bind<IRequestHandler<GetIncidentDetailsByIdQuery, IncidentDetailsByIdModel>>().To<GetIncidentDetailsByIdHandler>();
+
+            #endregion
+
+            #region Incident Commands
+
+            Bind<IRequestHandler<UpdateIncidentCommand, UpdateIncidentModel>>().To<UpdateIncidentHandler>();
 
             #endregion
 
