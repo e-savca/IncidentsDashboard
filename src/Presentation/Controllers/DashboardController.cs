@@ -123,7 +123,7 @@ namespace Presentation.Controllers
         {
             var incident = await _mediator.Send(new GetIncidentByIdQuery { Id = id });
 
-            ViewBag.OriginList = await GetOriginListAsync();
+            ViewBag.OriginList = await _getOriginListAsync();
             ViewBag.AmbitList = await _getAmbitListByOriginIdAsync(incident.OriginId);
             ViewBag.IncidentTypeList = await _getIncidentTypeListByAmbitIdAsync(incident.AmbitId);
 
@@ -133,18 +133,18 @@ namespace Presentation.Controllers
             return PartialView(incident);
         }
 
-        //public async Task<ActionResult> GetCreateAsync(int id)
-        //{
-        //    var incident = await _mediator.Send(new GetIncidentByIdQuery { Id = id });
-
-        //    ViewBag.OriginList = await GetOriginListAsync();
-        //    ViewBag.ScenarioList = await GetScenarioListAsync();
-        //    ViewBag.ThreatList = await GetThreatListAsync();
-
-        //    return PartialView(incident);
-        //}
-
         private async Task<List<SelectListItem>> GetOriginListAsync()
+        {
+            var incident = await _mediator.Send(new GetIncidentByIdQuery { Id = id });
+
+            ViewBag.OriginList = await _getOriginListAsync();
+            ViewBag.ScenarioList = await GetScenarioListAsync();
+            ViewBag.ThreatList = await GetThreatListAsync();
+
+            return PartialView(incident);
+        }
+
+        private async Task<List<SelectListItem>> _getOriginListAsync()
         {
             var origins = await _mediator.Send(new GetOriginListQuery());
 
