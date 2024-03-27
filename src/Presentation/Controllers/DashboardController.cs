@@ -3,9 +3,11 @@ using Application.AdditionalInformation.Queries.GetIncidentTypeListByAmbitId;
 using Application.AdditionalInformation.Queries.GetOriginList;
 using Application.AdditionalInformation.Queries.GetScenarioList;
 using Application.AdditionalInformation.Queries.GetThreatList;
+using Application.Incident.Commands.UpdateIncident;
 using Application.Incident.Queries.GetIncidentById;
 using Application.Incident.Queries.GetIncidentDetailsById;
 using Application.Incident.Queries.GetIncidentsList;
+using FluentValidation;
 using MediatR;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,16 +22,19 @@ namespace Presentation.Controllers
         #region Private Fields
 
         private readonly IMediator _mediator;
+        private readonly IValidator<UpdateIncidentModel> _updateIncidentValidator;
 
         #endregion
 
         #region Constructor
 
         public DashboardController(
-            IMediator mediator
+            IMediator mediator,
+            IValidator<UpdateIncidentModel> updateIncidentValidator
             )
         {
             _mediator = mediator;
+            _updateIncidentValidator = updateIncidentValidator;
         }
 
         #endregion 
@@ -109,7 +114,7 @@ namespace Presentation.Controllers
         }
 
         public async Task<ActionResult> GetDetailsAsync(int id)
-         {
+        {
             var incident = await _mediator.Send(new GetIncidentDetailsByIdQuery { Id = id });
             return PartialView(incident);
         }
@@ -118,14 +123,28 @@ namespace Presentation.Controllers
         {
             var incident = await _mediator.Send(new GetIncidentByIdQuery { Id = id });
 
-            ViewBag.OriginList = await GetOriginListAsync();
+            ViewBag.OriginList = await _getOriginListAsync();
+            ViewBag.AmbitList = await _getAmbitListByOriginIdAsync(incident.OriginId);
+            ViewBag.IncidentTypeList = await _getIncidentTypeListByAmbitIdAsync(incident.AmbitId);
+
             ViewBag.ScenarioList = await GetScenarioListAsync();
             ViewBag.ThreatList = await GetThreatListAsync();
 
             return PartialView(incident);
         }
 
-        private async Task<List<SelectListItem>> GetOriginListAsync()
+        public async Task<ActionResult> GetCreateAsync(int id)
+        {
+            var incident = await _mediator.Send(new GetIncidentByIdQuery { Id = id });
+
+            ViewBag.OriginList = await _getOriginListAsync();
+            ViewBag.ScenarioList = await GetScenarioListAsync();
+            ViewBag.ThreatList = await GetThreatListAsync();
+
+            return PartialView(incident);
+        }
+
+        private async Task<List<SelectListItem>> _getOriginListAsync()
         {
             var origins = await _mediator.Send(new GetOriginListQuery());
 
@@ -138,12 +157,38 @@ namespace Presentation.Controllers
 
             return originList;
         }
+        private async Task<List<SelectListItem>> _getAmbitListByOriginIdAsync(int id)
+        {
+            var ambits = await _mediator.Send(new GetAmbitListByOriginIdQuery { OriginId = id });
 
+            // Convert to a list of SelectListItem
+            var ambitsList = ambits.Select(o => new SelectListItem
+            {
+                Value = o.Id.ToString(),
+                Text = o.Name
+            }).ToList();
+
+            return ambitsList;
+        }
         public async Task<ActionResult> GetAmbitListByOriginIdAsync(int id)
         {
-            var ambits = await _mediator.Send(new GetAmbitListByOriginIdQuery { OriginId = id});
+            var ambits = await _mediator.Send(new GetAmbitListByOriginIdQuery { OriginId = id });
 
             return Json(ambits, JsonRequestBehavior.AllowGet);
+        }
+
+        private async Task<List<SelectListItem>> _getIncidentTypeListByAmbitIdAsync(int id)
+        {
+            var incidentTypes = await _mediator.Send(new GetIncidentTypeListByAmbitIdQuery { AmbitId = id });
+
+            // Convert to a list of SelectListItem
+            var incidentTypesList = incidentTypes.Select(o => new SelectListItem
+            {
+                Value = o.Id.ToString(),
+                Text = o.Name
+            }).ToList();
+
+            return incidentTypesList;
         }
 
         public async Task<ActionResult> GetIncidentTypeListByAmbitIdAsync(int id)
@@ -186,42 +231,42 @@ namespace Presentation.Controllers
 
         #region Update 
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> UpdateAsync(UpdateUserModel model)
-        //{
-        //    // Validate the model
-        //    var validationResult = _updateUserValidator.Validate(model);
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> UpdateAsync(UpdateIncidentModel model)
+        {
+            // Validate the model
+            var validationResult = _updateIncidentValidator.Validate(model);
 
-        //    if (validationResult.IsValid)
-        //    {
-        //        await _mediator.Send(new UpdateUserCommand { UserModel = model });
+            if (validationResult.IsValid)
+            {
+                await _mediator.Send(new UpdateIncidentCommand { IncidentModel = model });
 
-        //        return new JsonResult
-        //        {
-        //            Data = new
-        //            {
-        //                success = true
-        //            }
-        //        };
-        //    }
+                return new JsonResult
+                {
+                    Data = new
+                    {
+                        success = true
+                    }
+                };
+            }
 
-        //    // If the model state is not valid, redisplay the form
-        //    var errorsList = validationResult.Errors.Select(e => new
-        //    {
-        //        message = e.ErrorMessage,
-        //        propertyName = e.PropertyName
-        //    }).ToList();
+            // If the model state is not valid, redisplay the form
+            var errorsList = validationResult.Errors.Select(e => new
+            {
+                message = e.ErrorMessage,
+                propertyName = e.PropertyName
+            }).ToList();
 
-        //    return new JsonResult
-        //    {
-        //        Data = new
-        //        {
-        //            success = false,
-        //            errors = errorsList
-        //        }
-        //    };
-        //}
+            return new JsonResult
+            {
+                Data = new
+                {
+                    success = false,
+                    errors = errorsList
+                }
+            };
+        }
 
 
         #endregion
