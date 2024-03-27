@@ -73,6 +73,9 @@
     <Compile Include="AdditionalInformation\Queries\GetScenarioList\ScenarioListItemModel.cs" />
     <Compile Include="AdditionalInformation\Queries\GetThreatList\GetThreatListQuery.cs" />
     <Compile Include="AdditionalInformation\Queries\GetThreatList\ThreatListItemModel.cs" />
+    <Compile Include="Incident\Commands\UpdateIncident\UpdateIncidentCommand.cs" />
+    <Compile Include="Incident\Commands\UpdateIncident\UpdateIncidentModel.cs" />
+    <Compile Include="Incident\Commands\UpdateIncident\UpdateIncidentModelValidator.cs" />
     <Compile Include="Incident\Queries\GetIncidentById\GetIncidentByIdQuery.cs" />
     <Compile Include="Incident\Queries\GetIncidentById\IncidentByIdModel.cs" />
     <Compile Include="Incident\Queries\GetIncidentDetailsById\GetIncidentDetailsByIdQuery.cs" />
@@ -112,11 +115,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Incident\Commands\CreateIncident\" />
-    <Folder Include="Incident\Commands\ImportIncident\" />
-    <Folder Include="Incident\Commands\UpdateIncident\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
