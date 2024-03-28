@@ -245,6 +245,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="IncidentsDashboardCore.JS\Views\Admin\GetUpdateAsync.js" />
     <Content Include="IncidentsDashboardCore.JS\Views\Dashboard\GetCreateAsync.js" />
+    <Content Include="IncidentsDashboardCore.JS\Views\Dashboard\GetDetailsAsync.js" />
     <Content Include="IncidentsDashboardCore.JS\Views\Dashboard\GetImportAsync.js" />
     <Content Include="IncidentsDashboardCore.JS\Views\Dashboard\GetUpdateAsync.js" />
     <Content Include="IncidentsDashboardCore.JS\Views\Dashboard\Index.js" />

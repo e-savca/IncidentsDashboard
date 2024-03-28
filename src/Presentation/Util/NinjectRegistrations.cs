@@ -80,7 +80,7 @@ namespace Presentation.Util
 
             Bind<IRequestHandler<UpdateIncidentCommand, UpdateIncidentModel>>().To<UpdateIncidentHandler>();
             Bind<IRequestHandler<CreateIncidentCommand, CreateIncidentModel>>().To<CreateIncidentHandler>();
-            Bind<IRequestHandler<DeleteIncidentCommand>>().To<DeleteIncidentHandler>();
+            Bind<IRequestHandler<DeleteIncidentCommand, bool>>().To<DeleteIncidentHandler>();
 
             #endregion
 

@@ -17,6 +17,9 @@ namespace Presentation
             bundles.Add(new ScriptBundle("~/IDCore.JS/Views/Dashboard/GetCreateAsync").Include(
                         "~/IncidentsDashboardCore.JS/Views/Dashboard/GetCreateAsync.js"));
 
+            bundles.Add(new ScriptBundle("~/IDCore.JS/Views/Dashboard/GetDetailsAsync").Include(
+                        "~/IncidentsDashboardCore.JS/Views/Dashboard/GetDetailsAsync.js"));
+
             bundles.Add(new ScriptBundle("~/IDCore.JS/Views/Dashboard/GetUpdateAsync").Include(
                         "~/IncidentsDashboardCore.JS/Views/Dashboard/GetUpdateAsync.js"));
 

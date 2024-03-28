@@ -123,12 +123,22 @@
                         </div>
                     </div>
                     <div class="row mt-3 mb-3">
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="form-group d-flex justify-content-end">
                                 <a href="#Dashboard/Edit/@Model.Id" class="btn btn-primary">Edit</a>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-4">
+                            @using (Html.BeginForm("DeleteAsync", "Dashboard", FormMethod.Post, new { id = "deleteIncidentForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.HiddenFor(model => model.Id)
+                                <div class="form-group d-flex justify-content-center">
+                                    <input type="submit" value="Delete" class="btn btn-danger">
+                                </div>
+                            }
+                        </div>
+                        <div class="col-4">
                             <div class="form-group d-flex justify-content-start">
                                 <a href="#Dashboard" class="btn btn-secondary">Back to list</a>
                             </div>
@@ -139,3 +149,8 @@
         </div>
     </div>
 </div>
+
+<script type="module">
+   import { GetDetailsAsync } from '@Url.Content("~/IDCore.JS/Views/Dashboard/GetDetailsAsync")';
+   GetDetailsAsync();
+</script>

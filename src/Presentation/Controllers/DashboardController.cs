@@ -4,14 +4,14 @@ using Application.AdditionalInformation.Queries.GetOriginList;
 using Application.AdditionalInformation.Queries.GetScenarioList;
 using Application.AdditionalInformation.Queries.GetThreatList;
 using Application.Incident.Commands.CreateIncident;
+using Application.Incident.Commands.DeleteIncident;
 using Application.Incident.Commands.UpdateIncident;
 using Application.Incident.Queries.GetIncidentById;
 using Application.Incident.Queries.GetIncidentDetailsById;
 using Application.Incident.Queries.GetIncidentsList;
-using Application.User.Commands.CreateUser;
-using Domain.AdditionalInformation;
 using FluentValidation;
 using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,6 +22,7 @@ namespace Presentation.Controllers
     [Authorize]
     public class DashboardController : Controller
     {
+
         #region Private Fields
 
         private readonly IMediator _mediator;
@@ -139,7 +140,7 @@ namespace Presentation.Controllers
             ViewBag.ThreatList = await GetThreatListAsync();
 
             return PartialView(incident);
-        }       
+        }
 
         private async Task<List<SelectListItem>> _getOriginListAsync()
         {
@@ -269,7 +270,21 @@ namespace Presentation.Controllers
         #endregion
 
         #region Delete
-        // No delete operations in this controller
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteAsync(int id)
+        {
+            var result = await _mediator.Send(new DeleteIncidentCommand { IncidentId = id });
+            return new JsonResult
+            {
+                Data = new
+                {
+                    success = result
+                }
+            };
+        }
+
         #endregion
 
         #endregion

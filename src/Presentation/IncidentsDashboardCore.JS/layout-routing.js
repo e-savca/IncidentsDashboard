@@ -67,16 +67,6 @@ var routingApp = $.sammy("#MainContent", function () {
         });
     });
 
-    this.get("#Dashboard/Delete/:id", function (context) {
-        titleContent.html("Delete User");
-        showLoadingIndicator();
-        $.get("/Dashboard/GetDeleteAsync/" + context.params.id, function (data) {
-            setTimeout(function () {
-                context.$element().html(data);
-            }, 150);
-        });
-    });
-
     this.get("#Admin", function (context) {
         titleContent.html("Admin Panel");
         // Show loading indicator
