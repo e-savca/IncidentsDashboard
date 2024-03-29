@@ -23,8 +23,8 @@ namespace Presentation
             bundles.Add(new ScriptBundle("~/IDCore.JS/Views/Dashboard/GetUpdateAsync").Include(
                         "~/IncidentsDashboardCore.JS/Views/Dashboard/GetUpdateAsync.js"));
 
-            bundles.Add(new ScriptBundle("~/IDCore.JS/Views/Dashboard/GetImportAsync").Include(
-                        "~/IncidentsDashboardCore.JS/Views/Dashboard/GetImportAsync.js"));
+            bundles.Add(new ScriptBundle("~/IDCore.JS/Views/Dashboard/GetUploadFileAsync").Include(
+                        "~/IncidentsDashboardCore.JS/Views/Dashboard/GetUploadFileAsync.js"));
 
             #endregion
 

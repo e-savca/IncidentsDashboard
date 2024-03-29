@@ -1,0 +1,39 @@
+﻿@model HttpPostedFileBase
+
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <div class="card">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3>Upload File</h3>
+                </div>
+                <div class="card-body">
+                    <div id="liveAlertPlaceholder"></div>
+
+                    @using (Html.BeginForm("UploadCSVAsync", "Dashboard", FormMethod.Post, new { id = "uploadFileForm", enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-group">
+                            <label for="formFile" class="form-label">Upload file</label>
+                            <input class="form-control" type="file" id="formFile" name="file">
+                        </div>
+
+                        <div class="form-group d-flex justify-content-end mt-5 mb-3">
+                            <input type="submit" value="Upload" class="btn btn-primary me-auto">
+                            <a href="#Dashboard" class="btn btn-secondary">Back to list</a>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="module">
+   import { GetUploadFileAsync } from '@Url.Content("~/IDCore.JS/Views/Dashboard/GetUploadFileAsync")';
+    GetUploadFileAsync();
+</script>

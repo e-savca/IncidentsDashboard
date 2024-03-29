@@ -67,6 +67,16 @@ var routingApp = $.sammy("#MainContent", function () {
         });
     });
 
+    this.get("#Dashboard/Upload", function (context) {
+        titleContent.html("Upload File");
+        showLoadingIndicator();
+        $.get("/Dashboard/GetUploadFile/", function (data) {
+            setTimeout(function () {
+                context.$element().html(data);
+            }, 150);
+        });
+    });
+
     this.get("#Admin", function (context) {
         titleContent.html("Admin Panel");
         // Show loading indicator

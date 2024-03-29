@@ -5,6 +5,7 @@ using Application.AdditionalInformation.Queries.GetScenarioList;
 using Application.AdditionalInformation.Queries.GetThreatList;
 using Application.Incident.Commands.CreateIncident;
 using Application.Incident.Commands.DeleteIncident;
+using Application.Incident.Commands.ImportIncident;
 using Application.Incident.Commands.UpdateIncident;
 using Application.Incident.Queries.GetIncidentById;
 using Application.Incident.Queries.GetIncidentDetailsById;
@@ -13,8 +14,10 @@ using FluentValidation;
 using MediatR;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Presentation.Controllers
@@ -48,7 +51,7 @@ namespace Presentation.Controllers
 
         #region CRUD Operations
 
-        #region Create Incident
+        #region Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -88,8 +91,6 @@ namespace Presentation.Controllers
                 }
             };
         }
-
-
 
         #endregion
 
@@ -284,6 +285,47 @@ namespace Presentation.Controllers
                 }
             };
         }
+
+        #endregion
+
+        #region Upload File
+
+        public ActionResult GetUploadFile()
+        {
+
+            return PartialView();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> UploadCSVAsync(HttpPostedFileBase file)
+        {
+            bool result;
+            if (file != null && file.ContentLength > 0)
+            {
+                try
+                {
+                    result = await _mediator.Send(new ImportIncidentCommand { ImporFile = file });
+
+                    return Json(new
+                    {
+                        success = result,
+                        message = result ? "File uploaded successfully" : "File upload failed"
+                    });
+                }
+                catch (Exception ex)
+                {
+                    // Log or handle any errors that occurred during file processing
+                    return Json(new { success = false, message = "Error processing file: " + ex.Message });
+                }
+            }
+            else
+            {
+                // Handle the case where no file was uploaded
+                return Json(new { success = false, message = "No file uploaded" });
+            }
+        }
+
 
         #endregion
 
