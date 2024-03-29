@@ -7,6 +7,7 @@ using Application.Incident.Commands.CreateIncident;
 using Application.Incident.Commands.DeleteIncident;
 using Application.Incident.Commands.ImportIncident;
 using Application.Incident.Commands.UpdateIncident;
+using Application.Incident.Queries.GetExportIncidentToFile;
 using Application.Incident.Queries.GetIncidentById;
 using Application.Incident.Queries.GetIncidentDetailsById;
 using Application.Incident.Queries.GetIncidentsList;
@@ -326,6 +327,25 @@ namespace Presentation.Controllers
             }
         }
 
+
+        #endregion
+
+        #region Export File
+
+        [HttpGet]
+        public ActionResult GetExportIncidents()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> ExportIncidentsToFile()
+        {
+            var query = new GetExportIncidentToFileQuery();
+            var stream = await _mediator.Send(query);
+
+            return File(stream, "text/csv", $"Incidents_{DateTime.UtcNow.ToString("yyyyMMddHHmmss")}.csv");
+        }
 
         #endregion
 

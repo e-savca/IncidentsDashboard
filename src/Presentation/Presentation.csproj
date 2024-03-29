@@ -246,7 +246,7 @@
     <Content Include="IncidentsDashboardCore.JS\Views\Admin\GetUpdateAsync.js" />
     <Content Include="IncidentsDashboardCore.JS\Views\Dashboard\GetCreateAsync.js" />
     <Content Include="IncidentsDashboardCore.JS\Views\Dashboard\GetDetailsAsync.js" />
-    <Content Include="IncidentsDashboardCore.JS\Views\Dashboard\GetImportAsync.js" />
+    <Content Include="IncidentsDashboardCore.JS\Views\Dashboard\GetExportAsync.js" />
     <Content Include="IncidentsDashboardCore.JS\Views\Dashboard\GetUpdateAsync.js" />
     <Content Include="IncidentsDashboardCore.JS\Views\Dashboard\GetUploadFileAsync.js" />
     <Content Include="IncidentsDashboardCore.JS\Views\Dashboard\Index.js" />
@@ -324,6 +324,7 @@
     <Content Include="Views\Dashboard\GetUpdateAsync.cshtml" />
     <Content Include="Views\Dashboard\GetCreateAsync.cshtml" />
     <Content Include="Views\Dashboard\GetUploadFile.cshtml" />
+    <Content Include="Views\Dashboard\GetExportIncidents.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

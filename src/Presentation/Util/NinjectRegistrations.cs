@@ -7,6 +7,7 @@ using Application.Incident.Commands.CreateIncident;
 using Application.Incident.Commands.DeleteIncident;
 using Application.Incident.Commands.ImportIncident;
 using Application.Incident.Commands.UpdateIncident;
+using Application.Incident.Queries.GetExportIncidentToFile;
 using Application.Incident.Queries.GetIncidentById;
 using Application.Incident.Queries.GetIncidentDetailsById;
 using Application.Incident.Queries.GetIncidentsList;
@@ -24,6 +25,7 @@ using MediatR;
 using Ninject.Modules;
 using Persistance;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Presentation.Util
 {
@@ -74,6 +76,7 @@ namespace Presentation.Util
             Bind<IRequestHandler<GetIncidentsListQuery, List<IncidentsListItemModel>>>().To<GetIncidentsListHandler>();
             Bind<IRequestHandler<GetIncidentByIdQuery, IncidentByIdModel>>().To<GetIncidentByIdHandler>();
             Bind<IRequestHandler<GetIncidentDetailsByIdQuery, IncidentDetailsByIdModel>>().To<GetIncidentDetailsByIdHandler>();
+            Bind<IRequestHandler<GetExportIncidentToFileQuery, byte[]>>().To<GetExportIncidentToFileHandler>();
 
             #endregion
 

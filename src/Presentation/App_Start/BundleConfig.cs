@@ -26,6 +26,9 @@ namespace Presentation
             bundles.Add(new ScriptBundle("~/IDCore.JS/Views/Dashboard/GetUploadFileAsync").Include(
                         "~/IncidentsDashboardCore.JS/Views/Dashboard/GetUploadFileAsync.js"));
 
+            bundles.Add(new ScriptBundle("~/IDCore.JS/Views/Dashboard/GetExportAsync").Include(
+                        "~/IncidentsDashboardCore.JS/Views/Dashboard/GetExportAsync.js"));
+
             #endregion
 
             #region Admin Controller's Views

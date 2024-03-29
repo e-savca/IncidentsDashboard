@@ -1,0 +1,31 @@
+﻿<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <div class="card">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3>Export Incident</h3>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("ExportIncidentsToFile", "Dashboard", FormMethod.Post, new { id = "exportIncidentForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-group">
+                            @Html.Label("Export File")
+                        </div>
+
+                        <div class="form-group d-flex justify-content-end mt-5 mb-3">
+                            <input type="submit" value="Export" class="btn btn-primary me-auto">
+                            <a href="#Dashboard" class="btn btn-secondary">Back to list</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+   import { GetExportAsync } from '@Url.Content("~/IDCore.JS/Views/Admin/GetExportAsync")';
+   GetExportAsync();
+</script>
