@@ -1,7 +1,4 @@
-﻿using Application.Models;
-using System.Collections.Generic;
-
-namespace Application.Roles.Queries.GetRolesList
+﻿namespace Application.Roles.Queries.GetRolesList
 {
     public class RolesListItemModel
     {

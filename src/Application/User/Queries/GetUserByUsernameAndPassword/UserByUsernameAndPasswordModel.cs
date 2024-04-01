@@ -1,5 +1,4 @@
-﻿using Application.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Application.User.Queries.GetUserByUsernameAndPassword
 {
@@ -12,6 +11,6 @@ namespace Application.User.Queries.GetUserByUsernameAndPassword
         public string LastName { get; set; }
         public string Email { get; set; }
         public bool IsActive { get; set; }
-        public virtual ICollection<UserRoleDto> UserRoles { get; set; }
+        public virtual ICollection<UserRoleModel> UserRoles { get; set; }
     }
 }

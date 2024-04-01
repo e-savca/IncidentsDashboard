@@ -119,9 +119,6 @@
     <Compile Include="Interfaces\IDatabaseService.cs" />
     <Compile Include="Interfaces\IPasswordEncryptionService.cs" />
     <Compile Include="MappingProfiles\UserProfile.cs" />
-    <Compile Include="Models\RoleDto.cs" />
-    <Compile Include="Models\UserDto.cs" />
-    <Compile Include="Models\UserRoleDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Roles\Queries\GetRolesList\GetRolesListQuery.cs" />
     <Compile Include="Roles\Queries\GetRolesList\RolesListItemModel.cs" />
@@ -135,7 +132,9 @@
     <Compile Include="User\Queries\GetUserById\GetUserByIdQuery.cs" />
     <Compile Include="User\Queries\GetUserById\UserByIdModel.cs" />
     <Compile Include="User\Queries\GetUserByUsernameAndPassword\GetUserByUsernameAndPasswordQuery.cs" />
+    <Compile Include="User\Queries\GetUserByUsernameAndPassword\RoleModel.cs" />
     <Compile Include="User\Queries\GetUserByUsernameAndPassword\UserByUsernameAndPasswordModel.cs" />
+    <Compile Include="User\Queries\GetUserByUsernameAndPassword\UserRoleModel.cs" />
     <Compile Include="User\Queries\GetUsersList\GetUsersListQuery.cs" />
     <Compile Include="User\Queries\GetUsersList\UsersListItemModel.cs" />
   </ItemGroup>

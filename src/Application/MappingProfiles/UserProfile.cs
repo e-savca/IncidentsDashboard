@@ -1,5 +1,4 @@
-﻿using Application.Models;
-using AutoMapper;
+﻿using AutoMapper;
 
 namespace Application.MappingProfiles
 {
@@ -7,9 +6,10 @@ namespace Application.MappingProfiles
     { 
         public UserProfile()
         {
-            CreateMap<Domain.User.User, UserDto>();
-            CreateMap<Domain.User.Role, RoleDto>();
-            CreateMap<Domain.User.UserRole, UserRoleDto>();
+            //CreateMap<Domain.User.User, UserModel>();
+            //CreateMap<Domain.User.Role, RoleDto>();
+            //CreateMap<Domain.User.UserRole, UserRoleDto>();
+
         }
     }
 }

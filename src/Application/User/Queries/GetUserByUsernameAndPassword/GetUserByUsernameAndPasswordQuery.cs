@@ -1,5 +1,4 @@
 ﻿using Application.Interfaces;
-using Application.Models;
 using MediatR;
 using System.Data.Entity;
 using System.Linq;
@@ -49,9 +48,9 @@ namespace Application.User.Queries.GetUserByUsernameAndPassword
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     IsActive = user.IsActive,
-                    UserRoles = user.UserRoles.Select(ur => new UserRoleDto
+                    UserRoles = user.UserRoles.Select(ur => new UserRoleModel
                     {
-                        Role = new RoleDto
+                        Role = new RoleModel
                         {
                             Id = ur.Role.Id,
                             Name = ur.Role.Name
