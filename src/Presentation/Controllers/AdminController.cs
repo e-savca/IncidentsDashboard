@@ -1,10 +1,12 @@
-﻿using Application.Roles.Queries.GetRolesList;
+﻿using Application.Incident.Commands.CreateIncident;
+using Application.Roles.Queries.GetRolesList;
 using Application.User.Commands.CreateUser;
 using Application.User.Commands.UpdateUser;
 using Application.User.Queries.GetUserById;
 using Application.User.Queries.GetUsersList;
 using FluentValidation;
 using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +18,7 @@ namespace Presentation.Controllers
     public class AdminController : Controller
     {
         #region Private Fields
-        
+
         private readonly IValidator<CreateUserModel> _createUserValidator;
         private readonly IValidator<UpdateUserModel> _updateUserValidator;
         private readonly IMediator _mediator;
@@ -64,37 +66,53 @@ namespace Presentation.Controllers
             // Validate the model
             var validationResult = _createUserValidator.Validate(model);
 
-            if (validationResult.IsValid)
+            if (!validationResult.IsValid)
             {
-                //await _createUserCommand.ExecuteAsync(model);
-                await _mediator.Send(new CreateUserCommand { UserModel = model });
+                // If the model state is not valid, redisplay the form
+                var errorsList = validationResult.Errors.Select(e => new
+                {
+                    message = e.ErrorMessage,
+                    propertyName = e.PropertyName
+                }).ToList();
 
                 return new JsonResult
                 {
                     Data = new
                     {
-                        success = true
+                        success = false,
+                        errors = errorsList
                     }
                 };
             }
 
-            // If the model state is not valid, redisplay the form
-            var errorsList = validationResult.Errors.Select(e => new {
-                message = e.ErrorMessage,
+            bool _success = true;
+            var _errors = new List<(string Message, string PropertyName)>();
+            try
+            {
+                await _mediator.Send(new CreateUserCommand { UserModel = model });
+            }
+            catch (Exception ex)
+            {
+                _success = false;
+                _errors.Add((ex.Message, "liveAlertPlaceholder"));
+            }
+
+            var _errorsList = _errors.Select(e => new
+            {
+                message = e.Message,
                 propertyName = e.PropertyName
             }).ToList();
+
 
             return new JsonResult
             {
                 Data = new
                 {
-                    success = false,
-                    errors = errorsList,
-                    messageType = "danger"
-                }                
+                    success = _success,
+                    errors = _errorsList
+                }
             };
-        }                
-
+        }
 
 
         #endregion
@@ -114,7 +132,7 @@ namespace Presentation.Controllers
 
         public async Task<ActionResult> GetUpdateAsync(int id)
         {
-            var user = await _mediator.Send(new GetUserByIdQuery { Id = id});
+            var user = await _mediator.Send(new GetUserByIdQuery { Id = id });
 
 
             // Fetch the roles list asynchronously

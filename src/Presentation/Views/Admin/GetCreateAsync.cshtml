@@ -10,7 +10,7 @@
                     <h3>Create User</h3>
                 </div>
                 <div class="card-body">
-                    <div id="liveAlertPlaceholder"></div>
+                    @Html.ValidationMessage("liveAlertPlaceholder")
                     @using (Html.BeginForm("CreateAsync", "Admin", FormMethod.Post, new { id = "createUserForm" }))
                     {
                         @Html.AntiForgeryToken()
