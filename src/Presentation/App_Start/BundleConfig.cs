@@ -88,14 +88,14 @@ namespace Presentation
 
             #region Datatables
             bundles.Add(new StyleBundle("~/Content/datatables").Include(
-                "~/Content/dataTables.dataTables.css",
-                "~/Content/dataTables.dataTables.min.css"
+                "~/Content/dataTables.bootstrap5.css",
+                "~/Content/dataTables.bootstrap5.min.css"
                 ));
             bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
                 "~/Scripts/dataTables.js",
                 "~/Scripts/dataTables.min.js",
-                "~/Scripts/dataTables.dataTables.js",
-                "~/Scripts/dataTables.dataTables.min.js"
+                "~/Scripts/dataTables.bootstrap5.js",
+                "~/Scripts/dataTables.bootstrap5.min.js"
                 ));
 
             #endregion
