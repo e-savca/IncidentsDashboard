@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Application.Incident.Queries.GetIncidentsList
+﻿namespace Application.Incident.Queries.GetIncidentsList
 {
     public class IncidentsListItemModel
     {

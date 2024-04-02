@@ -36,7 +36,7 @@ namespace Application.Incident.Queries.GetExportIncidentToFile
                 .ToListAsync();
 
             // map data to model
-            var incidentDtos = incidents.ConvertAll(i => new GetExportIncidentToFileItemModel
+            var incidentDtos = incidents.ConvertAll(i => new ExportIncidentToFileItemModel
             {
                 CallCode = i.CallCode,
                 SubsystemCode = i.SubsystemCode,

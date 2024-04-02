@@ -1,6 +1,6 @@
 ﻿namespace Application.Incident.Queries.GetExportIncidentToFile
 {
-    public class GetExportIncidentToFileItemModel
+    public class ExportIncidentToFileItemModel
     {
         public string CallCode { get; set; }
         public string SubsystemCode { get; set; }

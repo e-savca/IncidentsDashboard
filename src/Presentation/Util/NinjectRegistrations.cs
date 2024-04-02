@@ -8,6 +8,7 @@ using Application.Incident.Commands.CreateIncident;
 using Application.Incident.Commands.DeleteIncident;
 using Application.Incident.Commands.ImportIncident;
 using Application.Incident.Commands.UpdateIncident;
+using Application.Incident.MappingProfiles;
 using Application.Incident.Queries.GetExportIncidentToFile;
 using Application.Incident.Queries.GetIncidentById;
 using Application.Incident.Queries.GetIncidentDetailsById;
@@ -130,6 +131,9 @@ namespace Presentation.Util
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile<AdditionalInformationQueryMappingProfile>();
+
+                cfg.AddProfile<IncidentCommandMappingProfile>();
+                cfg.AddProfile<IncidentQueryMappingProfile>();
 
                 cfg.AddProfile<RoleQueryMappingProfile>();
 
