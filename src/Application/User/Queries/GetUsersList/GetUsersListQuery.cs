@@ -13,12 +13,15 @@ namespace Application.User.Queries.GetUsersList
     public class GetUsersListHandler : IRequestHandler<GetUsersListQuery, List<UsersListItemModel>>
     {
         private readonly IDatabaseService _database;
+        private readonly IMapper _mapper;
 
         public GetUsersListHandler(
-            IDatabaseService database
+            IDatabaseService database,
+            IMapper mapper
             )
         {
             _database = database;
+            _mapper = mapper;
         }
 
         public async Task<List<UsersListItemModel>> Handle(GetUsersListQuery request, CancellationToken cancellationToken)
@@ -27,16 +30,7 @@ namespace Application.User.Queries.GetUsersList
             var users = await _database.Users.Include(u => u.UserRoles.Select(ur => ur.Role)).ToListAsync(cancellationToken);
 
             // map to UserListItemModel
-            var userDtos = users.Select(u => new UsersListItemModel
-            {
-                Id = u.Id,
-                Username = u.Username,
-                FirstName = u.FirstName,
-                LastName = u.LastName,
-                Email = u.Email,
-                IsActive = u.IsActive,
-                UserRoles = u.UserRoles.Select(ur => ur.Role.Name).ToList()
-            }).ToList();
+            var userDtos = _mapper.Map<List<UsersListItemModel>>(users);
 
             return userDtos;
         }

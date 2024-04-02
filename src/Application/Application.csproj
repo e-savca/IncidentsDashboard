@@ -118,7 +118,6 @@
     <Compile Include="Incident\Queries\GetIncidentsList\IncidentsListItemModel.cs" />
     <Compile Include="Interfaces\IDatabaseService.cs" />
     <Compile Include="Interfaces\IPasswordEncryptionService.cs" />
-    <Compile Include="MappingProfiles\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Roles\Queries\GetRolesList\GetRolesListQuery.cs" />
     <Compile Include="Roles\Queries\GetRolesList\RolesListItemModel.cs" />
@@ -129,6 +128,8 @@
     <Compile Include="User\Commands\UpdateUser\UpdateUserCommand.cs" />
     <Compile Include="User\Commands\UpdateUser\UpdateUserModel.cs" />
     <Compile Include="User\Commands\UpdateUser\UpdateUserModelValidator.cs" />
+    <Compile Include="User\MappingProfiles\UserCommandMappingProfile.cs" />
+    <Compile Include="User\MappingProfiles\UserQueryMappingProfile.cs" />
     <Compile Include="User\Queries\GetUserById\GetUserByIdQuery.cs" />
     <Compile Include="User\Queries\GetUserById\UserByIdModel.cs" />
     <Compile Include="User\Queries\GetUserByUsernameAndPassword\GetUserByUsernameAndPasswordQuery.cs" />

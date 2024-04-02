@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces;
+using AutoMapper;
 using MediatR;
 using System.Data.Entity;
 using System.Linq;
@@ -17,14 +18,17 @@ namespace Application.User.Queries.GetUserByUsernameAndPassword
     {
         private readonly IDatabaseService _database;
         private readonly IPasswordEncryptionService _passwordEncryptionService;
+        private readonly IMapper _mapper;
 
         public GetUserByUsernameAndPasswordHandler(
             IDatabaseService database,
-            IPasswordEncryptionService passwordEncryptionService
+            IPasswordEncryptionService passwordEncryptionService,
+            IMapper mapper
             )
         {
             _database = database;
             _passwordEncryptionService = passwordEncryptionService;
+            _mapper = mapper;
         }
 
         public async Task<UserByUsernameAndPasswordModel> Handle(GetUserByUsernameAndPasswordQuery request, CancellationToken cancellationToken)
@@ -36,30 +40,26 @@ namespace Application.User.Queries.GetUserByUsernameAndPassword
             if (_passwordEncryptionService.VerifyPassword(request.Password, user.Password))
                 user = null;
 
-            UserByUsernameAndPasswordModel userDto = null;
-            if (user != null)
-            {
-                userDto = new UserByUsernameAndPasswordModel
-                {
-                    Id = user.Id,
-                    Username = user.Username,
-                    Password = user.Password,
-                    Email = user.Email,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    IsActive = user.IsActive,
-                    UserRoles = user.UserRoles.Select(ur => new UserRoleModel
-                    {
-                        Role = new RoleModel
-                        {
-                            Id = ur.Role.Id,
-                            Name = ur.Role.Name
-                        }
-                    }).ToList()
+            //var userDto = new UserByUsernameAndPasswordModel
+            //{
+            //    Id = user.Id,
+            //    Username = user.Username,
+            //    Password = user.Password,
+            //    Email = user.Email,
+            //    FirstName = user.FirstName,
+            //    LastName = user.LastName,
+            //    IsActive = user.IsActive,
+            //    UserRoles = user.UserRoles.Select(ur => new UserRoleModel
+            //    {
+            //        Role = new RoleModel
+            //        {
+            //            Id = ur.Role.Id,
+            //            Name = ur.Role.Name
+            //        }
+            //    }).ToList()
+            //};
 
-                };
-                return userDto;
-            }
+            var userDto = _mapper.Map<UserByUsernameAndPasswordModel>(user);
 
             return userDto;
         }

@@ -64,7 +64,7 @@ namespace Presentation.Controllers
         public async Task<ActionResult> CreateAsync(CreateUserModel model)
         {
             // Validate the model
-            var validationResult = _createUserValidator.Validate(model);
+             var validationResult = _createUserValidator.Validate(model);
 
             if (!validationResult.IsValid)
             {

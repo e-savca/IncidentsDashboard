@@ -7,6 +7,7 @@ using Persistance.Incidents.IncidentTypes;
 using Persistance.Incidents.ThreatAndScenarios;
 using Persistance.Users;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Threading;
 using System.Threading.Tasks;
 

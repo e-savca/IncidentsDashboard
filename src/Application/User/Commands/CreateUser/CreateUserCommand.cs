@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces;
+using AutoMapper;
 using Domain.User;
 using MediatR;
 using System;
@@ -16,13 +17,16 @@ namespace Application.User.Commands.CreateUser
     {
         private readonly IDatabaseService _database;
         private readonly IPasswordEncryptionService _passwordEncryptionService;
+        private readonly IMapper _mapper;
         public CreateUserHandler(
             IDatabaseService database,
-            IPasswordEncryptionService passwordEncryptionService
+            IPasswordEncryptionService passwordEncryptionService,
+            IMapper mapper
             )
         {
             _database = database;
             _passwordEncryptionService = passwordEncryptionService;
+            _mapper = mapper;
 
         }
         public async Task<CreateUserModel> Handle(CreateUserCommand request, CancellationToken cancellationToken)
@@ -44,24 +48,15 @@ namespace Application.User.Commands.CreateUser
                 throw new Exception("User already exists");
             }
 
-
             // encrypt password
             model.Password = _passwordEncryptionService.HashPassword(model.Password);
 
+            // map to User
+            var user = _mapper.Map<Domain.User.User>(model);
+
             // add user
-            _database.Users.Add(new Domain.User.User
-            {
-                Username = model.Username.ToUpperInvariant(),
-                Password = model.Password,
-                Email = model.Email,
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                IsActive = model.IsActive,
-                UserRoles = model.RoleIds.Select(x => new UserRole
-                {
-                    RoleId = x
-                }).ToList()
-            });
+            _database.Users.Add(user);
+
             // save changes
             await _database.SaveAsync(cancellationToken);
 

@@ -16,9 +16,11 @@ using Application.Roles.Queries.GetRolesList;
 using Application.Services;
 using Application.User.Commands.CreateUser;
 using Application.User.Commands.UpdateUser;
+using Application.User.MappingProfiles;
 using Application.User.Queries.GetUserById;
 using Application.User.Queries.GetUserByUsernameAndPassword;
 using Application.User.Queries.GetUsersList;
+using AutoMapper;
 using Common.Dates;
 using FluentValidation;
 using MediatR;
@@ -121,15 +123,16 @@ namespace Presentation.Util
 
             #endregion
 
-            #region Automapper -- currently isn't in use
+            #region Automapper
 
-            //var config = new MapperConfiguration(cfg =>
-            //{
-            //    cfg.AddProfile<UserProfile>();
-            //});
-            //var mapper = config.CreateMapper();
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<UserQueryMappingProfile>();
+                cfg.AddProfile<UserCommandMappingProfile>();
+            });
+            var mapper = config.CreateMapper();
 
-            //Bind<IMapper>().ToConstant(mapper);
+            Bind<IMapper>().ToConstant(mapper);
 
             #endregion
 

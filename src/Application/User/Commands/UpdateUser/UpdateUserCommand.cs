@@ -1,6 +1,8 @@
 ﻿using Application.Interfaces;
+using AutoMapper;
 using Domain.User;
 using MediatR;
+using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Threading;
@@ -17,7 +19,8 @@ namespace Application.User.Commands.UpdateUser
     {
         private readonly IDatabaseService _database;
         public UpdateUserHandler(
-            IDatabaseService database)
+            IDatabaseService database
+            )
         {
             _database = database;
         }
@@ -43,6 +46,7 @@ namespace Application.User.Commands.UpdateUser
             }).ToList();
 
             _database.Users.AddOrUpdate(user);
+
             await _database.SaveAsync(cancellationToken);
 
             return updatedUser;
