@@ -9,5 +9,8 @@
 
 <table id="usersTable" class="table table-striped container" style="width:100%"></table>
 
-
-@Scripts.Render("~/IDCore.JS/Views/Admin/Index")
+<script type="module">
+    // import module    
+    import { GetUserList } from '/IDCore.JS/Views/Admin/Index';
+    GetUserList();
+</script>

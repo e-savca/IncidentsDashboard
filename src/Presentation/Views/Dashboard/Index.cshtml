@@ -22,5 +22,8 @@
 
 <table id="incidentsTable" class="table table-striped container" style="width:100%"></table>
 
-
-@Scripts.Render("~/IDCore.JS/Views/Dashboard/Index")
+<script type="module">
+    // import module
+    import { GetIncidentList } from '/IDCore.JS/Views/Dashboard/Index';
+    GetIncidentList();
+</script>

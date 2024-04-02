@@ -9,6 +9,13 @@ namespace Presentation
         {
             #region IncidentsDashboardCore.JS scripts
 
+            #region Datatables
+
+            bundles.Add(new ScriptBundle("~/IDCore.JS/Datatables/defaultTable").Include(
+                        "~/IncidentsDashboardCore.JS/Datatables/defaultTable.js"));
+
+            #endregion
+
             #region Dashboard Controller's Views
 
             bundles.Add(new ScriptBundle("~/IDCore.JS/Views/Dashboard/Index").Include(

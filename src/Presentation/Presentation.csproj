@@ -243,6 +243,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="IncidentsDashboardCore.JS\Datatables\defaultTable.js" />
     <Content Include="IncidentsDashboardCore.JS\Views\Admin\GetUpdateAsync.js" />
     <Content Include="IncidentsDashboardCore.JS\Views\Dashboard\GetCreateAsync.js" />
     <Content Include="IncidentsDashboardCore.JS\Views\Dashboard\GetDetailsAsync.js" />
