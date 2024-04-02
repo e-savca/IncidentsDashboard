@@ -17,14 +17,6 @@ namespace Application.User.MappingProfiles
                     RoleId = roleId
                 })
                 ));
-
-            //CreateMap<UpdateUserModel, Domain.User.User>()
-            //.ForMember(dest => dest.UserRoles, opt => opt.MapFrom(src => src.RoleIds.Select(roleId => new UserRole
-            //{
-            //    RoleId = roleId
-            //})
-            //));
-            //CreateMap<UpdateUserModel, Domain.User.User>();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces;
+using AutoMapper;
 using MediatR;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -11,21 +12,19 @@ namespace Application.Roles.Queries.GetRolesList
     public class GetRolesListHandler : IRequestHandler<GetRolesListQuery, List<RolesListItemModel>>
     {
         private readonly IDatabaseService _database;
+        private readonly IMapper _mapper;
         public GetRolesListHandler(
-            IDatabaseService database
+            IDatabaseService database,
+            IMapper mapper
             )
         {
             _database = database;
+            _mapper = mapper;
         }
         public async Task<List<RolesListItemModel>> Handle(GetRolesListQuery request, CancellationToken cancellationToken)
         {
             var roles = await _database.Roles.ToListAsync(cancellationToken);
-            var roleDtos = roles.ConvertAll(r => new RolesListItemModel
-            {
-                Id = r.Id,
-                Name = r.Name
-            });
-            return roleDtos;
+            return _mapper.Map<List<RolesListItemModel>>(roles);
         }
     }
 

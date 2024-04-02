@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces;
+using AutoMapper;
 using MediatR;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -15,11 +16,14 @@ namespace Application.AdditionalInformation.Queries.GetAmbitListByOriginId
     public class GetAmbitListByOriginIdHandler : IRequestHandler<GetAmbitListByOriginIdQuery, List<AmbitListByOriginIdItemModel>>
     {
         private readonly IDatabaseService _database;
+        private readonly IMapper _mapper;
         public GetAmbitListByOriginIdHandler(
-            IDatabaseService database
+            IDatabaseService database,
+            IMapper mapper
             )
         {
             _database = database;
+            _mapper = mapper;
         }
         public async Task<List<AmbitListByOriginIdItemModel>> Handle(GetAmbitListByOriginIdQuery request, CancellationToken cancellationToken)
         {
@@ -29,15 +33,7 @@ namespace Application.AdditionalInformation.Queries.GetAmbitListByOriginId
                 .Where(w => w.originToAmbits.Any(a => a.OriginId == request.OriginId))
                 .ToListAsync(cancellationToken);
 
-
-            // map data
-            var ambitDtos = ambits
-                .Select(a => new AmbitListByOriginIdItemModel
-            {
-                Id = a.Id,
-                Name = a.Name
-            }).ToList();
-            return ambitDtos;
+            return _mapper.Map<List<AmbitListByOriginIdItemModel>>(ambits);
         }
     }
 }

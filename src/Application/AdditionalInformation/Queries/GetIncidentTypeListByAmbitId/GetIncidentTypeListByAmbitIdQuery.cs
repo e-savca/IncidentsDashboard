@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces;
+using AutoMapper;
 using MediatR;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -16,11 +17,14 @@ namespace Application.AdditionalInformation.Queries.GetIncidentTypeListByAmbitId
     public class GetIncidentTypeListByAmbitIdHandler : IRequestHandler<GetIncidentTypeListByAmbitIdQuery, List<IncidentTypeListByAmbitIdItemModel>>
     {
         private readonly IDatabaseService _database;
+        private readonly IMapper _mapper;
         public GetIncidentTypeListByAmbitIdHandler(
-            IDatabaseService database
+            IDatabaseService database,
+            IMapper mapper
             )
         {
             _database = database;
+            _mapper = mapper;
         }
 
         public async Task<List<IncidentTypeListByAmbitIdItemModel>> Handle(GetIncidentTypeListByAmbitIdQuery request, CancellationToken cancellationToken)
@@ -31,13 +35,7 @@ namespace Application.AdditionalInformation.Queries.GetIncidentTypeListByAmbitId
                 .Where(i => i.ambitsToTypes.Any(c => c.AmbitId == request.AmbitId))
                 .ToListAsync(cancellationToken);
 
-            // map data
-            var incidentTypeDtos = incidentTypes.ConvertAll(i => new IncidentTypeListByAmbitIdItemModel
-            {
-                Id = i.Id,
-                Name = i.Name
-            });
-            return incidentTypeDtos;
+            return _mapper.Map<List<IncidentTypeListByAmbitIdItemModel>>(incidentTypes);
         }
     }
 }

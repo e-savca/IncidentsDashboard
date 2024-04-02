@@ -1,4 +1,5 @@
-﻿using Application.AdditionalInformation.Queries.GetAmbitListByOriginId;
+﻿using Application.AdditionalInformation.MappingProfiles;
+using Application.AdditionalInformation.Queries.GetAmbitListByOriginId;
 using Application.AdditionalInformation.Queries.GetIncidentTypeListByAmbitId;
 using Application.AdditionalInformation.Queries.GetOriginList;
 using Application.AdditionalInformation.Queries.GetScenarioList;
@@ -12,6 +13,7 @@ using Application.Incident.Queries.GetIncidentById;
 using Application.Incident.Queries.GetIncidentDetailsById;
 using Application.Incident.Queries.GetIncidentsList;
 using Application.Interfaces;
+using Application.Roles.MappingProfiles;
 using Application.Roles.Queries.GetRolesList;
 using Application.Services;
 using Application.User.Commands.CreateUser;
@@ -127,6 +129,10 @@ namespace Presentation.Util
 
             var config = new MapperConfiguration(cfg =>
             {
+                cfg.AddProfile<AdditionalInformationQueryMappingProfile>();
+
+                cfg.AddProfile<RoleQueryMappingProfile>();
+
                 cfg.AddProfile<UserQueryMappingProfile>();
                 cfg.AddProfile<UserCommandMappingProfile>();
             });

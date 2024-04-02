@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces;
+using AutoMapper;
 using MediatR;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -12,25 +13,22 @@ namespace Application.AdditionalInformation.Queries.GetThreatList
     public class GetThreatListHandler : IRequestHandler<GetThreatListQuery, List<ThreatListItemModel>>
     {
         private readonly IDatabaseService _database;
+        private readonly IMapper _mapper;
+
         public GetThreatListHandler(
-            IDatabaseService database
+            IDatabaseService database,
+            IMapper mapper
             )
         {
             _database = database;
+            _mapper = mapper;
         }
         public async Task<List<ThreatListItemModel>> Handle(GetThreatListQuery request, CancellationToken cancellationToken)
         {
             // get data from database
             var threats = await _database.Threats.ToListAsync(cancellationToken);
 
-            // map data
-            var threatDtos = threats.ConvertAll(t => new ThreatListItemModel
-            {
-                Id = t.Id,
-                Code = t.Code,
-                Name = t.Name
-            });
-            return threatDtos;
+            return _mapper.Map<List<ThreatListItemModel>>(threats);
         }
     }
 }

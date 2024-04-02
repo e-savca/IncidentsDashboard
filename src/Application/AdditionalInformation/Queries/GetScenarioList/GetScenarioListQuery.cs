@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces;
+using AutoMapper;
 using MediatR;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -11,24 +12,22 @@ namespace Application.AdditionalInformation.Queries.GetScenarioList
     public class GetScenarioListHandler : IRequestHandler<GetScenarioListQuery, List<ScenarioListItemModel>>
     {
         private readonly IDatabaseService _database;
+        private readonly IMapper _mapper;
+
         public GetScenarioListHandler(
-            IDatabaseService database
+            IDatabaseService database,
+            IMapper mapper
             )
         {
             _database = database;
+            _mapper = mapper;
         }
         public async Task<List<ScenarioListItemModel>> Handle(GetScenarioListQuery request, CancellationToken cancellationToken)
         {
             // get data from database
             var scenarios = await _database.Scenarios.ToListAsync(cancellationToken);
-            // map data
-            var scenarioDtos = scenarios.ConvertAll(s => new ScenarioListItemModel
-            {
-                Id = s.Id,
-                Code = s.Code,
-                Name = s.Name
-            });
-            return scenarioDtos;
+
+            return _mapper.Map<List<ScenarioListItemModel>>(scenarios);
         }
     }
 }
