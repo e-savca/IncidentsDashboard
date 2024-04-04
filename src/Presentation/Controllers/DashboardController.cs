@@ -301,12 +301,14 @@ namespace Presentation.Controllers
 
         #region Upload File
 
+        [Authorize(Roles = "Operator")]
         public ActionResult GetUploadFile()
         {
 
             return PartialView();
         }
 
+        [Authorize(Roles = "Operator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> UploadCSVAsync(HttpPostedFileBase file)
@@ -342,6 +344,7 @@ namespace Presentation.Controllers
 
         #region Export File
 
+        [Authorize(Roles = "Operator")]
         [HttpGet]
         public ActionResult GetExportIncidents()
         {
