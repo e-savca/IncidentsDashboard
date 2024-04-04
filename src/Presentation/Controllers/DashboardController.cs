@@ -15,8 +15,8 @@ using FluentValidation;
 using MediatR;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -101,11 +101,21 @@ namespace Presentation.Controllers
             return PartialView();
         }
 
+        [HttpPost]
         public async Task<ActionResult> GetIncidentsListAsync()
         {
-            var incidents = await _mediator.Send(new GetIncidentsListQuery());
+            var query = new GetIncidentsListQuery
+            {
+                Draw = Request["draw"],
+                Start = Convert.ToInt32(Request["start"]),
+                Length = Convert.ToInt32(Request["length"]),
+                Search = Request["search[value]"],
+                SortColumnName = Request["columns[" + Request["order[0][column]"] + "][data]"],
+                SortDirection = Request["order[0][dir]"]
+            };
 
-            return Json(incidents, JsonRequestBehavior.AllowGet);
+            var response = await _mediator.Send(query);
+            return Json(response, JsonRequestBehavior.AllowGet);
         }
 
         public async Task<ActionResult> GetCreateAsync()

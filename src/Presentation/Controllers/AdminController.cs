@@ -1,11 +1,14 @@
 ﻿using Application.Incident.Commands.CreateIncident;
+using Application.Incident.Queries.GetIncidentsList;
 using Application.Roles.Queries.GetRolesList;
 using Application.User.Commands.CreateUser;
 using Application.User.Commands.UpdateUser;
 using Application.User.Queries.GetUserById;
 using Application.User.Queries.GetUsersList;
+using Domain.Incident;
 using FluentValidation;
 using MediatR;
+using Ninject.Activation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -123,11 +126,22 @@ namespace Presentation.Controllers
             return PartialView();
         }
 
+        [HttpPost]
         public async Task<ActionResult> GetUsersListAsync()
         {
-            var users = await _mediator.Send(new GetUsersListQuery());
+            var query = new GetUsersListQuery
+            {
+                Draw = Request["draw"],
+                Start = Convert.ToInt32(Request["start"]),
+                Length = Convert.ToInt32(Request["length"]),
+                Search = Request["search[value]"],
+                SortColumnName = Request["columns[" + Request["order[0][column]"] + "][data]"],
+                SortDirection = Request["order[0][dir]"]
+            };
+            
+            var response = await _mediator.Send(query);
 
-            return Json(users, JsonRequestBehavior.AllowGet);
+            return Json(response, JsonRequestBehavior.AllowGet);
         }
 
         public async Task<ActionResult> GetUpdateAsync(int id)
