@@ -25,6 +25,7 @@ using Application.User.Queries.GetUserByUsernameAndPassword;
 using Application.User.Queries.GetUsersList;
 using AutoMapper;
 using Common.Dates;
+using Common.Models;
 using FluentValidation;
 using MediatR;
 using Ninject.Modules;
@@ -66,7 +67,7 @@ namespace Presentation.Util
 
             Bind<IRequestHandler<GetUserByUsernameAndPasswordQuery, UserByUsernameAndPasswordModel>>().To<GetUserByUsernameAndPasswordHandler>();
             Bind<IRequestHandler<GetUserByIdQuery, UserByIdModel>>().To<GetUserByIdHandler>();
-            Bind<IRequestHandler<GetUsersListQuery, List<UsersListItemModel>>>().To<GetUsersListHandler>();
+            Bind<IRequestHandler<GetUsersListQuery, DataTableResponseModel<UsersListItemModel>>>().To<GetUsersListHandler>();
 
             #endregion
 
@@ -78,7 +79,7 @@ namespace Presentation.Util
 
             #region Incident Queries
 
-            Bind<IRequestHandler<GetIncidentsListQuery, List<IncidentsListItemModel>>>().To<GetIncidentsListHandler>();
+            Bind<IRequestHandler<GetIncidentsListQuery, DataTableResponseModel<IncidentsListItemModel>>>().To<GetIncidentsListHandler>();
             Bind<IRequestHandler<GetIncidentByIdQuery, IncidentByIdModel>>().To<GetIncidentByIdHandler>();
             Bind<IRequestHandler<GetIncidentDetailsByIdQuery, IncidentDetailsByIdModel>>().To<GetIncidentDetailsByIdHandler>();
             Bind<IRequestHandler<GetExportIncidentToFileQuery, byte[]>>().To<GetExportIncidentToFileHandler>();
