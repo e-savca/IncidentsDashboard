@@ -11,15 +11,15 @@ namespace Presentation
 
             #region Datatables
 
-            bundles.Add(new ScriptBundle("~/IDCore.JS/Datatables/defaultTable").Include(
-                        "~/IncidentsDashboardCore.JS/Datatables/defaultTable.js"));
+            bundles.Add(new ScriptBundle("~/IDCore.JS/Datatables/userTable").Include(
+                        "~/IncidentsDashboardCore.JS/Datatables/userTable.js"));
+
+            bundles.Add(new ScriptBundle("~/IDCore.JS/Datatables/incidentTable").Include(
+                        "~/IncidentsDashboardCore.JS/Datatables/incidentTable.js"));
 
             #endregion
 
             #region Dashboard Controller's Views
-
-            bundles.Add(new ScriptBundle("~/IDCore.JS/Views/Dashboard/Index").Include(
-                        "~/IncidentsDashboardCore.JS/Views/Dashboard/Index.js"));
 
             bundles.Add(new ScriptBundle("~/IDCore.JS/Views/Dashboard/GetCreateAsync").Include(
                         "~/IncidentsDashboardCore.JS/Views/Dashboard/GetCreateAsync.js"));
@@ -39,9 +39,6 @@ namespace Presentation
             #endregion
 
             #region Admin Controller's Views
-
-            bundles.Add(new ScriptBundle("~/IDCore.JS/Views/Admin/Index").Include(
-                        "~/IncidentsDashboardCore.JS/Views/Admin/Index.js"));
 
             bundles.Add(new ScriptBundle("~/IDCore.JS/Views/Admin/GetCreateAsync").Include(
                         "~/IncidentsDashboardCore.JS/Views/Admin/GetCreateAsync.js"));
