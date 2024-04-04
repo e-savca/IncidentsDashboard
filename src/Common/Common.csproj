@@ -43,7 +43,9 @@
   <ItemGroup>
     <Compile Include="Dates\DateService.cs" />
     <Compile Include="Dates\IDateService.cs" />
+    <Compile Include="Models\DataTableResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

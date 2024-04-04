@@ -92,6 +92,9 @@
     <Reference Include="Microsoft.Owin.Security.Cookies, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.2.2\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject, Version=3.3.3.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.3.3\lib\net45\Ninject.dll</HintPath>
     </Reference>
@@ -184,9 +187,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -243,14 +243,14 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="IncidentsDashboardCore.JS\Datatables\defaultTable.js" />
+    <Content Include="IncidentsDashboardCore.JS\Datatables\userTable.js" />
+    <Content Include="IncidentsDashboardCore.JS\Datatables\incidentTable.js" />
     <Content Include="IncidentsDashboardCore.JS\Views\Admin\GetUpdateAsync.js" />
     <Content Include="IncidentsDashboardCore.JS\Views\Dashboard\GetCreateAsync.js" />
     <Content Include="IncidentsDashboardCore.JS\Views\Dashboard\GetDetailsAsync.js" />
     <Content Include="IncidentsDashboardCore.JS\Views\Dashboard\GetExportAsync.js" />
     <Content Include="IncidentsDashboardCore.JS\Views\Dashboard\GetUpdateAsync.js" />
     <Content Include="IncidentsDashboardCore.JS\Views\Dashboard\GetUploadFileAsync.js" />
-    <Content Include="IncidentsDashboardCore.JS\Views\Dashboard\Index.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -282,7 +282,6 @@
     <Content Include="libman.json" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="IncidentsDashboardCore.JS\Views\Admin\GetCreateAsync.js" />
-    <Content Include="IncidentsDashboardCore.JS\Views\Admin\Index.js" />
     <Content Include="Scripts\dataTables.bootstrap5.js" />
     <Content Include="Scripts\dataTables.bootstrap5.min.js" />
     <Content Include="Scripts\dataTables.js" />
