@@ -1,4 +1,6 @@
-﻿export const GetCreateAsync = () => {
+﻿export const GetCreateAsync = (
+    modal
+) => {
     // model.IsActive property
     document.querySelectorAll('input[name="btnradio"]').forEach(function (radio) {
         radio.addEventListener('change', function () {
@@ -24,6 +26,7 @@
             .then(data => {
                 if (data.success) {
                     window.location.href = '#Admin';
+                    modal.hide();
                 }
                 else {
                     // Display error messages

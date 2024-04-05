@@ -1,4 +1,5 @@
-﻿var mainContent;
+﻿import { LoadModalForm } from '/IDCore.JS/Common/LoadModalForm';
+var mainContent;
 var titleContent;
 
 $(function () {
@@ -6,31 +7,6 @@ $(function () {
     titleContent = $("title"); // render titles.  
 });
 
-function showLoadingIndicator() {
-    mainContent.html(`
-    <div id="loading" style="
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 70vh;
-    ">
-        <div style="
-            border: 16px solid #f3f3f3;
-            border-top: 16px solid #3498db;
-            border-radius: 50%;
-            width: 120px;
-            height: 120px;
-            animation: spin 2s linear infinite;
-        "></div>
-    </div>
-    <style>
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
-    `);
-}
 
 var routingApp = $.sammy("#MainContent", function () {
     this.get("#Dashboard", function (context) {
@@ -90,8 +66,8 @@ var routingApp = $.sammy("#MainContent", function () {
 
     this.get("#Admin", function (context) {
         titleContent.html("Admin Panel");
-        // Show loading indicator
-        showLoadingIndicator();
+        
+        showLoadingIndicator(); // Show loading indicator
 
         $.get("/Admin/Index", function (data) {
             context.$element().html(data);
@@ -100,36 +76,20 @@ var routingApp = $.sammy("#MainContent", function () {
     });
 
     this.get("#Admin/Create", function (context) {
-        titleContent.html("Create User");
-        $.get("/Admin/GetCreateAsync", function (data) {
+        titleContent.html("Admin Panel");
+
+        showLoadingIndicator(); // Show loading indicator
+
+        $.get("/Admin/Index", function (data) {
             context.$element().html(data);
         });
-    });
-
-    this.get("#Admin/Edit/:id", function (context) {
-        titleContent.html("Edit User");
-        showLoadingIndicator();
-        $.get("/Admin/GetUpdateAsync/" + context.params.id, function (data) {
-            setTimeout(function () {
-                context.$element().html(data);
-            }, 150);
-        });
-    });
-
-    this.get("#Admin/Details/:id", function (context) {
-        titleContent.html("User's Details");
-        showLoadingIndicator();
-        $.get("/Admin/GetDetailsAsync/" + context.params.id, function (data) {
-            setTimeout(function () {
-                context.$element().html(data);
-            }, 150);
-        });
+        LoadModalForm('/Admin/GetCreateAsync', 'Add from URL');
     });
 
 });
 
 $(function () {
-    routingApp.run("#Dashboard"); // default routing page.  
+    routingApp.run("#Dashboard"); // default routing page. 
 });
 
 function IfLinkNotExist(type, path) {
@@ -156,4 +116,30 @@ function IfLinkNotExist(type, path) {
         }
     }
     return isExist;
-}  
+}
+
+function showLoadingIndicator() {
+    mainContent.html(`
+    <div id="loading" style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 70vh;
+    ">
+        <div style="
+            border: 16px solid #f3f3f3;
+            border-top: 16px solid #3498db;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+        "></div>
+    </div>
+    <style>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    `);
+}

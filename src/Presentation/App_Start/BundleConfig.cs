@@ -19,6 +19,14 @@ namespace Presentation
 
             #endregion
 
+            #region Common
+
+            bundles.Add(new ScriptBundle("~/IDCore.JS/Common/LoadModalForm").Include(
+                        "~/IncidentsDashboardCore.JS/Common/LoadModalForm.js"));
+
+
+            #endregion
+
             #region Dashboard Controller's Views
 
             bundles.Add(new ScriptBundle("~/IDCore.JS/Views/Dashboard/GetCreateAsync").Include(

@@ -35,6 +35,7 @@
                     </ul>
                 </div>
             }
+        </div>
     </nav>
 
     <div class="container body-content">
@@ -53,7 +54,7 @@
     @Scripts.Render("~/bundles/sammyjs")
     @Scripts.Render("~/bundles/datatables")
 
-    @Scripts.Render("~/IDCore.JS/routing")
+    <script type="module" src="/IDCore.JS/routing"></script>
 
     @RenderSection("scripts", required: false)
 </body>

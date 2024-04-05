@@ -1,14 +1,10 @@
-﻿using Application.Incident.Commands.CreateIncident;
-using Application.Incident.Queries.GetIncidentsList;
-using Application.Roles.Queries.GetRolesList;
+﻿using Application.Roles.Queries.GetRolesList;
 using Application.User.Commands.CreateUser;
 using Application.User.Commands.UpdateUser;
 using Application.User.Queries.GetUserById;
 using Application.User.Queries.GetUsersList;
-using Domain.Incident;
 using FluentValidation;
 using MediatR;
-using Ninject.Activation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
