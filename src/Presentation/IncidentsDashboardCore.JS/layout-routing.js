@@ -83,7 +83,7 @@ var routingApp = $.sammy("#MainContent", function () {
         $.get("/Admin/Index", function (data) {
             context.$element().html(data);
         });
-        LoadModalForm('/Admin/GetCreateAsync', 'Add from URL');
+        LoadModalForm('/Admin/GetCreateAsync', 'Add New User');
     });
 
 });
