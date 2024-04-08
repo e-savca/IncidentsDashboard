@@ -1,74 +1,65 @@
 ﻿@using Application.User.Queries.GetUserById
 @model UserByIdModel
 
+<div>
+    <div class="modal-body">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Username)
+            @Html.TextBoxFor(model => model.Username, new { @class = "form-control", @disabled = true })
+        </div>
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName, "First Name")
+            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", @disabled = true })
+        </div>
 
-<div class="row justify-content-center mt-2 mb-2">
-    <div class="col-4">
-        <div class="card">
-            <div class="card-header bg-primary text-white text-center">
-                <h3>User Details</h3>
-            </div>
-            <div class="card-body">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Username)
-                    @Html.TextBoxFor(model => model.Username, new { @class = "form-control", @disabled = true })
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName, "Last Name")
+            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", @disabled = true })
+        </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.FirstName, "First Name")
-                    @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", @disabled = true })
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, "Email")
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @disabled = true })
+        </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.LastName, "Last Name")
-                    @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", @disabled = true })
-                </div>
+        <div class="form-group mt-3 mb-2">
+            @Html.HiddenFor(model => model.IsActive, new { @id = "isActiveField" })
+            <div class="btn-group" role="group">
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" value="True"
+                       autocomplete="off" @(Model.IsActive ? "checked" : "") disabled>
+                <label class="btn btn-outline-primary" for="btnradio1">Active</label>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Email, "Email")
-                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @disabled = true })
-                </div>
-
-                <div class="form-group mt-3 mb-2">
-                    @Html.HiddenFor(model => model.IsActive, new { @id = "isActiveField" })
-                    <div class="btn-group" role="group">
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" value="True"
-                               autocomplete="off" @(Model.IsActive ? "checked" : "") disabled>
-                        <label class="btn btn-outline-primary" for="btnradio1">Active</label>
-
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" value="False"
-                               autocomplete="off" @(Model.IsActive ? "" : "checked") disabled>
-                        <label class="btn btn-outline-primary" for="btnradio2">Inactive</label>
-                    </div>
-                </div>
-
-
-                <div class="form-group mb-3">
-                    @Html.LabelFor(model => model.RoleIds, "Roles")
-                    <select class="form-control" id="RoleIds" name="RoleIds" multiple disabled>
-                        @foreach (var role in (IEnumerable<SelectListItem>)ViewBag.Roles)
-                        {
-
-                            if (Model.RoleIds.Contains(Int32.Parse(role.Value)))
-                            {
-                                <option value="@role.Value" selected>@role.Text</option>
-                            }
-                            else
-                            {
-                                <option value="@role.Value">@role.Text</option>
-                            }
-                        }
-                    </select>
-                    @Html.ValidationMessageFor(model => model.RoleIds)
-                </div>
-
-                <div class="form-group d-flex justify-content-end mt-5 mb-3">
-                    <a href="#Admin/Edit/@Model.Id" class="btn btn-primary me-auto">Edit</a>
-                    <a href="#Admin" class="btn btn-secondary">Back to list</a>
-                </div>
-
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" value="False"
+                       autocomplete="off" @(Model.IsActive ? "" : "checked") disabled>
+                <label class="btn btn-outline-primary" for="btnradio2">Inactive</label>
             </div>
         </div>
+
+
+        <div class="form-group mb-3">
+            @Html.LabelFor(model => model.RoleIds, "Roles")
+            <select class="form-control" id="RoleIds" name="RoleIds" multiple disabled>
+                @foreach (var role in (IEnumerable<SelectListItem>)ViewBag.Roles)
+                {
+
+                    if (Model.RoleIds.Contains(Int32.Parse(role.Value)))
+                    {
+                        <option value="@role.Value" selected>@role.Text</option>
+                    }
+                    else
+                    {
+                        <option value="@role.Value">@role.Text</option>
+                    }
+                }
+            </select>
+            @Html.ValidationMessageFor(model => model.RoleIds)
+        </div>
     </div>
+
+    <div class="modal-footer">
+        <a href="#Admin/Edit/@Model.Id" class="btn btn-primary" id="redirectToAnotherModal">Edit</a>
+        <button type="button" class="btn btn-secondary" id="closeModalBtn">Close</button>
+    </div>
+
 </div>

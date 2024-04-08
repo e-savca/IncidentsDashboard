@@ -2,89 +2,74 @@
 @model UserByIdModel
 
 
-<div class="container mt-5 mb-5">
-    <div class="row justify-content-center">
-        <div class="col-4">
-            <div class="card">
-                <div class="card-header bg-primary text-white text-center">
-                    <h3>Edit User</h3>
-                </div>
-                <div class="card-body">
-                    @using (Html.BeginForm("UpdateAsync", "Admin", FormMethod.Post, new { id = "editUserForm" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        @Html.HiddenFor(model => model.Id)
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Username)
-                            @Html.TextBoxFor(model => model.Username, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Username)
-                        </div>
+@using (Html.BeginForm("UpdateAsync", "Admin", FormMethod.Post, new { id = "editUserForm" }))
+{
+    <div class="modal-body">
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.FirstName, "First Name")
-                            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.FirstName)
-                        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Username)
+            @Html.TextBoxFor(model => model.Username, new { @class = "form-control", @autocomplete = "username" })
+            @Html.ValidationMessageFor(model => model.Username)
+        </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.LastName, "Last Name")
-                            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.LastName)
-                        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName, "First Name")
+            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Email, "Email")
-                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Email)
-                        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName, "Last Name")
+            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.LastName)
+        </div>
 
-                        <div class="form-group mt-3 mb-2">
-                            @Html.HiddenFor(model => model.IsActive, new { @id = "isActiveField" })
-                            <div class="btn-group" role="group">
-                                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" value="True" autocomplete="off" @(Model.IsActive ? "checked" : "")>
-                                <label class="btn btn-outline-primary" for="btnradio1">Active</label>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, "Email")
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
 
-                                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" value="False" autocomplete="off" @(Model.IsActive ? "" : "checked")>
-                                <label class="btn btn-outline-primary" for="btnradio2">Inactive</label>
-                            </div>
-                        </div>
+        <div class="form-group mt-3 mb-2">
+            @Html.HiddenFor(model => model.IsActive, new { @id = "isActiveField" })
+            <div class="btn-group" role="group">
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" value="True" autocomplete="off" @(Model.IsActive ? "checked" : "")>
+                <label class="btn btn-outline-primary" for="btnradio1">Active</label>
 
-
-                        <div class="form-group mb-3">
-                            @Html.LabelFor(model => model.RoleIds, "Roles")
-                            <select class="form-control" id="RoleIds" name="RoleIds" multiple>
-                                @foreach (var role in (IEnumerable<SelectListItem>)ViewBag.Roles)
-                                {
-
-                                    if (Model.RoleIds.Contains(Int32.Parse(role.Value)))
-                                    {
-                                        <option value="@role.Value" selected>@role.Text</option>
-                                    }
-                                    else
-                                    {
-                                        <option value="@role.Value">@role.Text</option>
-                                    }
-                                }
-                            </select>
-                            @Html.ValidationMessageFor(model => model.RoleIds)
-                        </div>
-
-                        <div class="form-group d-flex justify-content-end mt-5 mb-3">
-                            <input type="submit" value="Save" class="btn btn-primary me-auto">
-                            <a href="#Admin" class="btn btn-secondary">Back to list</a>
-                        </div>
-                    }
-                </div>
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" value="False" autocomplete="off" @(Model.IsActive ? "" : "checked")>
+                <label class="btn btn-outline-primary" for="btnradio2">Inactive</label>
             </div>
         </div>
+
+
+        <div class="form-group mb-3">
+            @Html.LabelFor(model => model.RoleIds, "Roles")
+            <select class="form-control" id="RoleIds" name="RoleIds" multiple>
+                @foreach (var role in (IEnumerable<SelectListItem>)ViewBag.Roles)
+                {
+
+                    if (Model.RoleIds.Contains(Int32.Parse(role.Value)))
+                    {
+                        <option value="@role.Value" selected>@role.Text</option>
+                    }
+                    else
+                    {
+                        <option value="@role.Value">@role.Text</option>
+                    }
+                }
+            </select>
+            @Html.ValidationMessageFor(model => model.RoleIds)
+        </div>
     </div>
-</div>
 
-
-
-<script type="module">
-   import { GetUpdateAsync } from '@Url.Content("~/IDCore.JS/Views/Admin/GetUpdateAsync")';
-   GetUpdateAsync();
-</script>
+    <div class="modal-footer">
+        <input type="submit" value="Save" class="btn btn-primary me-auto">
+        @*<a href="#Admin" class="btn btn-secondary">Back to list</a>*@
+        @*<button type="submit" class="btn btn-primary">Create</button>*@
+        <button type="button" class="btn btn-secondary" id="closeModalBtn">Close</button>
+    </div>
+}
 

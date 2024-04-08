@@ -24,6 +24,9 @@ namespace Presentation
             bundles.Add(new ScriptBundle("~/IDCore.JS/Common/LoadModalForm").Include(
                         "~/IncidentsDashboardCore.JS/Common/LoadModalForm.js"));
 
+            bundles.Add(new ScriptBundle("~/IDCore.JS/Common/CloseModalEventHandler").Include(
+                        "~/IncidentsDashboardCore.JS/Common/CloseModalEventHandler.js"));
+
 
             #endregion
 

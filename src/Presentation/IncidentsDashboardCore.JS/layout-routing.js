@@ -1,6 +1,9 @@
 ﻿import { LoadModalForm } from '/IDCore.JS/Common/LoadModalForm';
 var mainContent;
 var titleContent;
+var lastHash;
+var modalObj;
+
 
 $(function () {
     mainContent = $("#MainContent"); /// render partial views.  
@@ -27,9 +30,9 @@ var routingApp = $.sammy("#MainContent", function () {
         titleContent.html("Edit Incident");
         showLoadingIndicator();
         $.get("/Dashboard/GetUpdateAsync/" + context.params.id, function (data) {
-            setTimeout(function () {
-                context.$element().html(data);
-            }, 150);
+
+            context.$element().html(data);
+
         });
     });
 
@@ -37,9 +40,9 @@ var routingApp = $.sammy("#MainContent", function () {
         titleContent.html("Incident Details");
         showLoadingIndicator();
         $.get("/Dashboard/GetDetailsAsync/" + context.params.id, function (data) {
-            setTimeout(function () {
-                context.$element().html(data);
-            }, 150);
+
+            context.$element().html(data);
+
         });
     });
 
@@ -47,9 +50,9 @@ var routingApp = $.sammy("#MainContent", function () {
         titleContent.html("Upload File");
         showLoadingIndicator();
         $.get("/Dashboard/GetUploadFile/", function (data) {
-            setTimeout(function () {
-                context.$element().html(data);
-            }, 150);
+
+            context.$element().html(data);
+
         });
     });
 
@@ -57,39 +60,71 @@ var routingApp = $.sammy("#MainContent", function () {
         titleContent.html("Export File");
         showLoadingIndicator();
         $.get("/Dashboard/GetExportIncidents/", function (data) {
-            setTimeout(function () {
-                context.$element().html(data);
-            }, 150);
+
+            context.$element().html(data);
+
         });
     });
 
 
     this.get("#Admin", function (context) {
         titleContent.html("Admin Panel");
-        
+
         showLoadingIndicator(); // Show loading indicator
 
         $.get("/Admin/Index", function (data) {
             context.$element().html(data);
         });
 
+        lastHash = window.location.hash;
     });
 
     this.get("#Admin/Create", function (context) {
-        titleContent.html("Admin Panel");
+        
+        if (lastHash != '#Admin') {
+            titleContent.html("Admin Panel");
+            showLoadingIndicator(); // Show loading indicator
+            $.get("/Admin/Index", function (data) {
+                context.$element().html(data);
+            });
+        }
+        LoadModalForm('/Admin/GetCreateAsync', 'New User', 'create');
+        lastHash = window.location.hash;
+    });
 
-        showLoadingIndicator(); // Show loading indicator
+    this.get("#Admin/Edit/:id", function (context) {
 
-        $.get("/Admin/Index", function (data) {
-            context.$element().html(data);
-        });
-        LoadModalForm('/Admin/GetCreateAsync', 'Add New User');
+        if (lastHash != '#Admin') {
+            titleContent.html("Admin Panel");
+            showLoadingIndicator(); // Show loading indicator
+            $.get("/Admin/Index", function (data) {
+                context.$element().html(data);
+            });
+        }
+
+        LoadModalForm('/Admin/GetUpdateAsync/' + context.params.id, 'Edit User', 'update');
+        lastHash = window.location.hash;
+    });
+
+    this.get("#Admin/Details/:id", function (context) {
+
+        if (lastHash != '#Admin') {
+            titleContent.html("Admin Panel");
+            showLoadingIndicator(); // Show loading indicator
+            $.get("/Admin/Index", function (data) {
+                context.$element().html(data);
+            });
+        }
+
+        LoadModalForm('/Admin/GetDetailsAsync/' + context.params.id, 'User Details');
+        lastHash = window.location.hash;
     });
 
 });
 
 $(function () {
     routingApp.run("#Dashboard"); // default routing page. 
+    lastHash = window.location.hash;
 });
 
 function IfLinkNotExist(type, path) {
@@ -117,6 +152,30 @@ function IfLinkNotExist(type, path) {
     }
     return isExist;
 }
+
+//function hidePrevModal() {
+//    if (!modalObj)
+//        modalObj = new bootstrap.Modal(document.getElementById('modalView'), {});
+//    modalObj.hide();
+//}
+//function updateModalObj() {
+//    // check for previous modal and hide it
+//    modalObj = new bootstrap.Modal(document.getElementById('modalView'), {});
+//}
+//function listenCloseModal() {
+//    // Add event listener to close button
+//    document.getElementById('closeModalBtn').addEventListener('click', function () {
+//        CloseModal(modalObj);
+//    });
+//    document.getElementById('closeModalFromCornerBtn').addEventListener('click', function () {
+//        CloseModal(modalObj);
+//    });
+//}
+
+//function CloseModal(modalObj) {
+//    window.location.hash = "#Admin"; // Change hash
+//    modalObj.hide(); // Close modal
+//}
 
 function showLoadingIndicator() {
     mainContent.html(`

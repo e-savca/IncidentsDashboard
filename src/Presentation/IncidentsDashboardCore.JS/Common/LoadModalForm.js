@@ -1,5 +1,8 @@
 ﻿import { GetCreateAsync } from '/IDCore.JS/Views/Admin/GetCreateAsync';
-export const LoadModalForm = (url, title) => {
+import { GetUpdateAsync } from '/IDCore.JS/Views/Admin/GetUpdateAsync';
+import { CloseModalEventHandler } from '/IDCore.JS/Common/CloseModalEventHandler';
+
+export const LoadModalForm = (url, title, type) => {
 
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
@@ -7,17 +10,23 @@ export const LoadModalForm = (url, title) => {
         if (xhr.status === 200) {
             document.getElementById('modalContent').innerHTML = xhr.responseText;
             document.getElementById('modalViewLabel').textContent = title; // Change modal title
-            var myModal = new bootstrap.Modal(document.getElementById('modalView'), {});
-            myModal.show();
-            GetCreateAsync(myModal);
 
-            // Add event listener to close button
-            document.getElementById('closeModalBtn').addEventListener('click', function () {
-                CloseModal(myModal);
-            });
-            document.getElementById('closeModalFromCornerBtn').addEventListener('click', function () {
-                CloseModal(myModal);
-            });
+            var modalObj = new bootstrap.Modal(document.getElementById('modalView'), {});
+            modalObj.show();
+
+            // switch
+            switch (type) {
+                case 'create':
+                    GetCreateAsync(modalObj);
+                    break;
+                case 'update':
+                    GetUpdateAsync(modalObj);
+                    break;
+                default:
+                    break;
+            }
+            CloseModalEventHandler(modalObj, '#Admin');
+
         } else {
             console.error('Request failed. Status: ' + xhr.status);
         }
@@ -25,7 +34,3 @@ export const LoadModalForm = (url, title) => {
     xhr.send();
 }
 
-function CloseModal(modalObj) {
-    window.location.hash = "#Admin"; // Change hash
-    modalObj.hide(); // Close modal
-}
