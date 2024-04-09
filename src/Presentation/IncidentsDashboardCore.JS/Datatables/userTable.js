@@ -1,6 +1,7 @@
 ﻿export const userTable = () => {
     $('#usersTable').dataTable(
         {
+            select: 'single',
             "columnDefs": [
                 {
                     "className": "text-center custom-middle-align",

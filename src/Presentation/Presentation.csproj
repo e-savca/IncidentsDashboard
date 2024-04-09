@@ -287,6 +287,8 @@
     <Content Include="Scripts\dataTables.bootstrap5.min.js" />
     <Content Include="Scripts\dataTables.js" />
     <Content Include="Scripts\dataTables.min.js" />
+    <Content Include="Scripts\dataTables.select.js" />
+    <Content Include="Scripts\dataTables.select.min.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
     <Content Include="Scripts\jquery-3.7.1.slim.js" />

@@ -110,7 +110,9 @@ namespace Presentation
                 "~/Scripts/dataTables.js",
                 "~/Scripts/dataTables.min.js",
                 "~/Scripts/dataTables.bootstrap5.js",
-                "~/Scripts/dataTables.bootstrap5.min.js"
+                "~/Scripts/dataTables.bootstrap5.min.js",
+                "~/Scripts/dataTables.select.js",
+                "~/Scripts/dataTables.select.min.js"
                 ));
 
             #endregion
