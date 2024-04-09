@@ -73,10 +73,10 @@ namespace Presentation
             #region jQuery ContextMenu
 
             bundles.Add(new StyleBundle("~/Content/jqueryContextMenu").Include(
-                               "~/font/context-menu-icons.eot",
-                               "~/font/context-menu-icons.ttf",
-                               "~/font/context-menu-icons.woff",
-                               "~/font/context-menu-icons.woff2",
+                               //"~/font/context-menu-icons.eot",
+                               //"~/font/context-menu-icons.ttf",
+                               //"~/font/context-menu-icons.woff",
+                               //"~/font/context-menu-icons.woff2",
 
                                "~/Content/jquery.contextMenu.css",
                                "~/Content/jquery.contextMenu.min.css"
