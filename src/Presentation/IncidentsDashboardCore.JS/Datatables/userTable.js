@@ -73,6 +73,7 @@
         callback: function (key, options) {
 
             let row = table.row(options.$trigger);
+            row.select();
 
             switch (key) {
                 case 'details':

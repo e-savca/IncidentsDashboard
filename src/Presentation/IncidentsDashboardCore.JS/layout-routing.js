@@ -120,6 +120,10 @@ var routingApp = $.sammy("#MainContent", function () {
         lastHash = window.location.hash;
     });
 
+    this.get("#Admin/ModalClosed", function (context) {
+        lastHash = '#Admin';
+    });
+
 });
 
 $(function () {
