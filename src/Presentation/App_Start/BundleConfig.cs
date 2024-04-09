@@ -72,25 +72,23 @@ namespace Presentation
 
             #region jQuery ContextMenu
 
-            //bundles.Add(new StyleBundle("~/Content/jqueryContextMenu").Include(
-            //                   "~/Scripts/jquery-contextmenu/font/context-menu-icons.eot",
-            //                   "~/Scripts/jquery-contextmenu/font/context-menu-icons.ttf",
-            //                   "~/Scripts/jquery-contextmenu/font/context-menu-icons.woff",
-            //                   "~/Scripts/jquery-contextmenu/font/context-menu-icons.woff2",
+            bundles.Add(new StyleBundle("~/Content/jqueryContextMenu").Include(
+                               "~/font/context-menu-icons.eot",
+                               "~/font/context-menu-icons.ttf",
+                               "~/font/context-menu-icons.woff",
+                               "~/font/context-menu-icons.woff2",
 
-            //                   "~/Scripts/jquery-contextmenu/jquery.contextMenu.css",
-            //                   "~/Scripts/jquery-contextmenu/jquery.contextMenu.min.css",
-            //                   "~/Scripts/jquery-contextmenu/jquery.contextMenu.min.css.map"
-            //                   ));
+                               "~/Content/jquery.contextMenu.css",
+                               "~/Content/jquery.contextMenu.min.css"
+                               ));
 
-            //bundles.Add(new ScriptBundle("~/bundles/jqueryContextMenu").Include(
-            //                           "~/Scripts/jquery-contextmenu/jquery.contextMenu.js",
-            //                           "~/Scripts/jquery-contextmenu/jquery.contextMenu.min.js",
-            //                           "~/Scripts/jquery-contextmenu/jquery.contextMenu.min.js.map",
+            bundles.Add(new ScriptBundle("~/bundles/jqueryContextMenu").Include(
+                                       "~/Scripts/jquery.contextMenu.js",
+                                       "~/Scripts/jquery.contextMenu.min.js",
 
-            //                           "~/Scripts/jquery-contextmenu/jquery.ui.position.js",
-            //                           "~/Scripts/jquery-contextmenu/jquery.ui.position.min.js"
-            //                           ));
+                                       "~/Scripts/jquery.ui.position.js",
+                                       "~/Scripts/jquery.ui.position.min.js"
+                                       ));
 
             #endregion
 
