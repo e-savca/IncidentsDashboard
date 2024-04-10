@@ -70,6 +70,18 @@ namespace Presentation
 
             #region Libraries and Plugins
 
+            #region Bootstrap Select
+
+            bundles.Add(new StyleBundle("~/Content/bootstrap-select").Include(
+                               "~/lib/bootstrap-select/dist/css/bootstrap-select.css"
+                               ));
+
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap-select").Include(
+                                       "~/lib/bootstrap-select/dist/js/bootstrap-select.js"
+                                       ));
+
+            #endregion
+
             #region jQuery ContextMenu
 
             bundles.Add(new StyleBundle("~/Content/jqueryContextMenu").Include(
