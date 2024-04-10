@@ -26,6 +26,9 @@ namespace Presentation
 
             bundles.Add(new ScriptBundle("~/IDCore.JS/Common/CloseModalEventHandler").Include(
                         "~/IncidentsDashboardCore.JS/Common/CloseModalEventHandler.js"));
+            
+            bundles.Add(new ScriptBundle("~/IDCore.JS/Common/SelectPickerHandler").Include(
+                        "~/IncidentsDashboardCore.JS/Common/SelectPickerHandler.js"));
 
 
             #endregion
@@ -73,11 +76,13 @@ namespace Presentation
             #region Bootstrap Select
 
             bundles.Add(new StyleBundle("~/Content/bootstrap-select").Include(
-                               "~/lib/bootstrap-select/dist/css/bootstrap-select.css"
+                               "~/lib/bootstrap-select/dist/css/bootstrap-select.css",
+                               "~/lib/bootstrap-select/dist/css/bootstrap-select.min.css"
                                ));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap-select").Include(
-                                       "~/lib/bootstrap-select/dist/js/bootstrap-select.js"
+                                       "~/lib/bootstrap-select/dist/js/bootstrap-select.js",
+                                       "~/lib/bootstrap-select/dist/js/bootstrap-select.min.js"
                                        ));
 
             #endregion
@@ -143,7 +148,13 @@ namespace Presentation
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                      "~/Scripts/bootstrap.js",
+                      //"~/Scripts/bootstrap.js.map",
+                      "~/Scripts/bootstrap.min.js",
+                      "~/Scripts/bootstrap.bundle.js",
+                      //"~/Scripts/bootstrap.bundle.js.map",
+                      "~/Scripts/bootstrap.bundle.min.js"
+                      ));
 
             // set custom theme
             bundles.Add(new StyleBundle("~/Content/css").Include(

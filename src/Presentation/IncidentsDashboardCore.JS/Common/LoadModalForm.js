@@ -27,6 +27,9 @@ export const LoadModalForm = (url, title, type) => {
             }
             CloseModalEventHandler(modalObj, '#Admin');
 
+            // Initialize Bootstrap Select when the document is ready
+            $('.selectpicker').selectpicker();
+
         } else {
             console.error('Request failed. Status: ' + xhr.status);
         }
