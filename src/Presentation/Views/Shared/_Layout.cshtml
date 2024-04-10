@@ -43,6 +43,20 @@
         <div id="MainContent">
             @RenderBody()
         </div>
+
+        <div class="modal fade" id="modalView" data-bs-backdrop="static" tabindex="-1" aria-labelledby="modalViewLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalViewLabel"></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeModalFromCornerBtn"></button>
+                    </div>
+                    <div id="modalContent">
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <hr />
         <footer class="footer text-muted">
             <p>&copy; @DateTime.Now.Year - Incidents Dashboard</p>

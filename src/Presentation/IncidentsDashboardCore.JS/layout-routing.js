@@ -2,11 +2,15 @@
 var mainContent;
 var titleContent;
 var lastHash;
+var adminHash;
+var dashboardHash;
 
 
 $(function () {
     mainContent = $("#MainContent"); /// render partial views.  
     titleContent = $("title"); // render titles.  
+    adminHash = '#Admin';
+    dashboardHash = '#Dashboard';
 });
 
 
@@ -39,13 +43,21 @@ var routingApp = $.sammy("#MainContent", function () {
 
     this.get("#Dashboard/Details/:id", function (context) {
         titleContent.html("Incident Details");
-        showLoadingIndicator();
         $.get("/Dashboard/GetDetailsAsync/" + context.params.id, function (data) {
 
             context.$element().html(data);
 
         });
     });
+
+    //this.get("#Dashboard/Delete/:id", function (context) {
+    //    titleContent.html("Incident Details");
+    //    $.get("/Dashboard/DeleteAsync/" + context.params.id, function (data) {
+
+    //        context.$element().html(data);
+
+    //    });
+    //});
 
     this.get("#Dashboard/Upload", function (context) {
         titleContent.html("Upload File");
@@ -82,7 +94,7 @@ var routingApp = $.sammy("#MainContent", function () {
 
     this.get("#Admin/Create", function (context) {
         
-        if (lastHash != '#Admin') {
+        if (lastHash != adminHash) {
             titleContent.html("Admin Panel");
             showLoadingIndicator(); // Show loading indicator
             $.get("/Admin/Index", function (data) {
@@ -95,7 +107,7 @@ var routingApp = $.sammy("#MainContent", function () {
 
     this.get("#Admin/Edit/:id", function (context) {
 
-        if (lastHash != '#Admin') {
+        if (lastHash != adminHash) {
             titleContent.html("Admin Panel");
             showLoadingIndicator(); // Show loading indicator
             $.get("/Admin/Index", function (data) {
@@ -109,20 +121,20 @@ var routingApp = $.sammy("#MainContent", function () {
 
     this.get("#Admin/Details/:id", function (context) {
 
-        if (lastHash != '#Admin') {
+        if (lastHash != adminHash) {
             titleContent.html("Admin Panel");
             showLoadingIndicator(); // Show loading indicator
             $.get("/Admin/Index", function (data) {
                 context.$element().html(data);
             });
         }
-
         LoadModalForm('/Admin/GetDetailsAsync/' + context.params.id, 'User Details');
+
         lastHash = window.location.hash;
     });
 
     this.get("#Admin/ModalClosed", function (context) {
-        lastHash = '#Admin';
+        lastHash = adminHash;
     });
 
 });
@@ -157,30 +169,6 @@ function IfLinkNotExist(type, path) {
     }
     return isExist;
 }
-
-//function hidePrevModal() {
-//    if (!modalObj)
-//        modalObj = new bootstrap.Modal(document.getElementById('modalView'), {});
-//    modalObj.hide();
-//}
-//function updateModalObj() {
-//    // check for previous modal and hide it
-//    modalObj = new bootstrap.Modal(document.getElementById('modalView'), {});
-//}
-//function listenCloseModal() {
-//    // Add event listener to close button
-//    document.getElementById('closeModalBtn').addEventListener('click', function () {
-//        CloseModal(modalObj);
-//    });
-//    document.getElementById('closeModalFromCornerBtn').addEventListener('click', function () {
-//        CloseModal(modalObj);
-//    });
-//}
-
-//function CloseModal(modalObj) {
-//    window.location.hash = "#Admin"; // Change hash
-//    modalObj.hide(); // Close modal
-//}
 
 function showLoadingIndicator() {
     mainContent.html(`
