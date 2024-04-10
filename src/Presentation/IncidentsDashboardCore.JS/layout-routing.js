@@ -16,6 +16,8 @@ var routingApp = $.sammy("#MainContent", function () {
         $.get("/Dashboard/Index", function (data) {
             context.$element().html(data);
         });
+
+        lastHash = window.location.hash;
     });
 
     this.get("#Dashboard/Add", function (context) {
