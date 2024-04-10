@@ -2,7 +2,6 @@
 var mainContent;
 var titleContent;
 var lastHash;
-var modalObj;
 
 
 $(function () {

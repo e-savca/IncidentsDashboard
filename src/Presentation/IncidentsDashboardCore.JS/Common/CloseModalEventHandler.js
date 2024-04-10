@@ -18,7 +18,7 @@
 
     if (redirectToAnotherModal) {
         redirectToAnotherModal.addEventListener('click', function () {
-            modalObj.hide();
+            CloseModal(modalObj, hashUrl);
         });
     }
 
