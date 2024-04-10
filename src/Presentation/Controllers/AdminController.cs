@@ -49,7 +49,7 @@ namespace Presentation.Controllers
             {
                 IsActive = true
             };
-            user.RoleIds = new List<int>(); // Initialize RoleIds
+            user.RoleIds = new List<int> { 3 }; // Initialize RoleIds
 
             // Fetch the roles list asynchronously
             ViewBag.Roles = await GetRolesListAsync();
@@ -63,7 +63,7 @@ namespace Presentation.Controllers
         public async Task<ActionResult> CreateAsync(CreateUserModel model)
         {
             // Validate the model
-             var validationResult = _createUserValidator.Validate(model);
+            var validationResult = _createUserValidator.Validate(model);
 
             if (!validationResult.IsValid)
             {
@@ -134,7 +134,7 @@ namespace Presentation.Controllers
                 SortColumnName = Request["columns[" + Request["order[0][column]"] + "][data]"],
                 SortDirection = Request["order[0][dir]"]
             };
-            
+
             var response = await _mediator.Send(query);
 
             return Json(response, JsonRequestBehavior.AllowGet);

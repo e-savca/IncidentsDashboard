@@ -51,19 +51,9 @@
 
         <div class="form-group mb-3">
             @Html.LabelFor(model => model.RoleIds, "Roles")
-            <select class="form-control selectpicker form-select" id="RoleIds" name="RoleIds" multiple data-live-search="true">
-                @foreach (var role in (IEnumerable<SelectListItem>)ViewBag.Roles)
-                {
-                    if (role.Text == "User")
-                    {
-                        <option value="@role.Value" selected>@role.Text</option>
-                    }
-                    else
-                    {
-                        <option value="@role.Value">@role.Text</option>
-                    }
-                }
-            </select>
+
+            @Html.ListBoxFor(Model => Model.RoleIds, new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.Roles, "Value", "Text"), new { @class = "selectpicker form-control form-select", data_live_search = true, multiple = "multiple" })
+
         </div>
     </div>
     <div class="modal-footer">
