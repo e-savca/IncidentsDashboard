@@ -1,8 +1,9 @@
 ﻿import { GetCreateAsync } from '/IDCore.JS/Views/Admin/GetCreateAsync';
 import { GetUpdateAsync } from '/IDCore.JS/Views/Admin/GetUpdateAsync';
+import { GetDeleteAsync } from '/IDCore.JS/Views/Dashboard/GetDeleteAsync';
 import { CloseModalEventHandler } from '/IDCore.JS/Common/CloseModalEventHandler';
 
-export const LoadModalForm = (url, title, type) => {
+export const LoadModalForm = (url, title, returnToHash, type) => {
 
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
@@ -16,19 +17,19 @@ export const LoadModalForm = (url, title, type) => {
 
             // switch
             switch (type) {
-                case 'create':
+                case 'createUser':
                     GetCreateAsync(modalObj);
                     break;
-                case 'update':
+                case 'updateUser':
                     GetUpdateAsync(modalObj);
+                    break;
+                case 'deleteIncident':
+                    GetDeleteAsync(modalObj);
                     break;
                 default:
                     break;
             }
-            CloseModalEventHandler(modalObj, '#Admin');
-
-            // Initialize Bootstrap Select when the document is ready
-            $('.selectpicker').selectpicker();
+            CloseModalEventHandler(modalObj, returnToHash);            
 
         } else {
             console.error('Request failed. Status: ' + xhr.status);

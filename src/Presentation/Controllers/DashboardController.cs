@@ -140,6 +140,12 @@ namespace Presentation.Controllers
             return PartialView(incident);
         }
 
+        public async Task<ActionResult> GetDeleteAsync(int id)
+        {
+            var incident = await _mediator.Send(new GetIncidentDetailsByIdQuery { Id = id });
+            return PartialView(incident);
+        }
+
         public async Task<ActionResult> GetUpdateAsync(int id)
         {
             var incident = await _mediator.Send(new GetIncidentByIdQuery { Id = id });
@@ -284,10 +290,10 @@ namespace Presentation.Controllers
         #region Delete
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteAsync(int id)
+        //[ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteAsync(int Id)
         {
-            var result = await _mediator.Send(new DeleteIncidentCommand { IncidentId = id });
+            var result = await _mediator.Send(new DeleteIncidentCommand { IncidentId = Id });
             return new JsonResult
             {
                 Data = new

@@ -50,6 +50,9 @@ namespace Presentation
             bundles.Add(new ScriptBundle("~/IDCore.JS/Views/Dashboard/GetExportAsync").Include(
                         "~/IncidentsDashboardCore.JS/Views/Dashboard/GetExportAsync.js"));
 
+            bundles.Add(new ScriptBundle("~/IDCore.JS/Views/Dashboard/GetDeleteAsync").Include(
+                        "~/IncidentsDashboardCore.JS/Views/Dashboard/GetDeleteAsync.js"));
+
             #endregion
 
             #region Admin Controller's Views

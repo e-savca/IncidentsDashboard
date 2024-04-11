@@ -6,6 +6,8 @@
         });
     });
 
+    // Initialize Bootstrap Select when the document is ready
+    $('.selectpicker').selectpicker();
 
     // send data to server and handle response
     document.getElementById('editUserForm').addEventListener('submit', function (e) {

@@ -1,0 +1,60 @@
+﻿@using Application.Incident.Queries.GetIncidentDetailsById
+@model IncidentDetailsByIdModel
+
+<div>
+    @using (Html.BeginForm("DeleteAsync", "Dashboard", FormMethod.Post, new { id = "deleteIncidentForm" }))
+    {
+        <div class="modal-body">
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                <h1 class="display-6">Are you sure you want to delete the incident?</h1>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Id)
+                @Html.TextBoxFor(model => model.Id, new { @class = "form-control", @disabled = true })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CallCode)
+                @Html.TextBoxFor(model => model.CallCode, new { @class = "form-control", @disabled = true })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SubsystemCode)
+                @Html.TextBoxFor(model => model.SubsystemCode, new { @class = "form-control", @disabled = true })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.OpenedDate)
+                @Html.TextBoxFor(model => model.OpenedDate, new { @class = "form-control", @disabled = true })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ClosedDate)
+                @Html.TextBoxFor(model => model.ClosedDate, new { @class = "form-control", @disabled = true })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.RequestType)
+                @Html.TextBoxFor(model => model.RequestType, new { @class = "form-control", @disabled = true })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ApplicationType)
+                @Html.TextBoxFor(model => model.ApplicationType, new { @class = "form-control", @disabled = true })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Urgency)
+                @Html.TextBoxFor(model => model.Urgency, new { @class = "form-control", @disabled = true })
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <input type="submit" value="Delete" class="btn btn-danger me-auto">
+            <button type="button" class="btn btn-secondary" id="closeModalBtn">Close</button>
+        </div>
+    }
+</div>

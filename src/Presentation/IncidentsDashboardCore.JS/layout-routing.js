@@ -50,22 +50,18 @@ var routingApp = $.sammy("#MainContent", function () {
         });
     });
 
-    //this.get("#Dashboard/Delete/:id", function (context) {
-    //    titleContent.html("Incident Details");
-    //    $.get("/Dashboard/DeleteAsync/" + context.params.id, function (data) {
+    this.get("#Dashboard/Delete/:id", function (context) {
+        titleContent.html("Delete Incident");
 
-    //        context.$element().html(data);
-
-    //    });
-    //});
+        LoadModalForm('/Dashboard/GetDeleteAsync/' + context.params.id, 'Delete Incident', dashboardHash, 'deleteIncident');
+        lastHash = window.location.hash;
+    });
 
     this.get("#Dashboard/Upload", function (context) {
         titleContent.html("Upload File");
         showLoadingIndicator();
         $.get("/Dashboard/GetUploadFile/", function (data) {
-
             context.$element().html(data);
-
         });
     });
 
@@ -101,7 +97,7 @@ var routingApp = $.sammy("#MainContent", function () {
                 context.$element().html(data);
             });
         }
-        LoadModalForm('/Admin/GetCreateAsync', 'New User', 'create');
+        LoadModalForm('/Admin/GetCreateAsync', 'New User', adminHash, 'createUser');
         lastHash = window.location.hash;
     });
 
@@ -115,7 +111,7 @@ var routingApp = $.sammy("#MainContent", function () {
             });
         }
 
-        LoadModalForm('/Admin/GetUpdateAsync/' + context.params.id, 'Edit User', 'update');
+        LoadModalForm('/Admin/GetUpdateAsync/' + context.params.id, 'Edit User', adminHash, 'updateUser');
         lastHash = window.location.hash;
     });
 
@@ -128,7 +124,7 @@ var routingApp = $.sammy("#MainContent", function () {
                 context.$element().html(data);
             });
         }
-        LoadModalForm('/Admin/GetDetailsAsync/' + context.params.id, 'User Details');
+        LoadModalForm('/Admin/GetDetailsAsync/' + context.params.id, 'User Details', adminHash);
 
         lastHash = window.location.hash;
     });

@@ -250,6 +250,7 @@
     <Content Include="IncidentsDashboardCore.JS\Datatables\incidentTable.js" />
     <Content Include="IncidentsDashboardCore.JS\Views\Admin\GetUpdateAsync.js" />
     <Content Include="IncidentsDashboardCore.JS\Views\Dashboard\GetCreateAsync.js" />
+    <Content Include="IncidentsDashboardCore.JS\Views\Dashboard\GetDeleteAsync.js" />
     <Content Include="IncidentsDashboardCore.JS\Views\Dashboard\GetDetailsAsync.js" />
     <Content Include="IncidentsDashboardCore.JS\Views\Dashboard\GetExportAsync.js" />
     <Content Include="IncidentsDashboardCore.JS\Views\Dashboard\GetUpdateAsync.js" />
@@ -674,6 +675,7 @@
     <Content Include="Views\Dashboard\GetCreateAsync.cshtml" />
     <Content Include="Views\Dashboard\GetUploadFile.cshtml" />
     <Content Include="Views\Dashboard\GetExportIncidents.cshtml" />
+    <Content Include="Views\Dashboard\GetDeleteAsync.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
