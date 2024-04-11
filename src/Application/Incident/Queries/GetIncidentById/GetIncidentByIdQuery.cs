@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces;
+using AutoMapper;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
@@ -12,11 +13,14 @@ namespace Application.Incident.Queries.GetIncidentById
     public class GetIncidentByIdHandler : IRequestHandler<GetIncidentByIdQuery, IncidentByIdModel>
     {
         private readonly IDatabaseService _database;
+        private readonly IMapper _mapper;
         public GetIncidentByIdHandler(
-            IDatabaseService database
+            IDatabaseService database,
+            IMapper mapper
             )
         {
             _database = database;
+            _mapper = mapper;
         }
         public async Task<IncidentByIdModel> Handle(GetIncidentByIdQuery request, CancellationToken cancellationToken)
         {
@@ -27,27 +31,11 @@ namespace Application.Incident.Queries.GetIncidentById
                 return null;
             }
 
-            // Map and return the DTO
-            return new IncidentByIdModel
-            {
-                Id = incident.Id,
-                CallCode = incident.CallCode,
-                SubsystemCode = incident.SubsystemCode,
-                OpenedDate = incident.OpenedDate.ToString(),
-                ClosedDate = incident.ClosedDate.ToString(),
-                RequestType = incident.RequestType,
-                ApplicationType = incident.ApplicationType,
-                Urgency = incident.Urgency,
-                SubCause = incident.SubCause,
-                Summary = incident.Summary,
-                Description = incident.Description,
-                Solution = incident.Solution,
-                OriginId = incident.OriginId,
-                AmbitId = incident.AmbitId,
-                IncidentTypeId = incident.IncidentTypeId,
-                ScenarioId = incident.ScenarioId,
-                ThreatId = incident.ThreatId
-            };
+            // Map the incident
+            var incidentModel = _mapper.Map<IncidentByIdModel>(incident);
+
+            // Return the incident
+            return incidentModel;
         }
     }
 }

@@ -24,6 +24,11 @@ namespace Application.Incident.Commands.UpdateIncident
         public async Task<UpdateIncidentModel> Handle(UpdateIncidentCommand request, CancellationToken cancellationToken)
         {
             var model = request.IncidentModel;
+            if(model == null )
+            {
+                return null;
+            }
+
             // get current incident from database
             var incident = await _database.Incidents
                            .FindAsync(cancellationToken, model.Id);
@@ -31,12 +36,15 @@ namespace Application.Incident.Commands.UpdateIncident
             {
                 return null;
             }
+
             // update incident
             incident.CallCode = model.CallCode;
             incident.SubsystemCode = model.SubsystemCode;
+
             // parse data from string
             incident.OpenedDate = DateTime.Parse(model.OpenedDate);
             incident.ClosedDate = DateTime.Parse(model.ClosedDate);
+
             incident.RequestType = model.RequestType;
             incident.ApplicationType = model.ApplicationType;
             incident.Urgency = model.Urgency;

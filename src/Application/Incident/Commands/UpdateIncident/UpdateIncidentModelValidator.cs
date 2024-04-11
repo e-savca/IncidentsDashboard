@@ -8,7 +8,9 @@ namespace Application.Incident.Commands.UpdateIncident
         {
             RuleFor(x => x.CallCode).NotEmpty().WithMessage("Call code is required");
             RuleFor(x => x.SubsystemCode).NotEmpty().WithMessage("Subsystem code is required");
-            RuleFor(x => x.OpenedDate).NotEmpty().WithMessage("Opened date is required");
+            RuleFor(x => x.OpenedDate)
+                .LessThanOrEqualTo(x => x.ClosedDate).WithMessage("Opened date cannot be greater than closed date")
+                .NotEmpty().WithMessage("Opened date is required");
             RuleFor(x => x.ClosedDate).NotEmpty().WithMessage("Closed date is required");
             RuleFor(x => x.RequestType).NotEmpty().WithMessage("Request type is required");
             RuleFor(x => x.ApplicationType).NotEmpty().WithMessage("Application type is required");

@@ -53,14 +53,14 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.OpenedDate, "Opened Date")
-                                    @Html.TextBoxFor(model => model.OpenedDate, new { @class = "form-control" })
+                                    @Html.TextBoxFor(model => model.OpenedDate, new { @class = "form-control", @type = "datetime-local" })
                                     @Html.ValidationMessageFor(model => model.OpenedDate)
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.ClosedDate, "Closed Date")
-                                    @Html.TextBoxFor(model => model.ClosedDate, new { @class = "form-control" })
+                                    @Html.TextBoxFor(model => model.ClosedDate, new { @class = "form-control", @type = "datetime-local" })
                                     @Html.ValidationMessageFor(model => model.ClosedDate)
                                 </div>
                             </div>
