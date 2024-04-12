@@ -114,6 +114,8 @@
     <Compile Include="Incident\Commands\UpdateIncident\UpdateIncidentModelValidator.cs" />
     <Compile Include="Incident\MappingProfiles\IncidentCommandMappingProfile.cs" />
     <Compile Include="Incident\MappingProfiles\IncidentQueryMappingProfile.cs" />
+    <Compile Include="Incident\Queries\GetExportIncidentToFile\ExportIncidentToFileFilterModel.cs" />
+    <Compile Include="Incident\Queries\GetExportIncidentToFile\ExportIncidentToFileFilterModelValidator.cs" />
     <Compile Include="Incident\Queries\GetExportIncidentToFile\ExportIncidentToFileItemModel.cs" />
     <Compile Include="Incident\Queries\GetExportIncidentToFile\GetExportIncidentToFileQuery.cs" />
     <Compile Include="Incident\Queries\GetIncidentById\GetIncidentByIdQuery.cs" />

@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces;
+using AutoMapper;
 using CsvHelper;
 using MediatR;
 using System;
@@ -9,52 +10,69 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace Application.Incident.Queries.GetExportIncidentToFile
 {
-    public class GetExportIncidentToFileQuery : IRequest<byte[]> { }
+    public class GetExportIncidentToFileQuery : IRequest<byte[]>
+    {
+        public ExportIncidentToFileFilterModel model { get; set; }
+    }
 
     public class GetExportIncidentToFileHandler : IRequestHandler<GetExportIncidentToFileQuery, byte[]>
     {
         private readonly IDatabaseService _database;
+        private readonly IMapper _mapper;
         public GetExportIncidentToFileHandler(
-            IDatabaseService database
+            IDatabaseService database,
+            IMapper mapper
             )
         {
             _database = database;
+            _mapper = mapper;
         }
         public async Task<byte[]> Handle(GetExportIncidentToFileQuery request, CancellationToken cancellationToken)
         {
+            var startDate = DateTime.Parse(request.model.StartDate);
+            var endDate = DateTime.Parse(request.model.EndDate);            
+
             // Get data from database
-            var incidents = await _database.Incidents
+            var incidentsQuery = _database.Incidents
                 .Include(x => x.Origin)
                 .Include(x => x.Ambit)
                 .Include(x => x.IncidentType)
                 .Include(x => x.Scenario)
                 .Include(x => x.Threat)
-                .ToListAsync();
+                .AsQueryable();
+
+
+            var incidents = await incidentsQuery.Where(
+                i => DateTime.Compare(i.OpenedDate, startDate) >= 0 
+                && DateTime.Compare(i.OpenedDate,endDate) <= 0)
+                .ToListAsync(cancellationToken);
+
 
             // map data to model
-            var incidentDtos = incidents.ConvertAll(i => new ExportIncidentToFileItemModel
-            {
-                CallCode = i.CallCode,
-                SubsystemCode = i.SubsystemCode,
-                OpenedDate = i.OpenedDate.ToString(),
-                ClosedDate = i.ClosedDate.ToString(),
-                RequestType = i.RequestType,
-                ApplicationType = i.ApplicationType,
-                Urgency = i.Urgency,
-                SubCause = i.SubCause,
-                Summary = i.Summary,
-                Description = i.Description,
-                Solution = i.Solution,
-                Origin = i.Origin.Name,
-                Ambit = i.Ambit.Name,
-                IncidentType = i.IncidentType.Name,
-                Scenario = i.Scenario.Name,
-                Threat = i.Threat.Name
-            });
+            var incidentDtos = _mapper.Map<List<ExportIncidentToFileItemModel>>(incidents);
+
+            //var incidentDtos = incidents.ConvertAll(i => new ExportIncidentToFileItemModel
+            //{
+            //    CallCode = i.CallCode,
+            //    SubsystemCode = i.SubsystemCode,
+            //    OpenedDate = i.OpenedDate.ToString(),
+            //    ClosedDate = i.ClosedDate.ToString(),
+            //    RequestType = i.RequestType,
+            //    ApplicationType = i.ApplicationType,
+            //    Urgency = i.Urgency,
+            //    SubCause = i.SubCause,
+            //    Summary = i.Summary,
+            //    Description = i.Description,
+            //    Solution = i.Solution,
+            //    Origin = i.Origin.Name,
+            //    Ambit = i.Ambit.Name,
+            //    IncidentType = i.IncidentType.Name,
+            //    Scenario = i.Scenario.Name,
+            //    Threat = i.Threat.Name
+            //});
 
             // create csv file
             var sb = new StringBuilder();

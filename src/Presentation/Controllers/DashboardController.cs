@@ -32,6 +32,7 @@ namespace Presentation.Controllers
         private readonly IMediator _mediator;
         private readonly IValidator<UpdateIncidentModel> _updateIncidentValidator;
         private readonly IValidator<CreateIncidentModel> _createIncidentValidator;
+        private readonly IValidator<ExportIncidentToFileFilterModel> _exportIncidentFilterModelValidator;
 
         #endregion
 
@@ -40,12 +41,14 @@ namespace Presentation.Controllers
         public DashboardController(
             IMediator mediator,
             IValidator<UpdateIncidentModel> updateIncidentValidator,
-            IValidator<CreateIncidentModel> createIncidentValidator
+            IValidator<CreateIncidentModel> createIncidentValidator,
+            IValidator<ExportIncidentToFileFilterModel> exportIncidentFilterModelValidator
             )
         {
             _mediator = mediator;
             _updateIncidentValidator = updateIncidentValidator;
             _createIncidentValidator = createIncidentValidator;
+            _exportIncidentFilterModelValidator = exportIncidentFilterModelValidator;
         }
 
         #endregion 
@@ -354,16 +357,40 @@ namespace Presentation.Controllers
         [HttpGet]
         public ActionResult GetExportIncidents()
         {
-            return PartialView();
+            var model = new ExportIncidentToFileFilterModel
+            {             
+                StartDate = DateTime.Today.ToString("yyyy-MM-ddTHH:mm"),
+                EndDate = DateTime.Today.AddDays(1).AddMinutes(-1).ToString("yyyy-MM-ddTHH:mm")
+            };
+            return PartialView(model);
         }
 
         [HttpPost]
-        public async Task<ActionResult> ExportIncidentsToFile()
+        public async Task<ActionResult> ExportIncidentsToFile(ExportIncidentToFileFilterModel filterModel)
         {
-            var query = new GetExportIncidentToFileQuery();
-            var stream = await _mediator.Send(query);
+            var validationResult = _exportIncidentFilterModelValidator.Validate(filterModel);
+            if (validationResult.IsValid)
+            {
+                var query = new GetExportIncidentToFileQuery { model = filterModel };
+                var stream = await _mediator.Send(query);
+                return File(stream, "text/csv", $"Incidents_{DateTime.UtcNow.ToString("yyyyMMddHHmmss")}.csv");
+            }
 
-            return File(stream, "text/csv", $"Incidents_{DateTime.UtcNow.ToString("yyyyMMddHHmmss")}.csv");
+            // If the model state is not valid, redisplay the form
+            var errorsList = validationResult.Errors.Select(e => new
+            {
+                message = e.ErrorMessage,
+                propertyName = e.PropertyName
+            }).ToList();
+
+            return new JsonResult
+            {
+                Data = new
+                {
+                    success = false,
+                    errors = errorsList
+                }
+            };
         }
 
         #endregion
