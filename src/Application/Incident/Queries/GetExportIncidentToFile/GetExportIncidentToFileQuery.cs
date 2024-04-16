@@ -54,26 +54,6 @@ namespace Application.Incident.Queries.GetExportIncidentToFile
             // map data to model
             var incidentDtos = _mapper.Map<List<ExportIncidentToFileItemModel>>(incidents);
 
-            //var incidentDtos = incidents.ConvertAll(i => new ExportIncidentToFileItemModel
-            //{
-            //    CallCode = i.CallCode,
-            //    SubsystemCode = i.SubsystemCode,
-            //    OpenedDate = i.OpenedDate.ToString(),
-            //    ClosedDate = i.ClosedDate.ToString(),
-            //    RequestType = i.RequestType,
-            //    ApplicationType = i.ApplicationType,
-            //    Urgency = i.Urgency,
-            //    SubCause = i.SubCause,
-            //    Summary = i.Summary,
-            //    Description = i.Description,
-            //    Solution = i.Solution,
-            //    Origin = i.Origin.Name,
-            //    Ambit = i.Ambit.Name,
-            //    IncidentType = i.IncidentType.Name,
-            //    Scenario = i.Scenario.Name,
-            //    Threat = i.Threat.Name
-            //});
-
             // create csv file
             var sb = new StringBuilder();
             sb.AppendLine("CallCode,SubsystemCode,OpenedDate,ClosedDate,RequestType," +
