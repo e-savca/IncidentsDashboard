@@ -20,6 +20,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 
 namespace Presentation.Controllers
 {
@@ -323,6 +324,9 @@ namespace Presentation.Controllers
         public async Task<ActionResult> UploadCSVAsync(HttpPostedFileBase file)
         {
             bool result;
+
+            var errorsList = new List<object>();
+
             if (file != null && file.ContentLength > 0)
             {
                 try
@@ -331,20 +335,28 @@ namespace Presentation.Controllers
 
                     return Json(new
                     {
-                        success = result,
-                        message = result ? "File uploaded successfully" : "File upload failed"
+                        success = result
                     });
                 }
                 catch (Exception ex)
                 {
                     // Log or handle any errors that occurred during file processing
-                    return Json(new { success = false, message = "Error processing file: " + ex.Message });
+                    errorsList.Add(new { 
+                        message = "Error processing file: " + ex.Message,
+                        propertyName = "formFile"
+                    });
+                    return Json(new { success = false, errors = errorsList });
                 }
             }
             else
             {
                 // Handle the case where no file was uploaded
-                return Json(new { success = false, message = "No file uploaded" });
+                errorsList.Add(new
+                {
+                    message = "No file uploaded",
+                    propertyName = "formFile"
+                });
+                return Json(new { success = false, errors = errorsList });
             }
         }
 
@@ -358,7 +370,7 @@ namespace Presentation.Controllers
         public ActionResult GetExportIncidents()
         {
             var model = new ExportIncidentToFileFilterModel
-            {             
+            {
                 StartDate = DateTime.Today.ToString("yyyy-MM-ddTHH:mm"),
                 EndDate = DateTime.Today.AddDays(1).AddMinutes(-1).ToString("yyyy-MM-ddTHH:mm")
             };

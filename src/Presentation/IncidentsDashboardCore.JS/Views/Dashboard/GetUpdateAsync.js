@@ -3,13 +3,13 @@
         var selectedOriginId = $(this).val();
 
         $.ajax({
-            url: '/Dashboard/GetAmbitListByOriginIdAsync/', // Replace with your actual URL
+            url: '/Dashboard/GetAmbitListByOriginIdAsync/',
             type: "GET",
             data: { id: selectedOriginId },
             success: function (data) {
                 $("#AmbitId").empty().append($("<option>", { value: "" }).text("Select Ambit"));
                 $.each(data, function (index, item) {
-                    $("#AmbitId").append($("<option>", { value: item.Id }).text(item.Name)); // Adjust property names as needed
+                    $("#AmbitId").append($("<option>", { value: item.Id }).text(item.Name));
                 });
                 // Clear Incident Type options (optional)
                 $("#IncidentTypeId").empty().append($("<option>", { value: "" }).text("Select Incident Type"));
@@ -26,13 +26,13 @@
         var selectedAmbitId = $(this).val();
 
         $.ajax({
-            url: "/Dashboard/GetIncidentTypeListByAmbitIdAsync", // Replace with your actual URL
+            url: "/Dashboard/GetIncidentTypeListByAmbitIdAsync",
             type: "GET",
             data: { id: selectedAmbitId },
             success: function (data) {
                 $("#IncidentTypeId").empty().append($("<option>", { value: "" }).text("Select Incident Type"));
                 $.each(data, function (index, item) {
-                    $("#IncidentTypeId").append($("<option>", { value: item.Id }).text(item.Name)); // Adjust property names as needed
+                    $("#IncidentTypeId").append($("<option>", { value: item.Id }).text(item.Name)); 
                 });
             },
             error: function (jqXHR, textStatus, errorThrown) {

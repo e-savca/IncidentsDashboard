@@ -1,28 +1,4 @@
 ﻿export const GetUploadFileAsync = () => {
-    //$(document).ready(function () {
-    //    $('#uploadButton').click(function () {
-    //        var formData = new FormData();
-    //        var file = $('#formFile')[0].files[0];
-    //        formData.append('file', file);
-
-    //        $.ajax({
-    //            url: '@Url.Action("UploadCSVAsync", "Dashboard")',
-    //            type: 'POST',
-    //            data: formData,
-    //            processData: false,
-    //            contentType: false,
-    //            success: function (response) {
-    //                // Handle success
-    //                console.log(response);
-    //            },
-    //            error: function (xhr, status, error) {
-    //                // Handle error
-    //                console.error(xhr.responseText);
-    //            }
-    //        });
-    //    });
-    //});
-
     document.getElementById('uploadFileForm').addEventListener('submit', function (e) {
         e.preventDefault();
 
@@ -30,23 +6,56 @@
         var file = $('#formFile')[0].files[0];
         formData.append('file', file);
 
+        //var formData = new FormData(this);
+
+        var token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+        formData.append("__RequestVerificationToken", token);
+
         $.ajax({
-            url: '@Url.Action("UploadCSVAsync", "Dashboard")',
-            type: 'POST',
+            url: '/Dashboard/UploadCSVAsync',
+            xhrFields: {
+                withCredentials: true
+            },
             data: formData,
             processData: false,
             contentType: false,
-            headers: {
-                'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
-            },
+            type: "POST",
             success: function (response) {
-                // Handle success
-                console.log(response);
+                if (response.success) {
+                    window.location.href = '#Dashboard';
+                }
+                else {
+                    clearAlertValidationMessage();
+                    data.errors.forEach((item) => {
+                        appendAlertValidationMessage(item.message, item.propertyName)
+                    });
+                }
             },
-            error: function (xhr, status, error) {
-                // Handle error
-                console.error(xhr.responseText);
+            error: function (error) {
+                appendAlertValidationMessage('There are errors: ' + error, 'formFile')
             }
         });
     });
+
+    // Append alert message to the page
+    const appendAlertValidationMessage = (message, element) => {
+        // Find the validation span for the given element
+        let validationSpan = document.querySelector(`span[data-valmsg-for="${element}"]`);
+
+        // Set the error message and class
+        validationSpan.textContent = message;
+        validationSpan.className = `field-validation-error text-danger`;
+    }
+
+    // Clear append alert message
+    const clearAlertValidationMessage = () => {
+        // Find the validation span for all the elements
+        let validationSpans = document.querySelectorAll(`span[data-valmsg-for]`);
+
+        // Clear the error message and class
+        validationSpans.forEach((item) => {
+            item.textContent = '';
+            item.className = '';
+        });
+    }
 };
